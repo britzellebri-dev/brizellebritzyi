@@ -1,0 +1,38 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Archivo Black", sans-serif; }
+    #pasos-flood { position: absolute; inset: 0; background: #d7392b; }
+    .card { position: absolute; left: 60px; top: 430px; width: 790px; height: 820px; border-radius: 48px; background: #fff7ec; box-shadow: 0 30px 80px rgba(80, 20, 10, 0.25); }
+    .card .num { position: absolute; left: 70px; top: 40px; font-size: 300px; line-height: 1; color: #b82e20; }
+    .card .txt { position: absolute; left: 76px; right: 70px; top: 400px; font-size: 80px; line-height: 1.02; color: #2a1a12; letter-spacing: -0.02em; }
+    .card .tip { position: absolute; left: 80px; right: 70px; top: 640px; font-family: "Inter", sans-serif; font-weight: 700; font-size: 40px; color: #8a6a55; }
+    #pasos-dots { position: absolute; left: 50px; right: 200px; top: 1290px; text-align: center; }
+    #pasos-dots i { display: inline-block; width: 22px; height: 22px; margin: 0 10px; border-radius: 50%; background: #fff7ec; opacity: 0.4; }
+  </style>
+  <div id="root" data-composition-id="pasos" data-width="1080" data-height="1920">
+    <div id="pasos-flood" class="clip" data-start="0" data-duration="6.6"></div>
+    <div id="card1" class="clip" data-start="0" data-duration="2.1"><div class="card in"><div class="num">1</div><div class="txt">Tuesta el pan</div><div class="tip">Rebanada gruesa, bien crujiente</div></div></div>
+    <div id="card2" class="clip" data-start="2" data-duration="2.1"><div class="card in"><div class="num">2</div><div class="txt">Ralla el tomate</div><div class="tip">Maduro, y frótalo con ajo</div></div></div>
+    <div id="card3" class="clip" data-start="4" data-duration="2.6"><div class="card in"><div class="num">3</div><div class="txt">Aceite y sal</div><div class="tip">Un buen chorro de oliva virgen</div></div></div>
+    <div id="pasos-dots" class="clip" data-start="0" data-duration="6.6"><i id="d1"></i><i id="d2"></i><i id="d3"></i></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // the tomato's colour is already the ground: card 1 arrives large and settles
+    tl.fromTo("#card1 .card", { scale: 1.25, opacity: 0, filter: "blur(10px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.02);
+    tl.fromTo("#d1", { opacity: 0.4, scale: 1 }, { opacity: 1, scale: 1.3, duration: 0.25, ease: "back.out(1.4)" }, 0.1);
+    // whip left between cards
+    tl.to("#card1 .card", { x: -1200, filter: "blur(14px)", duration: 0.28, ease: "power3.in" }, 1.8);
+    tl.fromTo("#card2 .card", { x: 1200, filter: "blur(14px)" }, { x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 2.0);
+    tl.to("#d1", { opacity: 0.4, scale: 1, duration: 0.2 }, 2.0);
+    tl.fromTo("#d2", { opacity: 0.4, scale: 1 }, { opacity: 1, scale: 1.3, duration: 0.25, ease: "back.out(1.4)" }, 2.05);
+    tl.to("#card2 .card", { x: -1200, filter: "blur(14px)", duration: 0.28, ease: "power3.in" }, 3.8);
+    tl.fromTo("#card3 .card", { x: 1200, filter: "blur(14px)" }, { x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 4.0);
+    tl.to("#d2", { opacity: 0.4, scale: 1, duration: 0.2 }, 4.0);
+    tl.fromTo("#d3", { opacity: 0.4, scale: 1 }, { opacity: 1, scale: 1.3, duration: 0.25, ease: "back.out(1.4)" }, 4.05);
+    // card 3 becomes the world for the end card
+    tl.to("#card3 .card", { scale: 2.6, borderRadius: 0, duration: 0.55, ease: "power2.inOut" }, 6.0);
+    tl.to("#card3 .num, #card3 .txt, #card3 .tip, #pasos-dots", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 6.0);
+    window.__timelines["pasos"] = tl;
+  </script>
+</template>

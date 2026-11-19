@@ -1,0 +1,19 @@
+Guacamole en la pizarra — Chalkboard style
+
+IMAGES, FOOTAGE, MODELS
+- None. Wall, boards, frame, tray, clock and chalk are drawn in code (js/stage.js, js/chalk.js, js/app.js).
+  No photographs, no AI-generated images.
+
+FONTS (SIL Open Font License 1.1; fonts/OFL-EMS.txt)
+- EMS Delight (white chalk) and EMS Casual Hand (the pupil's yellow chalk), single-stroke SVG fonts: derivatives of
+  Delius (Natalia Raices) and Covered By Your Grace (Kimberly Geswein); SVG conversion by Sheldon B. Michaels and
+  Windell H. Oskay, gitlab.com/oskay/svg-fonts.
+
+SOUND
+- "WWS Chalk.ogg" by Work With Sounds / La Fonderie, provided by Work With Sounds in cooperation with Wikimedia Sverige
+  (Wikimedia Commons) — CC BY 4.0 (creativecommons.org/licenses/by/4.0). Cut into grains, filtered and layered.
+- Music: nylon guitar, pizzicato bass and kalimba are physical models (pluck.py of the Lemo-Opuscar library), no samples.
+  Felt wipe, bell and room tone synthesised in mix.py.
+
+ENGINE
+- Chalkboard engine of the Lemo-Opuscar library (js/chalk.js, hand.js, r2d.js, stage.js, post.js, props.js, lab.js, hz.js).

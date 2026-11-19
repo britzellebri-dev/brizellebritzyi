@@ -1,0 +1,36 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Archivo Black", sans-serif; color: #2a1a12; }
+    #intro-tomato { position: absolute; left: 290px; top: 300px; width: 400px; height: 400px; }
+    #intro-tomato .spin { position: absolute; inset: 0; }
+    #intro-tomato .fruit { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f06a4f 0%, #d7392b 45%, #a72318 100%); }
+    #intro-tomato .leaf { position: absolute; left: 150px; top: -26px; width: 100px; height: 70px; }
+    #intro-tomato .leaf i { position: absolute; left: 30px; top: 18px; width: 44px; height: 18px; background: #3f7d3a; border-radius: 50% 50% 50% 50% / 100% 100% 0 0; transform-origin: 50% 100%; }
+    #intro-tomato .leaf i:nth-child(2) { transform: rotate(60deg); }
+    #intro-tomato .leaf i:nth-child(3) { transform: rotate(-60deg); }
+    #intro-title { position: absolute; left: 40px; right: 180px; top: 790px; text-align: center; line-height: 0.95; }
+    #intro-title .w { display: inline-block; font-size: 136px; letter-spacing: -0.03em; }
+    #intro-title .accent { color: #b82e20; }
+    #intro-sub { position: absolute; left: 40px; right: 180px; top: 1150px; text-align: center; font-family: "Inter", sans-serif; font-weight: 700; font-size: 46px; color: #6b4a36; }
+  </style>
+  <div id="root" data-composition-id="intro" data-width="1080" data-height="1920">
+    <div id="intro-tomato" class="clip" data-start="0" data-duration="3.2" data-layout-allow-overflow>
+      <div class="spin"><div class="fruit"></div><div class="leaf"><i></i><i></i><i></i></div></div>
+    </div>
+    <h1 id="intro-title" class="clip" data-start="0" data-duration="3.2">
+      <span class="w" id="w1">Pan con</span><br /><span class="w accent" id="w2">tomate</span>
+    </h1>
+    <p id="intro-sub" class="clip" data-start="0" data-duration="3.2">3 pasos · 5 minutos</p>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#intro-tomato .spin", { scale: 0.82, rotation: -12, y: 30 }, { scale: 1, rotation: 0, y: 0, duration: 0.9, ease: "elastic.out(1, 0.6)" }, 0);
+    tl.fromTo("#w1", { y: 0 }, { y: 0, duration: 0.01 }, 0);
+    tl.fromTo("#w2", { color: "#2a1a12" }, { color: "#b82e20", duration: 0.35, ease: "power2.inOut" }, 0.45);
+    tl.fromTo("#intro-sub", { opacity: 0, color: "#c9b6a6" }, { opacity: 1, color: "#6b4a36", duration: 0.3, ease: "power2.out" }, 0.7);
+    // exit: the tomato zooms through, everything else blurs out
+    tl.to(["#intro-title .w", "#intro-sub"], { opacity: 0, filter: "blur(8px)", duration: 0.18, stagger: 0.05, ease: "power2.in" }, 2.55);
+    tl.to("#intro-tomato .spin", { scale: 14, y: 500, duration: 0.5, ease: "power3.in" }, 2.6);
+    window.__timelines["intro"] = tl;
+  </script>
+</template>
