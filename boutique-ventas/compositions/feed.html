@@ -1,0 +1,68 @@
+<template>
+  <style>
+  #root { position: absolute; inset: 0; font-family: "Poppins", sans-serif; color: #1B1416; overflow: hidden; }
+  .ground { position: absolute; inset: 0; }
+  .phone { position: absolute; left: 0; top: 0; width: 780px; height: 1600px; border-radius: 90px; background: #1B1416; box-shadow: 0 40px 80px rgba(27,20,22,.35); transform-origin: 0 0; }
+  .screen { position: absolute; left: 22px; top: 22px; width: 736px; height: 1556px; border-radius: 70px; background: #fff; overflow: hidden; }
+  .status { position: absolute; left: 0; right: 0; top: 0; height: 60px; padding: 14px 44px 0; display: flex; justify-content: space-between; font-weight: 600; font-size: 28px; background: #fff; z-index: 3; }
+  .status .bat { width: 46px; height: 22px; border: 3px solid #1B1416; border-radius: 6px; margin-top: 6px; }
+  .view { position: absolute; left: 0; top: 60px; width: 736px; height: 1496px; overflow: hidden; }
+  .strip { position: absolute; left: 0; top: 0; width: 736px; }
+  .post { position: relative; width: 736px; height: 1496px; background: #fff; }
+  .post .hd { position: absolute; left: 28px; top: 18px; height: 80px; display: flex; align-items: center; gap: 18px; font-weight: 600; font-size: 30px; }
+  .post .av { width: 68px; height: 68px; border-radius: 50%; }
+  .post .img { position: absolute; left: 0; top: 110px; width: 736px; height: 920px; overflow: hidden; }
+  .post .act { position: absolute; left: 28px; top: 1048px; display: flex; gap: 30px; }
+  .post .likes { position: absolute; left: 28px; top: 1120px; font-weight: 600; font-size: 28px; }
+  .post .cap { position: absolute; left: 28px; right: 28px; top: 1168px; font-size: 30px; line-height: 1.35; }
+  .post .cap b { font-weight: 600; }
+  .post .count { position: absolute; right: 24px; top: 130px; background: rgba(27,20,22,.72); color: #fff; font-weight: 600; font-size: 26px; padding: 6px 16px; border-radius: 22px; }
+  .post .btn { position: absolute; left: 28px; right: 28px; top: 1350px; height: 92px; border-radius: 18px; background: #FF5A4E; color: #fff; font-weight: 700; font-size: 36px; display: flex; align-items: center; justify-content: center; }
+  .post .tag { position: absolute; left: 30px; bottom: 34px; background: #fff; font-weight: 700; font-size: 40px; padding: 8px 22px; border-radius: 12px; box-shadow: 0 6px 0 #1B1416; }
+  .think { position: absolute; left: 110px; right: 150px; font-weight: 800; font-size: 118px; line-height: 1.0; letter-spacing: -0.02em; }
+  .sticker { position: absolute; background: #FFFDF8; border: 4px solid #1B1416; box-shadow: 0 6px 0 #1B1416; padding: 18px 26px; font-weight: 600; font-size: 40px; line-height: 1.15; }
+  .sticker small { display: block; font-weight: 400; font-size: 32px; margin-top: 4px; }
+  .lens { position: absolute; left: 90px; top: 760px; width: 900px; height: 540px; border-radius: 40px; border: 6px solid #1B1416; overflow: hidden; background: #fff; box-shadow: 0 30px 60px rgba(27,20,22,.25); }
+  .lens .inner { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+</style>
+  <div id="root" data-composition-id="feed" data-width="1080" data-height="1920">
+    <div id="feed-ground" class="clip ground" data-start="0" data-duration="3.2" style="background:#F4C9CF"></div>
+    <p id="feed-who" class="clip" data-start="0" data-duration="3.2" style="position:absolute;left:120px;top:300px;font-weight:700;font-size:48px;margin:0"><span id="feed-who-t"><span data-var-text="clienta">Andrea</span> · 11:47 p. m.</span></p>
+    <div id="feed-cam" class="clip" data-start="0" data-duration="3.2" data-layout-allow-overflow><div class="phone" id="feed-phone" data-layout-ignore><div class="screen"><div class="status"><span>11:47</span><span class="bat"></span></div>
+          <div class="view"><div class="strip" id="feed-strip"><div class="post"><div class="hd"><div class="av" style="background:#8FB8A8"></div>viajes.lu</div>
+          <div class="img" style="background:#DCEFE6"><div style="position:absolute;left:120px;top:200px;width:500px;height:500px;border-radius:50%;background:#8FB8A8;opacity:.8"></div></div>
+          <div class="act"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M12 21s-7-4.4-9.3-8.6C1.2 9.6 2.8 6 6.2 6c2 0 3.3 1.1 3.8 2.2C10.5 7.1 11.8 6 13.8 6 17.2 6 18.8 9.6 17.3 12.4 15 16.6 12 21 12 21z" transform="translate(1.5 -1)"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M21 12a8 8 0 1 1-3.3-6.5A8 8 0 0 1 21 12z"/><path d="M17.7 18.5 21 21"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M22 3 2 10l8 3 3 8z"/><path d="M10 13l5-5"/></svg></div><div class="likes">1.204 Me gusta</div>
+          <div class="cap"><b>viajes.lu</b> Un día cualquiera ☀️</div></div><div class="post"><div class="hd"><div class="av" style="background:#E9B872"></div>recetas.dani</div>
+          <div class="img" style="background:#FBE6C8"><div style="position:absolute;left:120px;top:200px;width:500px;height:500px;border-radius:50%;background:#E9B872;opacity:.8"></div></div>
+          <div class="act"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M12 21s-7-4.4-9.3-8.6C1.2 9.6 2.8 6 6.2 6c2 0 3.3 1.1 3.8 2.2C10.5 7.1 11.8 6 13.8 6 17.2 6 18.8 9.6 17.3 12.4 15 16.6 12 21 12 21z" transform="translate(1.5 -1)"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M21 12a8 8 0 1 1-3.3-6.5A8 8 0 0 1 21 12z"/><path d="M17.7 18.5 21 21"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M22 3 2 10l8 3 3 8z"/><path d="M10 13l5-5"/></svg></div><div class="likes">1.204 Me gusta</div>
+          <div class="cap"><b>recetas.dani</b> Un día cualquiera ☀️</div></div><div class="post"><div class="hd"><div class="av" style="background:#9DA9D6"></div>fit.mariana</div>
+          <div class="img" style="background:#E3E7F6"><div style="position:absolute;left:120px;top:200px;width:500px;height:500px;border-radius:50%;background:#9DA9D6;opacity:.8"></div></div>
+          <div class="act"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M12 21s-7-4.4-9.3-8.6C1.2 9.6 2.8 6 6.2 6c2 0 3.3 1.1 3.8 2.2C10.5 7.1 11.8 6 13.8 6 17.2 6 18.8 9.6 17.3 12.4 15 16.6 12 21 12 21z" transform="translate(1.5 -1)"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M21 12a8 8 0 1 1-3.3-6.5A8 8 0 0 1 21 12z"/><path d="M17.7 18.5 21 21"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M22 3 2 10l8 3 3 8z"/><path d="M10 13l5-5"/></svg></div><div class="likes">1.204 Me gusta</div>
+          <div class="cap"><b>fit.mariana</b> Un día cualquiera ☀️</div></div><div class="post" id="feed-post"><div class="hd"><div class="av" style="background:#FF5A4E"></div><span data-var-text="boutique">boutique.lia</span></div>
+          <div class="img" id="feed-img"><svg width="736" height="920" viewBox="0 0 736 920">
+      <rect width="736" height="920" fill="#5B524C"/><rect y="640" width="736" height="280" fill="#4A423D"/>
+      <path d="M368 120c0-26 34-26 34-4 0 16-34 22-34 44" fill="none" stroke="#2E2824" stroke-width="8" stroke-linecap="round"/>
+      <path d="M368 160 220 250h296z" fill="none" stroke="#2E2824" stroke-width="9" stroke-linejoin="round"/>
+      <path d="M240 250l-90 70 50 70 50-36v300h236V354l50 36 50-70-90-70c-20 34-60 52-128 52s-108-18-128-52z" fill="#B9A894"/>
+      <path d="M320 250c10 24 26 34 48 34s38-10 48-34" fill="none" stroke="#8E7E6C" stroke-width="6"/>
+    </svg></div><div class="count" id="feed-count">1/12</div>
+          <div class="act"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M12 21s-7-4.4-9.3-8.6C1.2 9.6 2.8 6 6.2 6c2 0 3.3 1.1 3.8 2.2C10.5 7.1 11.8 6 13.8 6 17.2 6 18.8 9.6 17.3 12.4 15 16.6 12 21 12 21z" transform="translate(1.5 -1)"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M21 12a8 8 0 1 1-3.3-6.5A8 8 0 0 1 21 12z"/><path d="M17.7 18.5 21 21"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M22 3 2 10l8 3 3 8z"/><path d="M10 13l5-5"/></svg></div><div class="likes">23 Me gusta</div>
+          <div class="cap" id="feed-cap"><b data-var-text="boutique">boutique.lia</b> Nueva colección disponible ✨ <span id="feed-dm">Precio por DM 📩</span> #moda #boutique #nuevacoleccion</div></div></div></div></div></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    gsap.set("#feed-phone", { x: 251, y: 390, scale: .74 });
+    tl.fromTo("#feed-strip", { y: -900, filter: "blur(14px)" }, { y: -4488, filter: "blur(0px)", duration: 1.6, ease: "power4.out" }, 0);
+    tl.fromTo("#feed-who-t", { opacity: 1 }, { opacity: 1, duration: 0.01 }, 0);
+    tl.fromTo("#feed-phone", { x: 251, y: 390, scale: .74 }, { x: 251, y: 390, scale: .745, duration: 1.4, ease: "power2.inOut" }, 1.7);
+    window.__timelines["feed"] = tl;
+  </script>
+</template>

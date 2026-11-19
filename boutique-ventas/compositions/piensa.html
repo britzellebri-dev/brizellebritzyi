@@ -1,0 +1,100 @@
+<template>
+  <style>
+  #root { position: absolute; inset: 0; font-family: "Poppins", sans-serif; color: #1B1416; overflow: hidden; }
+  .ground { position: absolute; inset: 0; }
+  .phone { position: absolute; left: 0; top: 0; width: 780px; height: 1600px; border-radius: 90px; background: #1B1416; box-shadow: 0 40px 80px rgba(27,20,22,.35); transform-origin: 0 0; }
+  .screen { position: absolute; left: 22px; top: 22px; width: 736px; height: 1556px; border-radius: 70px; background: #fff; overflow: hidden; }
+  .status { position: absolute; left: 0; right: 0; top: 0; height: 60px; padding: 14px 44px 0; display: flex; justify-content: space-between; font-weight: 600; font-size: 28px; background: #fff; z-index: 3; }
+  .status .bat { width: 46px; height: 22px; border: 3px solid #1B1416; border-radius: 6px; margin-top: 6px; }
+  .view { position: absolute; left: 0; top: 60px; width: 736px; height: 1496px; overflow: hidden; }
+  .strip { position: absolute; left: 0; top: 0; width: 736px; }
+  .post { position: relative; width: 736px; height: 1496px; background: #fff; }
+  .post .hd { position: absolute; left: 28px; top: 18px; height: 80px; display: flex; align-items: center; gap: 18px; font-weight: 600; font-size: 30px; }
+  .post .av { width: 68px; height: 68px; border-radius: 50%; }
+  .post .img { position: absolute; left: 0; top: 110px; width: 736px; height: 920px; overflow: hidden; }
+  .post .act { position: absolute; left: 28px; top: 1048px; display: flex; gap: 30px; }
+  .post .likes { position: absolute; left: 28px; top: 1120px; font-weight: 600; font-size: 28px; }
+  .post .cap { position: absolute; left: 28px; right: 28px; top: 1168px; font-size: 30px; line-height: 1.35; }
+  .post .cap b { font-weight: 600; }
+  .post .count { position: absolute; right: 24px; top: 130px; background: rgba(27,20,22,.72); color: #fff; font-weight: 600; font-size: 26px; padding: 6px 16px; border-radius: 22px; }
+  .post .btn { position: absolute; left: 28px; right: 28px; top: 1350px; height: 92px; border-radius: 18px; background: #FF5A4E; color: #fff; font-weight: 700; font-size: 36px; display: flex; align-items: center; justify-content: center; }
+  .post .tag { position: absolute; left: 30px; bottom: 34px; background: #fff; font-weight: 700; font-size: 40px; padding: 8px 22px; border-radius: 12px; box-shadow: 0 6px 0 #1B1416; }
+  .think { position: absolute; left: 110px; right: 150px; font-weight: 800; font-size: 118px; line-height: 1.0; letter-spacing: -0.02em; }
+  .sticker { position: absolute; background: #FFFDF8; border: 4px solid #1B1416; box-shadow: 0 6px 0 #1B1416; padding: 18px 26px; font-weight: 600; font-size: 40px; line-height: 1.15; }
+  .sticker small { display: block; font-weight: 400; font-size: 32px; margin-top: 4px; }
+  .lens { position: absolute; left: 90px; top: 760px; width: 900px; height: 540px; border-radius: 40px; border: 6px solid #1B1416; overflow: hidden; background: #fff; box-shadow: 0 30px 60px rgba(27,20,22,.25); }
+  .lens .inner { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+#t2-img svg, #t3-count { } #t1-dm { padding: 0 6px; border-radius: 6px; } #t2-img { outline: 0 solid #1B1416; }</style>
+  <div id="root" data-composition-id="piensa" data-width="1080" data-height="1920">
+    <div id="t1-ground" class="clip ground" data-start="0" data-duration="4" style="background:#FF5A4E"></div>
+    <div id="t1-zoom" class="clip" data-start="0" data-duration="4" data-layout-allow-overflow><div class="lens" id="t1-lens" data-layout-ignore><div class="inner" id="t1-inner"><div class="post" id="t1-post"><div class="hd"><div class="av" style="background:#FF5A4E"></div><span data-var-text="boutique">boutique.lia</span></div>
+          <div class="img" id="t1-img"><svg width="736" height="920" viewBox="0 0 736 920">
+      <rect width="736" height="920" fill="#5B524C"/><rect y="640" width="736" height="280" fill="#4A423D"/>
+      <path d="M368 120c0-26 34-26 34-4 0 16-34 22-34 44" fill="none" stroke="#2E2824" stroke-width="8" stroke-linecap="round"/>
+      <path d="M368 160 220 250h296z" fill="none" stroke="#2E2824" stroke-width="9" stroke-linejoin="round"/>
+      <path d="M240 250l-90 70 50 70 50-36v300h236V354l50 36 50-70-90-70c-20 34-60 52-128 52s-108-18-128-52z" fill="#B9A894"/>
+      <path d="M320 250c10 24 26 34 48 34s38-10 48-34" fill="none" stroke="#8E7E6C" stroke-width="6"/>
+    </svg></div><div class="count" id="t1-count">1/12</div>
+          <div class="act"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M12 21s-7-4.4-9.3-8.6C1.2 9.6 2.8 6 6.2 6c2 0 3.3 1.1 3.8 2.2C10.5 7.1 11.8 6 13.8 6 17.2 6 18.8 9.6 17.3 12.4 15 16.6 12 21 12 21z" transform="translate(1.5 -1)"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M21 12a8 8 0 1 1-3.3-6.5A8 8 0 0 1 21 12z"/><path d="M17.7 18.5 21 21"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M22 3 2 10l8 3 3 8z"/><path d="M10 13l5-5"/></svg></div><div class="likes">23 Me gusta</div>
+          <div class="cap" id="t1-cap"><b data-var-text="boutique">boutique.lia</b> Nueva colección disponible ✨ <span id="t1-dm">Precio por DM 📩</span> #moda #boutique #nuevacoleccion</div></div></div></div></div>
+    <h2 id="t1-think" class="clip think" data-start="0" data-duration="4" style="top:330px;margin:0;color:#1B1416"><span class="in" data-var-text="pensamiento1">Bonita… ¿cuánto cuesta?</span></h2>
+    <div id="t1-st" class="clip sticker" data-start="1.0" data-duration="3.0" style="left:110px;top:1170px"><span class="in">FRICCIÓN<small>cada paso extra es una salida</small></span></div>
+    <div id="t2-ground" class="clip ground" data-start="4" data-duration="4" style="background:#FFE27A"></div>
+    <div id="t2-zoom" class="clip" data-start="4" data-duration="4" data-layout-allow-overflow><div class="lens" id="t2-lens" data-layout-ignore><div class="inner" id="t2-inner"><div class="post" id="t2-post"><div class="hd"><div class="av" style="background:#FF5A4E"></div><span data-var-text="boutique">boutique.lia</span></div>
+          <div class="img" id="t2-img"><svg width="736" height="920" viewBox="0 0 736 920">
+      <rect width="736" height="920" fill="#5B524C"/><rect y="640" width="736" height="280" fill="#4A423D"/>
+      <path d="M368 120c0-26 34-26 34-4 0 16-34 22-34 44" fill="none" stroke="#2E2824" stroke-width="8" stroke-linecap="round"/>
+      <path d="M368 160 220 250h296z" fill="none" stroke="#2E2824" stroke-width="9" stroke-linejoin="round"/>
+      <path d="M240 250l-90 70 50 70 50-36v300h236V354l50 36 50-70-90-70c-20 34-60 52-128 52s-108-18-128-52z" fill="#B9A894"/>
+      <path d="M320 250c10 24 26 34 48 34s38-10 48-34" fill="none" stroke="#8E7E6C" stroke-width="6"/>
+    </svg></div><div class="count" id="t2-count">1/12</div>
+          <div class="act"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M12 21s-7-4.4-9.3-8.6C1.2 9.6 2.8 6 6.2 6c2 0 3.3 1.1 3.8 2.2C10.5 7.1 11.8 6 13.8 6 17.2 6 18.8 9.6 17.3 12.4 15 16.6 12 21 12 21z" transform="translate(1.5 -1)"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M21 12a8 8 0 1 1-3.3-6.5A8 8 0 0 1 21 12z"/><path d="M17.7 18.5 21 21"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M22 3 2 10l8 3 3 8z"/><path d="M10 13l5-5"/></svg></div><div class="likes">23 Me gusta</div>
+          <div class="cap" id="t2-cap"><b data-var-text="boutique">boutique.lia</b> Nueva colección disponible ✨ <span id="t2-dm">Precio por DM 📩</span> #moda #boutique #nuevacoleccion</div></div></div></div></div>
+    <h2 id="t2-think" class="clip think" data-start="4" data-duration="4" style="top:330px;margin:0;color:#1B1416"><span class="in" data-var-text="pensamiento2">¿Y cómo me quedará a mí?</span></h2>
+    <div id="t2-st" class="clip sticker" data-start="5.0" data-duration="3.0" style="left:170px;top:1170px"><span class="in">NO SE IMAGINA<small>una blusa en percha no se siente suya</small></span></div>
+    <div id="t3-ground" class="clip ground" data-start="8" data-duration="4" style="background:#F4C9CF"></div>
+    <div id="t3-zoom" class="clip" data-start="8" data-duration="4" data-layout-allow-overflow><div class="lens" id="t3-lens" data-layout-ignore><div class="inner" id="t3-inner"><div class="post" id="t3-post"><div class="hd"><div class="av" style="background:#FF5A4E"></div><span data-var-text="boutique">boutique.lia</span></div>
+          <div class="img" id="t3-img"><svg width="736" height="920" viewBox="0 0 736 920">
+      <rect width="736" height="920" fill="#5B524C"/><rect y="640" width="736" height="280" fill="#4A423D"/>
+      <path d="M368 120c0-26 34-26 34-4 0 16-34 22-34 44" fill="none" stroke="#2E2824" stroke-width="8" stroke-linecap="round"/>
+      <path d="M368 160 220 250h296z" fill="none" stroke="#2E2824" stroke-width="9" stroke-linejoin="round"/>
+      <path d="M240 250l-90 70 50 70 50-36v300h236V354l50 36 50-70-90-70c-20 34-60 52-128 52s-108-18-128-52z" fill="#B9A894"/>
+      <path d="M320 250c10 24 26 34 48 34s38-10 48-34" fill="none" stroke="#8E7E6C" stroke-width="6"/>
+    </svg></div><div class="count" id="t3-count">1/12</div>
+          <div class="act"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M12 21s-7-4.4-9.3-8.6C1.2 9.6 2.8 6 6.2 6c2 0 3.3 1.1 3.8 2.2C10.5 7.1 11.8 6 13.8 6 17.2 6 18.8 9.6 17.3 12.4 15 16.6 12 21 12 21z" transform="translate(1.5 -1)"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M21 12a8 8 0 1 1-3.3-6.5A8 8 0 0 1 21 12z"/><path d="M17.7 18.5 21 21"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M22 3 2 10l8 3 3 8z"/><path d="M10 13l5-5"/></svg></div><div class="likes">23 Me gusta</div>
+          <div class="cap" id="t3-cap"><b data-var-text="boutique">boutique.lia</b> Nueva colección disponible ✨ <span id="t3-dm">Precio por DM 📩</span> #moda #boutique #nuevacoleccion</div></div></div></div></div>
+    <h2 id="t3-think" class="clip think" data-start="8" data-duration="4" style="top:330px;margin:0;color:#1B1416"><span class="in" data-var-text="pensamiento3">12 fotos… luego miro</span></h2>
+    <div id="t3-st" class="clip sticker" data-start="9.0" data-duration="3.0" style="left:110px;top:1170px"><span class="in">DEMASIADAS OPCIONES<small>cuando todo se ofrece, nada se elige</small></span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#t1-think .in", { scale: 1.18, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 0.05);
+    tl.fromTo("#t1-lens", { scale: .9, rotation: -2 }, { scale: 1, rotation: 0, duration: 0.6, ease: "power2.inOut" }, 0);
+    tl.fromTo("#t1-inner", { x: 0.0, y: -1437.5, scale: 1.25 }, { x: -18.0, y: -1437.5, scale: 1.25, duration: 3.6, ease: "none" }, 0);
+    tl.fromTo("#t1-dm", { backgroundColor: "rgba(255,226,122,0)" }, { backgroundColor: "rgba(255,226,122,.85)", duration: 0.3, ease: "power2.out" }, 0.8);
+    tl.fromTo("#t1-st .in", { opacity: 0 }, { opacity: 1, duration: 0.05 }, 1.0);
+    tl.fromTo("#t1-st", { scale: 1.3, rotation: 8 }, { scale: 1, rotation: 3, duration: 0.27, ease: "back.out(2)" }, 1.0);
+    tl.to(["#t1-think .in", "#t1-st .in"], { opacity: 0, duration: 0.15, ease: "power2.in" }, 3.82);
+    tl.fromTo("#t2-think .in", { scale: 1.18, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 4.05);
+    tl.fromTo("#t2-lens", { scale: .9, rotation: -2 }, { scale: 1, rotation: 0, duration: 0.6, ease: "power2.inOut" }, 4);
+    tl.fromTo("#t2-inner", { x: -52.0, y: -338.0, scale: 1.3 }, { x: -70.0, y: -338.0, scale: 1.3, duration: 3.6, ease: "none" }, 4);
+    tl.fromTo("#t2-img", { backgroundColor: "rgba(255,226,122,0)" }, { backgroundColor: "rgba(255,226,122,.85)", duration: 0.3, ease: "power2.out" }, 4.8);
+    tl.fromTo("#t2-st .in", { opacity: 0 }, { opacity: 1, duration: 0.05 }, 5.0);
+    tl.fromTo("#t2-st", { scale: 1.3, rotation: -8 }, { scale: 1, rotation: -3, duration: 0.27, ease: "back.out(2)" }, 5.0);
+    tl.to(["#t2-think .in", "#t2-st .in"], { opacity: 0, duration: 0.15, ease: "power2.in" }, 7.82);
+    tl.fromTo("#t3-think .in", { scale: 1.18, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.6)" }, 8.05);
+    tl.fromTo("#t3-lens", { scale: .9, rotation: -2 }, { scale: 1, rotation: 0, duration: 0.6, ease: "power2.inOut" }, 8);
+    tl.fromTo("#t3-inner", { x: -275.2, y: -176.0, scale: 1.6 }, { x: -293.2, y: -176.0, scale: 1.6, duration: 3.6, ease: "none" }, 8);
+    tl.fromTo("#t3-count", { backgroundColor: "rgba(27,20,22,.72)" }, { backgroundColor: "#FF5A4E", duration: 0.3, ease: "power2.out" }, 8.8);
+    tl.fromTo("#t3-st .in", { opacity: 0 }, { opacity: 1, duration: 0.05 }, 9.0);
+    tl.fromTo("#t3-st", { scale: 1.3, rotation: 8 }, { scale: 1, rotation: 3, duration: 0.27, ease: "back.out(2)" }, 9.0);
+    tl.to(["#t3-think .in", "#t3-st .in"], { opacity: 0, duration: 0.15, ease: "power2.in" }, 11.82);
+    window.__timelines["piensa"] = tl;
+  </script>
+</template>

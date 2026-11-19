@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es" data-composition-variables='[
+  {"id":"boutique","type":"string","label":"Usuario de la boutique (ejemplo)","default":"boutique.lia","maxLength":20},
+  {"id":"clienta","type":"string","label":"Nombre de la clienta","default":"Andrea","maxLength":14},
+  {"id":"pensamiento1","type":"string","label":"Pensamiento 1","default":"Bonita… ¿cuánto cuesta?","maxLength":30},
+  {"id":"pensamiento2","type":"string","label":"Pensamiento 2","default":"¿Y cómo me quedará a mí?","maxLength":30},
+  {"id":"pensamiento3","type":"string","label":"Pensamiento 3","default":"12 fotos… luego miro","maxLength":30},
+  {"id":"frase1","type":"string","label":"Frase final 1","default":"Tu clienta no compra la blusa.","maxLength":40},
+  {"id":"frase2","type":"string","label":"Frase final 2","default":"Compra cómo se ve con ella.","maxLength":40},
+  {"id":"cta","type":"string","label":"Llamado final","default":"Revisa tu último post 👀","maxLength":40}
+]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #F4C9CF; }
+      #root { width: 100%; height: 100%; }
+    </style>
+  </head>
+  <body>
+    <!-- «¿Por qué tus publicaciones no venden?» — vertical 1080×1920, 36 s. Ver SPEC.md y STORYLINES.md (opción A). -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="36" data-width="1080" data-height="1920">
+      <div id="feed" data-composition-id="feed" data-composition-src="compositions/feed.html" data-start="0" data-duration="3.2" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="post" data-composition-id="post" data-composition-src="compositions/post.html" data-start="3.2" data-duration="3.2" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="piensa" data-composition-id="piensa" data-composition-src="compositions/piensa.html" data-start="6.4" data-duration="12" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="seva" data-composition-id="seva" data-composition-src="compositions/seva.html" data-start="18.4" data-duration="3.6" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="rearma" data-composition-id="rearma" data-composition-src="compositions/rearma.html" data-start="22.0" data-duration="8.4" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="cierre" data-composition-id="cierre" data-composition-src="compositions/cierre.html" data-start="30.4" data-duration="5.6" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

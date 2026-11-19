@@ -1,0 +1,107 @@
+<template>
+  <style>
+  #root { position: absolute; inset: 0; font-family: "Poppins", sans-serif; color: #1B1416; overflow: hidden; }
+  .ground { position: absolute; inset: 0; }
+  .phone { position: absolute; left: 0; top: 0; width: 780px; height: 1600px; border-radius: 90px; background: #1B1416; box-shadow: 0 40px 80px rgba(27,20,22,.35); transform-origin: 0 0; }
+  .screen { position: absolute; left: 22px; top: 22px; width: 736px; height: 1556px; border-radius: 70px; background: #fff; overflow: hidden; }
+  .status { position: absolute; left: 0; right: 0; top: 0; height: 60px; padding: 14px 44px 0; display: flex; justify-content: space-between; font-weight: 600; font-size: 28px; background: #fff; z-index: 3; }
+  .status .bat { width: 46px; height: 22px; border: 3px solid #1B1416; border-radius: 6px; margin-top: 6px; }
+  .view { position: absolute; left: 0; top: 60px; width: 736px; height: 1496px; overflow: hidden; }
+  .strip { position: absolute; left: 0; top: 0; width: 736px; }
+  .post { position: relative; width: 736px; height: 1496px; background: #fff; }
+  .post .hd { position: absolute; left: 28px; top: 18px; height: 80px; display: flex; align-items: center; gap: 18px; font-weight: 600; font-size: 30px; }
+  .post .av { width: 68px; height: 68px; border-radius: 50%; }
+  .post .img { position: absolute; left: 0; top: 110px; width: 736px; height: 920px; overflow: hidden; }
+  .post .act { position: absolute; left: 28px; top: 1048px; display: flex; gap: 30px; }
+  .post .likes { position: absolute; left: 28px; top: 1120px; font-weight: 600; font-size: 28px; }
+  .post .cap { position: absolute; left: 28px; right: 28px; top: 1168px; font-size: 30px; line-height: 1.35; }
+  .post .cap b { font-weight: 600; }
+  .post .count { position: absolute; right: 24px; top: 130px; background: rgba(27,20,22,.72); color: #fff; font-weight: 600; font-size: 26px; padding: 6px 16px; border-radius: 22px; }
+  .post .btn { position: absolute; left: 28px; right: 28px; top: 1350px; height: 92px; border-radius: 18px; background: #FF5A4E; color: #fff; font-weight: 700; font-size: 36px; display: flex; align-items: center; justify-content: center; }
+  .post .tag { position: absolute; left: 30px; bottom: 34px; background: #fff; font-weight: 700; font-size: 40px; padding: 8px 22px; border-radius: 12px; box-shadow: 0 6px 0 #1B1416; }
+  .think { position: absolute; left: 110px; right: 150px; font-weight: 800; font-size: 118px; line-height: 1.0; letter-spacing: -0.02em; }
+  .sticker { position: absolute; background: #FFFDF8; border: 4px solid #1B1416; box-shadow: 0 6px 0 #1B1416; padding: 18px 26px; font-weight: 600; font-size: 40px; line-height: 1.15; }
+  .sticker small { display: block; font-weight: 400; font-size: 32px; margin-top: 4px; }
+  .lens { position: absolute; left: 90px; top: 760px; width: 900px; height: 540px; border-radius: 40px; border: 6px solid #1B1416; overflow: hidden; background: #fff; box-shadow: 0 30px 60px rgba(27,20,22,.25); }
+  .lens .inner { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+</style>
+  <div id="root" data-composition-id="rearma" data-width="1080" data-height="1920">
+    <div id="rea-ground" class="clip ground" data-start="0" data-duration="8.4" style="background:#FFE27A"></div>
+    <div id="rea-cam" class="clip" data-start="0" data-duration="1.35" data-layout-allow-overflow><div class="phone" id="rea-phone" data-layout-ignore><div class="screen"><div class="status"><span>11:47</span><span class="bat"></span></div>
+          <div class="view"><div class="strip" id="rea-strip"><div class="post" id="reaw-post"><div class="hd"><div class="av" style="background:#FF5A4E"></div><span data-var-text="boutique">boutique.lia</span></div>
+          <div class="img" id="reaw-img"><svg width="736" height="920" viewBox="0 0 736 920">
+      <rect width="736" height="920" fill="#5B524C"/><rect y="640" width="736" height="280" fill="#4A423D"/>
+      <path d="M368 120c0-26 34-26 34-4 0 16-34 22-34 44" fill="none" stroke="#2E2824" stroke-width="8" stroke-linecap="round"/>
+      <path d="M368 160 220 250h296z" fill="none" stroke="#2E2824" stroke-width="9" stroke-linejoin="round"/>
+      <path d="M240 250l-90 70 50 70 50-36v300h236V354l50 36 50-70-90-70c-20 34-60 52-128 52s-108-18-128-52z" fill="#B9A894"/>
+      <path d="M320 250c10 24 26 34 48 34s38-10 48-34" fill="none" stroke="#8E7E6C" stroke-width="6"/>
+    </svg></div><div class="count" id="reaw-count">1/12</div>
+          <div class="act"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M12 21s-7-4.4-9.3-8.6C1.2 9.6 2.8 6 6.2 6c2 0 3.3 1.1 3.8 2.2C10.5 7.1 11.8 6 13.8 6 17.2 6 18.8 9.6 17.3 12.4 15 16.6 12 21 12 21z" transform="translate(1.5 -1)"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M21 12a8 8 0 1 1-3.3-6.5A8 8 0 0 1 21 12z"/><path d="M17.7 18.5 21 21"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M22 3 2 10l8 3 3 8z"/><path d="M10 13l5-5"/></svg></div><div class="likes">23 Me gusta</div>
+          <div class="cap" id="reaw-cap"><b data-var-text="boutique">boutique.lia</b> Nueva colección disponible ✨ <span id="reaw-dm">Precio por DM 📩</span> #moda #boutique #nuevacoleccion</div></div><div class="post"><div class="hd"><div class="av" style="background:#E9B872"></div>recetas.dani</div>
+          <div class="img" style="background:#FBE6C8"><div style="position:absolute;left:120px;top:200px;width:500px;height:500px;border-radius:50%;background:#E9B872;opacity:.8"></div></div>
+          <div class="act"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M12 21s-7-4.4-9.3-8.6C1.2 9.6 2.8 6 6.2 6c2 0 3.3 1.1 3.8 2.2C10.5 7.1 11.8 6 13.8 6 17.2 6 18.8 9.6 17.3 12.4 15 16.6 12 21 12 21z" transform="translate(1.5 -1)"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M21 12a8 8 0 1 1-3.3-6.5A8 8 0 0 1 21 12z"/><path d="M17.7 18.5 21 21"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M22 3 2 10l8 3 3 8z"/><path d="M10 13l5-5"/></svg></div><div class="likes">1.204 Me gusta</div>
+          <div class="cap"><b>recetas.dani</b> Un día cualquiera ☀️</div></div><div class="post"><div class="hd"><div class="av" style="background:#9DA9D6"></div>fit.mariana</div>
+          <div class="img" style="background:#E3E7F6"><div style="position:absolute;left:120px;top:200px;width:500px;height:500px;border-radius:50%;background:#9DA9D6;opacity:.8"></div></div>
+          <div class="act"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M12 21s-7-4.4-9.3-8.6C1.2 9.6 2.8 6 6.2 6c2 0 3.3 1.1 3.8 2.2C10.5 7.1 11.8 6 13.8 6 17.2 6 18.8 9.6 17.3 12.4 15 16.6 12 21 12 21z" transform="translate(1.5 -1)"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M21 12a8 8 0 1 1-3.3-6.5A8 8 0 0 1 21 12z"/><path d="M17.7 18.5 21 21"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M22 3 2 10l8 3 3 8z"/><path d="M10 13l5-5"/></svg></div><div class="likes">1.204 Me gusta</div>
+          <div class="cap"><b>fit.mariana</b> Un día cualquiera ☀️</div></div><div class="post"><div class="hd"><div class="av" style="background:#8FB8A8"></div>viajes.lu</div>
+          <div class="img" style="background:#DCEFE6"><div style="position:absolute;left:120px;top:200px;width:500px;height:500px;border-radius:50%;background:#8FB8A8;opacity:.8"></div></div>
+          <div class="act"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M12 21s-7-4.4-9.3-8.6C1.2 9.6 2.8 6 6.2 6c2 0 3.3 1.1 3.8 2.2C10.5 7.1 11.8 6 13.8 6 17.2 6 18.8 9.6 17.3 12.4 15 16.6 12 21 12 21z" transform="translate(1.5 -1)"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M21 12a8 8 0 1 1-3.3-6.5A8 8 0 0 1 21 12z"/><path d="M17.7 18.5 21 21"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M22 3 2 10l8 3 3 8z"/><path d="M10 13l5-5"/></svg></div><div class="likes">1.204 Me gusta</div>
+          <div class="cap"><b>viajes.lu</b> Un día cualquiera ☀️</div></div></div></div></div></div></div>
+    <div id="rea-cam2" class="clip" data-start="1.3" data-duration="7.1" data-layout-allow-overflow><div class="phone" id="rea2-phone" data-layout-ignore><div class="screen"><div class="status"><span>11:47</span><span class="bat"></span></div>
+          <div class="view"><div class="strip"><div class="post" id="reas-post"><div class="hd"><div class="av" style="background:#FF5A4E"></div><span data-var-text="boutique">boutique.lia</span></div>
+          <div class="img" id="reas-img"><svg width="736" height="920" viewBox="0 0 736 920">
+      <rect width="736" height="920" fill="#F6E6D6"/><circle cx="600" cy="170" r="120" fill="#FFE9B8"/>
+      <path d="M250 300c-30-150 70-210 130-200 90 14 120 90 100 200 30 120-10 210-10 210H260s-50-90-10-210z" fill="#3A2622"/>
+      <rect x="338" y="340" width="64" height="90" rx="20" fill="#D9A27E"/>
+      <ellipse cx="370" cy="270" rx="92" ry="110" fill="#E8B48F"/>
+      <path d="M290 230c40-70 140-70 170 10-50-30-110-40-170-10z" fill="#3A2622"/>
+      <path d="M336 300q34 26 68 0" fill="none" stroke="#7A3B2E" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="335" cy="262" r="8" fill="#3A2622"/><circle cx="405" cy="262" r="8" fill="#3A2622"/>
+      <path d="M220 470c40-50 90-60 150-60s110 10 150 60l50 260-70 20-30-130v300H270V620l-30 130-70-20z" fill="#FF5A4E"/>
+      <path d="M330 410c10 30 22 40 40 40s30-10 40-40" fill="none" stroke="#C9423A" stroke-width="7"/>
+      <path d="M170 730l-20 120M570 730l20 120" stroke="#E8B48F" stroke-width="40" stroke-linecap="round"/>
+    </svg><div class="tag" id="reas-tag">$34</div></div>
+          <div class="act"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M12 21s-7-4.4-9.3-8.6C1.2 9.6 2.8 6 6.2 6c2 0 3.3 1.1 3.8 2.2C10.5 7.1 11.8 6 13.8 6 17.2 6 18.8 9.6 17.3 12.4 15 16.6 12 21 12 21z" transform="translate(1.5 -1)"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M21 12a8 8 0 1 1-3.3-6.5A8 8 0 0 1 21 12z"/><path d="M17.7 18.5 21 21"/></svg>
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#1B1416" stroke-width="2"><path d="M22 3 2 10l8 3 3 8z"/><path d="M10 13l5-5"/></svg></div><div class="likes" id="reas-likes">A Sofi y 214 personas más les encanta</div>
+          <div class="cap" id="reas-cap"><b data-var-text="boutique">boutique.lia</b> La blusa que te sirve para la oficina y para la cena 💛 Tallas S–XL</div>
+          <div class="btn" id="reas-btn"><span id="reas-btn-t">Lo quiero</span><span id="reas-btn-ok" style="position:absolute">¡Apartada! ✓</span></div></div></div></div></div></div></div>
+    <p id="rea-rew" class="clip" data-start="0" data-duration="1.3" style="position:absolute;left:120px;top:300px;font-weight:800;font-size:64px;margin:0"><span class="in">◀◀ Rebobinemos</span></p>
+    <div id="rea-f1" class="clip sticker" data-start="1.55" data-duration="2.25" style="left:110px;top:220px"><span class="in">✓ SE VE PUESTA<small>ya se imagina con ella</small></span></div>
+    <div id="rea-f2" class="clip sticker" data-start="3.8" data-duration="1.8" style="left:110px;top:220px"><span class="in">✓ PRECIO A LA VISTA<small>cero fricción</small></span></div>
+    <div id="rea-f3" class="clip sticker" data-start="5.6" data-duration="2.8" style="left:110px;top:220px"><span class="in">✓ UN SOLO PASO<small>una prenda, un botón</small></span></div>
+    <div id="rea-tap" class="clip" data-start="6.6" data-duration="1.8" style="position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:none" data-layout-ignore><div id="rea-ring" style="position:absolute;left:480px;top:1280px;width:120px;height:120px;border-radius:50%;border:8px solid #1B1416"></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    gsap.set(["#rea-phone", "#rea2-phone"], { x: 251, y: 390, scale: .74 });
+    tl.fromTo("#rea-strip", { y: -4488, filter: "blur(16px)" }, { y: 0, filter: "blur(0px)", duration: 1.1, ease: "power3.out" }, 0);
+    tl.fromTo("#rea-rew .in", { opacity: 0 }, { opacity: 1, duration: 0.05 }, 0);
+    // the rebuilt post: photo, then price + caption, then the button, then social proof
+    tl.fromTo("#rea2-phone", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 1.3);
+    tl.fromTo("#reas-img", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.45, ease: "power3.inOut" }, 1.35);
+    tl.fromTo("#reas-tag", { opacity: 0, scale: 1.4, rotation: -10 }, { opacity: 1, scale: 1, rotation: -3, duration: 0.3, ease: "back.out(2)" }, 3.7);
+    tl.fromTo("#reas-cap", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 3.8);
+    tl.fromTo("#reas-btn", { opacity: 0, scale: .8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, 5.6);
+    tl.fromTo("#reas-likes", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 5.9);
+    for (const [id, at] of [["#rea-f1", 1.55], ["#rea-f2", 3.8], ["#rea-f3", 5.6]]) {
+      tl.fromTo(id + " .in", { opacity: 0 }, { opacity: 1, duration: 0.05 }, at);
+      tl.fromTo(id, { scale: 1.3, rotation: 7 }, { scale: 1, rotation: 3, duration: 0.27, ease: "back.out(2)" }, at);
+    }
+    // the tap on "Lo quiero"
+    tl.fromTo("#rea-ring", { scale: .3, opacity: 1 }, { scale: 1.6, opacity: 0, duration: 0.5, ease: "power2.out" }, 6.7);
+    tl.to("#reas-btn", { scale: .94, duration: 0.08 }, 6.7); tl.to("#reas-btn", { scale: 1, duration: 0.1 }, 6.78);
+    tl.to("#reas-btn", { backgroundColor: "#2E9E6B", duration: 0.15 }, 6.85);
+    tl.to("#reas-btn-t", { opacity: 0, duration: 0.08 }, 6.85);
+    tl.fromTo("#reas-btn-ok", { opacity: 0, scale: .8 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, 6.93);
+    window.__timelines["rearma"] = tl;
+  </script>
+</template>
