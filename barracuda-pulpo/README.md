@@ -4,7 +4,7 @@ Primer vídeo real con la [plantilla](../plantilla-comida/). Vertical 1080×1920
 
 | Tiempo | Toma | Texto |
 |---|---|---|
-| 0–4,1 s | `pulpo`: el pulpo sale de la olla con vapor (gancho) | «Recién salido de la cocina» |
+| 0–4,1 s | `pulpo`: el pulpo sale de la olla con vapor (gancho) | «Así se hace nuestro pulpo» |
 | 4,1–7,95 s | `entrada`: techo de neón y escaleras hasta el letrero | — (el letrero ya dice Barracuda) |
 | 7,95–11,6 s | `salon`: el comedor | «Reserva tu mesa» · «Barracuda Gastro Bar» |
 
