@@ -9,6 +9,7 @@ Plantilla y pruebas de vídeo hechas con código para contenido gastronómico.
 | [`boutique-ventas/`](boutique-ventas/) | HyperFrames | Motion graphics: por qué las publicaciones de boutiques no venden (psicología del consumidor). |
 | [`hf-pan-con-tomate/`](hf-pan-con-tomate/) | HyperFrames | Prueba: receta en 3 pasos con tarjetas. |
 | [`pizarra-guacamole/`](pizarra-guacamole/) | Lemo-Opuscar (Chalkboard) | Prueba: receta escrita con tiza en una pizarra, con música. |
+| [`tamborcito-que-publicar/`](tamborcito-que-publicar/) | Claude Animation Base | Corto animado de Tamborcito (mascota de Tambor Media): qué publicar en la página de un restaurante. |
 | [`agua-animacion/`](agua-animacion/) | Claude Animation Base | Corto animado «¡Toma agua!» con Gota, voz en español y subtítulos. |
 | [`tortita-animacion/`](tortita-animacion/) | Claude Animation Base | Prueba: corto animado pintado a mano. |
 | [`remotion-shaders/`](remotion-shaders/) | Remotion + Paper Shaders | Pruebas: título sobre fondo animado y tres fondos de shaders. |
