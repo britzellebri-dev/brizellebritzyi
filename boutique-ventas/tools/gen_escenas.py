@@ -25,7 +25,7 @@ CSS = f"""
   .post .count {{ position: absolute; right: 24px; top: 130px; background: rgba(27,20,22,.72); color: #fff; font-weight: 600; font-size: 26px; padding: 6px 16px; border-radius: 22px; }}
   .post .btn {{ position: absolute; left: 28px; right: 28px; top: 1350px; height: 92px; border-radius: 18px; background: {CORAL}; color: #fff; font-weight: 700; font-size: 36px; display: flex; align-items: center; justify-content: center; }}
   .post .tag {{ position: absolute; left: 30px; bottom: 34px; background: #fff; font-weight: 700; font-size: 40px; padding: 8px 22px; border-radius: 12px; box-shadow: 0 6px 0 {INK}; }}
-  .think {{ position: absolute; left: 110px; right: 150px; font-weight: 800; font-size: 118px; line-height: 1.0; letter-spacing: -0.02em; }}
+  .think {{ position: absolute; left: 130px; right: 160px; font-weight: 800; font-size: 118px; line-height: 1.0; letter-spacing: -0.02em; }}
   .sticker {{ position: absolute; background: #FFFDF8; border: 4px solid {INK}; box-shadow: 0 6px 0 {INK}; padding: 18px 26px; font-weight: 600; font-size: 40px; line-height: 1.15; }}
   .sticker small {{ display: block; font-weight: 400; font-size: 32px; margin-top: 4px; }}
   .lens {{ position: absolute; left: 90px; top: 760px; width: 900px; height: 540px; border-radius: 40px; border: 6px solid {INK}; overflow: hidden; background: #fff; box-shadow: 0 30px 60px rgba(27,20,22,.25); }}
@@ -128,22 +128,23 @@ THOUGHTS = [  # id, ground, thought, sticker title, sticker line, lens (sx, sy, 
     ('t2', BUTTER, '¿Y cómo me quedará a mí?', 'NO SE IMAGINA', 'una blusa en percha no se siente suya', (40, 260, 1.3), 'img'),
     ('t3', BLUSH, '12 fotos… luego miro', 'DEMASIADAS OPCIONES', 'cuando todo se ofrece, nada se elige', (172, 110, 1.6), 'count'),
 ]
+TH = 4.6   # each thought's length (fits the voice)
 think_body, think_js = [], []
 for i, (p, gcol, thought, st, line, (sx, sy, s), hl) in enumerate(THOUGHTS):
-    t0 = i * 4
-    think_body.append(f"""<div id="{p}-ground" class="clip ground" data-start="{t0}" data-duration="4" style="background:{gcol}"></div>
-<div id="{p}-zoom" class="clip" data-start="{t0}" data-duration="4" data-layout-allow-overflow>{lens(p, sx, sy, s)}</div>
-<h2 id="{p}-think" class="clip think" data-start="{t0}" data-duration="4" style="top:330px;margin:0;color:{INK if gcol != INK else '#fff'}"><span class="in" data-var-text="pensamiento{i+1}">{thought}</span></h2>
-<div id="{p}-st" class="clip sticker" data-start="{t0 + 1.0}" data-duration="3.0" style="left:{110 + 60 * (i % 2)}px;top:1170px"><span class="in">{st}<small>{line}</small></span></div>""")
+    t0 = round(i * TH, 2)
+    think_body.append(f"""<div id="{p}-ground" class="clip ground" data-start="{t0}" data-duration="{TH}" style="background:{gcol}"></div>
+<div id="{p}-zoom" class="clip" data-start="{t0}" data-duration="{TH}" data-layout-allow-overflow>{lens(p, sx, sy, s)}</div>
+<h2 id="{p}-think" class="clip think" data-start="{t0}" data-duration="{TH}" style="top:330px;margin:0;color:{INK if gcol != INK else '#fff'}"><span class="in" data-var-text="pensamiento{i+1}">{thought}</span></h2>
+<div id="{p}-st" class="clip sticker" data-start="{round(t0 + 1.0, 2)}" data-duration="{round(TH - 1.0, 2)}" style="left:{130 + 40 * (i % 2)}px;top:1110px"><span class="in">{st}<small>{line}</small></span></div>""")
     hl_sel = {'dm': f'#{p}-dm', 'img': f'#{p}-img', 'count': f'#{p}-count'}[hl]
     hl_from, hl_to = ('rgba(27,20,22,.72)', CORAL) if hl == 'count' else ('rgba(255,226,122,0)', 'rgba(255,226,122,.85)')
     think_js.append(f"""tl.fromTo("#{p}-think .in", {{ scale: 1.18, opacity: 0 }}, {{ scale: 1, opacity: 1, duration: 0.3, ease: "{SLAM}" }}, {t0 + 0.05});
 tl.fromTo("#{p}-lens", {{ scale: .9, rotation: -2 }}, {{ scale: 1, rotation: 0, duration: 0.6, ease: "power2.inOut" }}, {t0});
-tl.fromTo("#{p}-inner", {{ x: {-sx * s}, y: {-sy * s}, scale: {s} }}, {{ x: {-sx * s - 18}, y: {-sy * s}, scale: {s}, duration: 3.6, ease: "none" }}, {t0});
+tl.fromTo("#{p}-inner", {{ x: {-sx * s}, y: {-sy * s}, scale: {s} }}, {{ x: {-sx * s - 18}, y: {-sy * s}, scale: {s}, duration: {TH - 0.4}, ease: "none" }}, {t0});
 tl.fromTo("{hl_sel}", {{ backgroundColor: "{hl_from}" }}, {{ backgroundColor: "{hl_to}", duration: 0.3, ease: "power2.out" }}, {t0 + 0.8});
 tl.fromTo("#{p}-st .in", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.05 }}, {t0 + 1.0});
 tl.fromTo("#{p}-st", {{ scale: 1.3, rotation: {-8 if i % 2 else 8} }}, {{ scale: 1, rotation: {-3 if i % 2 else 3}, duration: 0.27, ease: "back.out(2)" }}, {t0 + 1.0});
-tl.to(["#{p}-think .in", "#{p}-st .in"], {{ opacity: 0, duration: 0.15, ease: "power2.in" }}, {t0 + 3.82});""")
+tl.to(["#{p}-think .in", "#{p}-st .in"], {{ opacity: 0, duration: 0.15, ease: "power2.in" }}, {round(t0 + TH - 0.18, 2)});""")
 think_extra = f"#t2-img svg, #t3-count {{ }} #t1-dm {{ padding: 0 6px; border-radius: 6px; }} #t2-img {{ outline: 0 solid {INK}; }}"
 
 # ---------- 4 se va: the feed takes her away; ¿Te suena? ----------
@@ -151,7 +152,7 @@ seva_body = f"""<div id="seva-ground" class="clip ground" data-start="0" data-du
 <div id="seva-cam" class="clip" data-start="0" data-duration="2.2" data-layout-allow-overflow>{phone('seva', post('weak', 'seva') + ''.join(filler(i) for i in (1, 2, 0)), 'seva-strip')}</div>
 <p id="seva-line" class="clip" data-start="0.35" data-duration="1.85" style="position:absolute;left:120px;top:300px;font-weight:700;font-size:56px;margin:0"><span class="in">Y siguió deslizando.</span></p>
 <div id="seva-hit" class="clip ground" data-start="2.2" data-duration="1.4" style="background:{CORAL}"></div>
-<h2 id="seva-suena" class="clip think" data-start="2.2" data-duration="1.4" style="top:700px;font-size:170px;color:{INK};margin:0"><span class="in">¿Te suena?</span></h2>"""
+<h2 id="seva-suena" class="clip think" data-start="2.2" data-duration="1.4" style="top:700px;font-size:160px;color:{INK};margin:0"><span class="in">¿Te suena?</span></h2>"""
 seva_js = f"""gsap.set("#seva-phone", {{ {PH} }});
 tl.fromTo("#seva-strip", {{ y: 0, filter: "blur(0px)" }}, {{ y: -4488, filter: "blur(16px)", duration: 1.5, ease: "power3.in" }}, 0.25);
 tl.fromTo("#seva-line .in", {{ opacity: 0, scale: 1.1 }}, {{ opacity: 1, scale: 1, duration: 0.25, ease: "{SLAM}" }}, 0.35);
@@ -162,9 +163,9 @@ rearma_body = f"""<div id="rea-ground" class="clip ground" data-start="0" data-d
 <div id="rea-cam" class="clip" data-start="0" data-duration="1.35" data-layout-allow-overflow>{phone('rea', post('weak', 'reaw') + ''.join(filler(i) for i in (1, 2, 0)), 'rea-strip')}</div>
 <div id="rea-cam2" class="clip" data-start="1.3" data-duration="7.1" data-layout-allow-overflow>{phone('rea2', post('strong', 'reas'))}</div>
 <p id="rea-rew" class="clip" data-start="0" data-duration="1.3" style="position:absolute;left:120px;top:300px;font-weight:800;font-size:64px;margin:0"><span class="in">◀◀ Rebobinemos</span></p>
-<div id="rea-f1" class="clip sticker" data-start="1.55" data-duration="2.25" style="left:110px;top:220px"><span class="in">✓ SE VE PUESTA<small>ya se imagina con ella</small></span></div>
-<div id="rea-f2" class="clip sticker" data-start="3.8" data-duration="1.8" style="left:110px;top:220px"><span class="in">✓ PRECIO A LA VISTA<small>cero fricción</small></span></div>
-<div id="rea-f3" class="clip sticker" data-start="5.6" data-duration="2.8" style="left:110px;top:220px"><span class="in">✓ UN SOLO PASO<small>una prenda, un botón</small></span></div>
+<div id="rea-f1" class="clip sticker" data-start="1.55" data-duration="2.25" style="left:130px;top:255px"><span class="in">✓ SE VE PUESTA<small>ya se imagina con ella</small></span></div>
+<div id="rea-f2" class="clip sticker" data-start="3.8" data-duration="1.8" style="left:130px;top:255px"><span class="in">✓ PRECIO A LA VISTA<small>cero fricción</small></span></div>
+<div id="rea-f3" class="clip sticker" data-start="5.6" data-duration="2.8" style="left:130px;top:255px"><span class="in">✓ UN SOLO PASO<small>una prenda, un botón</small></span></div>
 <div id="rea-tap" class="clip" data-start="6.6" data-duration="1.8" style="position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:none" data-layout-ignore><div id="rea-ring" style="position:absolute;left:480px;top:1280px;width:120px;height:120px;border-radius:50%;border:8px solid {INK}"></div></div>"""
 rearma_js = f"""gsap.set(["#rea-phone", "#rea2-phone"], {{ {PH} }});
 tl.fromTo("#rea-strip", {{ y: -4488, filter: "blur(16px)" }}, {{ y: 0, filter: "blur(0px)", duration: 1.1, ease: "power3.out" }}, 0);
@@ -189,18 +190,21 @@ tl.fromTo("#reas-btn-ok", {{ opacity: 0, scale: .8 }}, {{ opacity: 1, scale: 1, 
 rearma_body = rearma_body.replace('<span id="reas-btn-t">Lo quiero</span>', '<span id="reas-btn-t">Lo quiero</span>')
 
 # ---------- 6 cierre ----------
-cierre_body = f"""<div id="cie-ground" class="clip ground" data-start="0" data-duration="5.6" style="background:{BUTTER}"></div>
-<h2 id="cie-a" class="clip think" data-start="0.15" data-duration="5.45" style="top:330px;margin:0"><span class="in" data-var-text="frase1">Tu clienta no compra la blusa.</span></h2>
-<h2 id="cie-b" class="clip think" data-start="1.9" data-duration="3.7" style="top:760px;margin:0;color:#B8281F"><span class="in" data-var-text="frase2">Compra cómo se ve con ella.</span></h2>
-<p id="cie-cta" class="clip" data-start="3.3" data-duration="2.3" style="position:absolute;left:80px;right:150px;top:1180px;font-weight:600;font-size:52px;margin:0"><span class="in" data-var-text="cta">Revisa tu último post 👀</span></p>"""
+cierre_body = f"""<div id="cie-ground" class="clip ground" data-start="0" data-duration="6.0" style="background:{BUTTER}"></div>
+<h2 id="cie-a" class="clip think" data-start="0.15" data-duration="5.85" style="top:330px;margin:0"><span class="in" data-var-text="frase1">Tu clienta no compra la blusa.</span></h2>
+<h2 id="cie-b" class="clip think" data-start="1.9" data-duration="4.1" style="top:760px;margin:0;color:#B8281F"><span class="in" data-var-text="frase2">Compra cómo se ve con ella.</span></h2>
+<p id="cie-cta" class="clip" data-start="3.3" data-duration="2.7" style="position:absolute;left:130px;right:160px;top:1120px;font-weight:600;font-size:52px;margin:0"><span class="in" data-var-text="cta">Revisa tu último post 👀</span></p>"""
 cierre_js = f"""tl.fromTo("#cie-a .in", {{ scale: 1.18, opacity: 0 }}, {{ scale: 1, opacity: 1, duration: 0.3, ease: "{SLAM}" }}, 0.15);
 tl.fromTo("#cie-b .in", {{ scale: 1.18, opacity: 0 }}, {{ scale: 1, opacity: 1, duration: 0.3, ease: "{SLAM}" }}, 1.9);
 tl.fromTo("#cie-cta .in", {{ opacity: 0, color: "#B9A15A" }}, {{ opacity: 1, color: "{INK}", duration: 0.3, ease: "power2.out" }}, 3.3);"""
 
 SCENES = [('feed', 0, 3.2, feed_body, feed_js, ''), ('post', 3.2, 3.2, post_body, post_js, ''),
-          ('piensa', 6.4, 12, '\n'.join(think_body), '\n'.join(think_js), think_extra),
-          ('seva', 18.4, 3.6, seva_body, seva_js, ''), ('rearma', 22.0, 8.4, rearma_body, rearma_js, ''),
-          ('cierre', 30.4, 5.6, cierre_body, cierre_js, '')]
+          ('piensa', 6.4, 3 * TH, '\n'.join(think_body), '\n'.join(think_js), think_extra),
+          ('seva', 20.2, 3.6, seva_body, seva_js, ''), ('rearma', 23.8, 8.4, rearma_body, rearma_js, ''),
+          ('cierre', 32.2, 6.0, cierre_body, cierre_js, '')]
+DUR = 38.2
+# voice-over (Kokoro ef_dora, assets/vo/lines.json): line -> start in the film
+VO = [('v1', 0.3), ('v2', 4.8), ('v3', 6.55), ('v4', 11.3), ('v5', 15.8), ('v6', 20.55), ('v7', 25.3), ('v8', 30.8), ('v9', 35.6)]
 for cid, t0, d, body, js, extra in SCENES:
     html = scene(cid, d, body, js, extra)
     if cid == 'rearma':   # the confirmation that replaces "Lo quiero" after the tap
@@ -217,6 +221,9 @@ VARS = '''[
   {"id":"frase2","type":"string","label":"Frase final 2","default":"Compra cómo se ve con ella.","maxLength":40},
   {"id":"cta","type":"string","label":"Llamado final","default":"Revisa tu último post 👀","maxLength":40}
 ]'''
+import json as _json
+VD = _json.load(open(os.path.join(OUT, 'assets', 'vo', 'dur.json')))
+audio = '\n'.join(f'      <audio id="vo-{v}" src="assets/vo/{v}.wav" data-start="{t}" data-duration="{VD[v]}" data-track-index="2" data-volume="1"></audio>' for v, t in VO)
 hosts = '\n'.join(f'      <div id="{cid}" data-composition-id="{cid}" data-composition-src="compositions/{cid}.html" data-start="{t0}" data-duration="{d}" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>' for cid, t0, d, *_ in SCENES)
 index = f"""<!doctype html>
 <html lang="es" data-composition-variables='{VARS}'>
@@ -231,9 +238,10 @@ index = f"""<!doctype html>
     </style>
   </head>
   <body>
-    <!-- «¿Por qué tus publicaciones no venden?» — vertical 1080×1920, 36 s. Ver SPEC.md y STORYLINES.md (opción A). -->
-    <div id="root" data-composition-id="main" data-start="0" data-duration="36" data-width="1080" data-height="1920">
+    <!-- «¿Por qué tus publicaciones no venden?» — vertical 1080×1920, 38,2 s. Ver SPEC.md y STORYLINES.md (opción A). -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="{DUR}" data-width="1080" data-height="1920">
 {hosts}
+{audio}
     </div>
     <script>
       window.__timelines["main"] = gsap.timeline({{ paused: true }});
