@@ -6,3 +6,4 @@
 - No verificado: el vídeo a velocidad real de principio a fin.
 - Voz añadida: 9 frases (Kokoro ef_dora). Whisper sobre el vídeo final confirma que cada frase cae en su escena; las únicas diferencias con el guion son de formato (números en cifras, puntuación). Pensamientos alargados a 4,6 s y cierre a 6 s para que quepa la voz (total 38,2 s).
 - Quedan 4 avisos menores de zona segura (unos píxeles en etiquetas y en la frase final).
+- Hook nuevo (0–4,4 s): titular desde el fotograma 0 + sello «0 VENTAS» + voz que abre la pregunta; sustituye a la escena del «mmm…». Whisper sobre el vídeo final confirma la voz en su sitio. Total 39,4 s.

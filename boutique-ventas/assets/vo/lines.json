@@ -1,11 +1,72 @@
 [
- {"id": "v1", "text": "Once y cuarenta y siete de la noche. Tu clienta está en la cama, deslizando.", "voice": "ef_dora", "lang": "es", "speed": 1.08},
- {"id": "v2", "text": "Y aparece tu post.", "voice": "ef_dora", "lang": "es", "speed": 1.0},
- {"id": "v3", "text": "A ella le encanta. Pero el precio está escondido, y preguntar por mensaje le da pereza.", "voice": "ef_dora", "lang": "es", "speed": 1.1},
- {"id": "v4", "text": "No la ve puesta, así que no logra imaginarse con ella.", "voice": "ef_dora", "lang": "es", "speed": 1.05},
- {"id": "v5", "text": "Y con doce fotos por revisar, lo deja para después.", "voice": "ef_dora", "lang": "es", "speed": 1.05},
- {"id": "v6", "text": "Y el después nunca llega.", "voice": "ef_dora", "lang": "es", "speed": 0.95},
- {"id": "v7", "text": "Ahora, el mismo post. Se ve puesta, el precio está a la vista, y solo hay un paso.", "voice": "ef_dora", "lang": "es", "speed": 1.05},
- {"id": "v8", "text": "Y la compra.", "voice": "ef_dora", "lang": "es", "speed": 0.95},
- {"id": "v9", "text": "Hoy, mira tu último post con sus ojos.", "voice": "ef_dora", "lang": "es", "speed": 1.0}
+ {
+  "id": "h1",
+  "text": "Este post tuvo muchos me gusta... y cero ventas.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.0
+ },
+ {
+  "id": "h2",
+  "text": "Y no es por la ropa.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.0
+ },
+ {
+  "id": "h3",
+  "text": "Mira lo que pasa en la cabeza de tu clienta.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.05
+ },
+ {
+  "id": "v3",
+  "text": "A ella le encanta. Pero el precio está escondido, y preguntar por mensaje le da pereza.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.1
+ },
+ {
+  "id": "v4",
+  "text": "No la ve puesta, así que no logra imaginarse con ella.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.05
+ },
+ {
+  "id": "v5",
+  "text": "Y con doce fotos por revisar, lo deja para después.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.05
+ },
+ {
+  "id": "v6",
+  "text": "Y el después nunca llega.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 0.95
+ },
+ {
+  "id": "v7",
+  "text": "Ahora, el mismo post. Se ve puesta, el precio está a la vista, y solo hay un paso.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.05
+ },
+ {
+  "id": "v8",
+  "text": "Y la compra.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 0.95
+ },
+ {
+  "id": "v9",
+  "text": "Hoy, mira tu último post con sus ojos.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.0
+ }
 ]

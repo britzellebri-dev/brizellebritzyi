@@ -71,7 +71,7 @@ def post(kind, p):
     if kind == 'weak':
         return f"""<div class="post" id="{p}-post"><div class="hd"><div class="av" style="background:{CORAL}"></div><span data-var-text="boutique">boutique.lia</span></div>
       <div class="img" id="{p}-img">{WEAK_IMG}</div><div class="count" id="{p}-count">1/12</div>
-      <div class="act">{ICONS}</div><div class="likes">23 Me gusta</div>
+      <div class="act">{ICONS}</div><div class="likes"><span id="{p}-likes-hl" style="padding:2px 8px;margin-left:-8px;border-radius:6px">23 Me gusta</span></div>
       <div class="cap" id="{p}-cap"><b data-var-text="boutique">boutique.lia</b> Nueva colección disponible ✨ <span id="{p}-dm">Precio por DM 📩</span> #moda #boutique #nuevacoleccion</div></div>"""
     return f"""<div class="post" id="{p}-post"><div class="hd"><div class="av" style="background:{CORAL}"></div><span data-var-text="boutique">boutique.lia</span></div>
       <div class="img" id="{p}-img">{STRONG_IMG}<div class="tag" id="{p}-tag">$34</div></div>
@@ -100,6 +100,25 @@ def scene(cid, dur, body, script, extra_css=''):
 # frame of the phone in the "whole post" shots: scale .74, centred, top 300
 PH = 'x: 251, y: 390, scale: .74'
 SLAM = 'back.out(1.6)'
+
+
+# ---------- 0 hook: "your post had likes… and zero sales" (on screen from frame 0: it is the thumbnail) ----------
+HK = 'x: 251, y: 700, scale: .74'
+hook_body = f"""<div id="hook-ground" class="clip ground" data-start="0" data-duration="4.4" style="background:{BLUSH}"></div>
+<div id="hook-cam" class="clip" data-start="0" data-duration="4.4" data-layout-allow-overflow>{phone('hook', post('weak', 'hook'))}</div>
+<h1 id="hook-a" class="clip think" data-start="0" data-duration="4.4" style="top:300px;margin:0;font-size:100px;right:110px"><span class="in" data-var-text="hook1">Tu post tuvo likes…</span></h1>
+<h1 id="hook-b" class="clip think" data-start="1.95" data-duration="2.45" style="top:520px;margin:0;font-size:92px;right:60px;white-space:nowrap;color:#9E1B14"><span class="in" data-var-text="hook2">…y cero ventas.</span></h1>
+<div id="hook-stamp" class="clip" data-start="2.05" data-duration="2.35" style="position:absolute;left:300px;top:990px;padding:14px 34px;border:10px solid #D7261B;color:#D7261B;font-weight:800;font-size:96px;letter-spacing:.02em;background:rgba(255,253,248,.88)"><span class="in">0 VENTAS</span></div>
+<div id="hook-st" class="clip sticker" data-start="2.85" data-duration="1.55" style="left:540px;top:1240px"><span class="in" data-var-text="hook3">y no es la ropa 👀</span></div>"""
+hook_js = f"""gsap.set("#hook-phone", {{ {HK} }});
+tl.fromTo("#hook-a .in", {{ scale: 1.06 }}, {{ scale: 1, duration: 0.25, ease: "power2.out" }}, 0);
+tl.fromTo("#hook-likes-hl", {{ backgroundColor: "rgba(255,226,122,0)" }}, {{ backgroundColor: "rgba(255,226,122,1)", duration: 0.2 }}, 0.4);
+tl.fromTo("#hook-b .in", {{ scale: 1.25, opacity: 0 }}, {{ scale: 1, opacity: 1, duration: 0.3, ease: "{SLAM}" }}, 1.95);
+tl.fromTo("#hook-stamp", {{ scale: 2.2, rotation: -4, opacity: 0 }}, {{ scale: 1, rotation: -9, opacity: 1, duration: 0.22, ease: "power4.in" }}, 2.05);
+tl.fromTo("#hook-phone", {{ x: 251 }}, {{ x: 245, duration: 0.05, yoyo: true, repeat: 3, ease: "none" }}, 2.27);
+tl.fromTo("#hook-st .in", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.05 }}, 2.85);
+tl.fromTo("#hook-st", {{ scale: 1.3, rotation: 9 }}, {{ scale: 1, rotation: 4, duration: 0.27, ease: "back.out(2)" }}, 2.85);
+tl.to(["#hook-a .in", "#hook-b .in", "#hook-stamp", "#hook-st .in"], {{ opacity: 0, duration: 0.15, ease: "power2.in" }}, 4.22);"""
 
 # ---------- 1 feed: the scroll stops on the boutique post ----------
 feed_body = f"""<div id="feed-ground" class="clip ground" data-start="0" data-duration="3.2" style="background:{BLUSH}"></div>
@@ -198,13 +217,13 @@ cierre_js = f"""tl.fromTo("#cie-a .in", {{ scale: 1.18, opacity: 0 }}, {{ scale:
 tl.fromTo("#cie-b .in", {{ scale: 1.18, opacity: 0 }}, {{ scale: 1, opacity: 1, duration: 0.3, ease: "{SLAM}" }}, 1.9);
 tl.fromTo("#cie-cta .in", {{ opacity: 0, color: "#B9A15A" }}, {{ opacity: 1, color: "{INK}", duration: 0.3, ease: "power2.out" }}, 3.3);"""
 
-SCENES = [('feed', 0, 3.2, feed_body, feed_js, ''), ('post', 3.2, 3.2, post_body, post_js, ''),
-          ('piensa', 6.4, 3 * TH, '\n'.join(think_body), '\n'.join(think_js), think_extra),
-          ('seva', 20.2, 3.6, seva_body, seva_js, ''), ('rearma', 23.8, 8.4, rearma_body, rearma_js, ''),
-          ('cierre', 32.2, 6.0, cierre_body, cierre_js, '')]
-DUR = 38.2
+SCENES = [('hook', 0, 4.4, hook_body, hook_js, ''), ('feed', 4.4, 3.2, feed_body, feed_js, ''),
+          ('piensa', 7.6, 3 * TH, '\n'.join(think_body), '\n'.join(think_js), think_extra),
+          ('seva', 21.4, 3.6, seva_body, seva_js, ''), ('rearma', 25.0, 8.4, rearma_body, rearma_js, ''),
+          ('cierre', 33.4, 6.0, cierre_body, cierre_js, '')]
+DUR = 39.4
 # voice-over (Kokoro ef_dora, assets/vo/lines.json): line -> start in the film
-VO = [('v1', 0.3), ('v2', 4.8), ('v3', 6.55), ('v4', 11.3), ('v5', 15.8), ('v6', 20.55), ('v7', 25.3), ('v8', 30.8), ('v9', 35.6)]
+VO = [('h1', 0.15), ('h2', 3.1), ('h3', 4.6), ('v3', 7.75), ('v4', 12.5), ('v5', 17.0), ('v6', 21.75), ('v7', 26.5), ('v8', 32.0), ('v9', 36.8)]
 for cid, t0, d, body, js, extra in SCENES:
     html = scene(cid, d, body, js, extra)
     if cid == 'rearma':   # the confirmation that replaces "Lo quiero" after the tap
@@ -212,6 +231,9 @@ for cid, t0, d, body, js, extra in SCENES:
     open(f'{OUT}/compositions/{cid}.html', 'w').write(html)
 
 VARS = '''[
+  {"id":"hook1","type":"string","label":"Hook 1","default":"Tu post tuvo likes…","maxLength":30},
+  {"id":"hook2","type":"string","label":"Hook 2","default":"…y cero ventas.","maxLength":30},
+  {"id":"hook3","type":"string","label":"Hook (sticker)","default":"y no es la ropa 👀","maxLength":30},
   {"id":"boutique","type":"string","label":"Usuario de la boutique (ejemplo)","default":"boutique.lia","maxLength":20},
   {"id":"clienta","type":"string","label":"Nombre de la clienta","default":"Andrea","maxLength":14},
   {"id":"pensamiento1","type":"string","label":"Pensamiento 1","default":"Bonita… ¿cuánto cuesta?","maxLength":30},
@@ -238,7 +260,7 @@ index = f"""<!doctype html>
     </style>
   </head>
   <body>
-    <!-- «¿Por qué tus publicaciones no venden?» — vertical 1080×1920, 38,2 s. Ver SPEC.md y STORYLINES.md (opción A). -->
+    <!-- «¿Por qué tus publicaciones no venden?» — vertical 1080×1920, 39,4 s. Ver SPEC.md y STORYLINES.md (opción A). -->
     <div id="root" data-composition-id="main" data-start="0" data-duration="{DUR}" data-width="1080" data-height="1920">
 {hosts}
 {audio}

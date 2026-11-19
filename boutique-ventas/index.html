@@ -1,5 +1,8 @@
 <!doctype html>
 <html lang="es" data-composition-variables='[
+  {"id":"hook1","type":"string","label":"Hook 1","default":"Tu post tuvo likes…","maxLength":30},
+  {"id":"hook2","type":"string","label":"Hook 2","default":"…y cero ventas.","maxLength":30},
+  {"id":"hook3","type":"string","label":"Hook (sticker)","default":"y no es la ropa 👀","maxLength":30},
   {"id":"boutique","type":"string","label":"Usuario de la boutique (ejemplo)","default":"boutique.lia","maxLength":20},
   {"id":"clienta","type":"string","label":"Nombre de la clienta","default":"Andrea","maxLength":14},
   {"id":"pensamiento1","type":"string","label":"Pensamiento 1","default":"Bonita… ¿cuánto cuesta?","maxLength":30},
@@ -20,23 +23,24 @@
     </style>
   </head>
   <body>
-    <!-- «¿Por qué tus publicaciones no venden?» — vertical 1080×1920, 38,2 s. Ver SPEC.md y STORYLINES.md (opción A). -->
-    <div id="root" data-composition-id="main" data-start="0" data-duration="38.2" data-width="1080" data-height="1920">
-      <div id="feed" data-composition-id="feed" data-composition-src="compositions/feed.html" data-start="0" data-duration="3.2" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
-      <div id="post" data-composition-id="post" data-composition-src="compositions/post.html" data-start="3.2" data-duration="3.2" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
-      <div id="piensa" data-composition-id="piensa" data-composition-src="compositions/piensa.html" data-start="6.4" data-duration="13.799999999999999" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
-      <div id="seva" data-composition-id="seva" data-composition-src="compositions/seva.html" data-start="20.2" data-duration="3.6" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
-      <div id="rearma" data-composition-id="rearma" data-composition-src="compositions/rearma.html" data-start="23.8" data-duration="8.4" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
-      <div id="cierre" data-composition-id="cierre" data-composition-src="compositions/cierre.html" data-start="32.2" data-duration="6.0" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
-      <audio id="vo-v1" src="assets/vo/v1.wav" data-start="0.3" data-duration="4.302" data-track-index="2" data-volume="1"></audio>
-      <audio id="vo-v2" src="assets/vo/v2.wav" data-start="4.8" data-duration="1.319" data-track-index="2" data-volume="1"></audio>
-      <audio id="vo-v3" src="assets/vo/v3.wav" data-start="6.55" data-duration="4.664" data-track-index="2" data-volume="1"></audio>
-      <audio id="vo-v4" src="assets/vo/v4.wav" data-start="11.3" data-duration="3.064" data-track-index="2" data-volume="1"></audio>
-      <audio id="vo-v5" src="assets/vo/v5.wav" data-start="15.8" data-duration="2.958" data-track-index="2" data-volume="1"></audio>
-      <audio id="vo-v6" src="assets/vo/v6.wav" data-start="20.55" data-duration="1.742" data-track-index="2" data-volume="1"></audio>
-      <audio id="vo-v7" src="assets/vo/v7.wav" data-start="25.3" data-duration="4.537" data-track-index="2" data-volume="1"></audio>
-      <audio id="vo-v8" src="assets/vo/v8.wav" data-start="30.8" data-duration="0.893" data-track-index="2" data-volume="1"></audio>
-      <audio id="vo-v9" src="assets/vo/v9.wav" data-start="35.6" data-duration="2.296" data-track-index="2" data-volume="1"></audio>
+    <!-- «¿Por qué tus publicaciones no venden?» — vertical 1080×1920, 39,4 s. Ver SPEC.md y STORYLINES.md (opción A). -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="39.4" data-width="1080" data-height="1920">
+      <div id="hook" data-composition-id="hook" data-composition-src="compositions/hook.html" data-start="0" data-duration="4.4" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="feed" data-composition-id="feed" data-composition-src="compositions/feed.html" data-start="4.4" data-duration="3.2" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="piensa" data-composition-id="piensa" data-composition-src="compositions/piensa.html" data-start="7.6" data-duration="13.799999999999999" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="seva" data-composition-id="seva" data-composition-src="compositions/seva.html" data-start="21.4" data-duration="3.6" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="rearma" data-composition-id="rearma" data-composition-src="compositions/rearma.html" data-start="25.0" data-duration="8.4" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="cierre" data-composition-id="cierre" data-composition-src="compositions/cierre.html" data-start="33.4" data-duration="6.0" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <audio id="vo-h1" src="assets/vo/h1.wav" data-start="0.15" data-duration="2.83" data-track-index="2" data-volume="1"></audio>
+      <audio id="vo-h2" src="assets/vo/h2.wav" data-start="3.1" data-duration="1.233" data-track-index="2" data-volume="1"></audio>
+      <audio id="vo-h3" src="assets/vo/h3.wav" data-start="4.6" data-duration="2.595" data-track-index="2" data-volume="1"></audio>
+      <audio id="vo-v3" src="assets/vo/v3.wav" data-start="7.75" data-duration="4.664" data-track-index="2" data-volume="1"></audio>
+      <audio id="vo-v4" src="assets/vo/v4.wav" data-start="12.5" data-duration="3.064" data-track-index="2" data-volume="1"></audio>
+      <audio id="vo-v5" src="assets/vo/v5.wav" data-start="17.0" data-duration="2.958" data-track-index="2" data-volume="1"></audio>
+      <audio id="vo-v6" src="assets/vo/v6.wav" data-start="21.75" data-duration="1.742" data-track-index="2" data-volume="1"></audio>
+      <audio id="vo-v7" src="assets/vo/v7.wav" data-start="26.5" data-duration="4.537" data-track-index="2" data-volume="1"></audio>
+      <audio id="vo-v8" src="assets/vo/v8.wav" data-start="32.0" data-duration="0.893" data-track-index="2" data-volume="1"></audio>
+      <audio id="vo-v9" src="assets/vo/v9.wav" data-start="36.8" data-duration="2.296" data-track-index="2" data-volume="1"></audio>
     </div>
     <script>
       window.__timelines["main"] = gsap.timeline({ paused: true });
