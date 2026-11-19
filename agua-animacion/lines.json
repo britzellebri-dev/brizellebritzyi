@@ -1,0 +1,6 @@
+[
+ {"id": "v1", "text": "¿Sabías que más de la mitad de tu cuerpo es agua?", "voice": "ef_dora", "lang": "es", "speed": 1.0},
+ {"id": "v2", "text": "Cuando te falta, llegan el cansancio y el dolor de cabeza.", "voice": "ef_dora", "lang": "es", "speed": 1.0},
+ {"id": "v3", "text": "Además, el agua regula tu temperatura y ayuda a tus riñones a limpiar tu cuerpo.", "voice": "ef_dora", "lang": "es", "speed": 1.08},
+ {"id": "v4", "text": "Así que no lo olvides: ¡toma agua!", "voice": "ef_dora", "lang": "es", "speed": 1.0}
+]

@@ -1,0 +1,21 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Sub,Poppins SemiBold,62,&H00F2F5F7,&H00F2F5F7,&H00201510,&H64000000,0,0,0,0,100,100,0,0,1,5,2,2,110,190,660,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.60,0:00:02.11,Sub,,0,0,0,{\fad(80,80)},¿Sabías que más de la mitad
+Dialogue: 0,0:00:02.11,0:00:03.63,Sub,,0,0,0,{\fad(80,80)},de tu cuerpo es agua?
+Dialogue: 0,0:00:05.00,0:00:06.34,Sub,,0,0,0,{\fad(80,80)},Cuando te falta, llegan
+Dialogue: 0,0:00:06.34,0:00:08.67,Sub,,0,0,0,{\fad(80,80)},el cansancio y el dolor de cabeza.
+Dialogue: 0,0:00:09.60,0:00:11.83,Sub,,0,0,0,{\fad(80,80)},Además, el agua regula tu temperatura
+Dialogue: 0,0:00:11.83,0:00:13.10,Sub,,0,0,0,{\fad(80,80)},y ayuda a tus riñones
+Dialogue: 0,0:00:13.10,0:00:14.66,Sub,,0,0,0,{\fad(80,80)},a limpiar tu cuerpo.
+Dialogue: 0,0:00:15.20,0:00:16.49,Sub,,0,0,0,{\fad(80,80)},Así que no lo olvides:
+Dialogue: 0,0:00:16.49,0:00:17.49,Sub,,0,0,0,{\fad(80,80)},¡toma agua!
