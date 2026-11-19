@@ -1,4 +1,4 @@
-"""Sound for "¿No sabes qué publicar?" (Taquito) -> out/mix.wav. Run with the Lemo-Opuscar python:
+"""Sound for "¿No sabes qué publicar?" (Tamborcito) -> out/mix.wav. Run with the Lemo-Opuscar python:
     LIB=<lemo-opuscar> <lemo-opuscar>/.venv/bin/python mix.py
 Voice first (Kokoro ef_dora), a light 100 bpm bed (nylon guitar + kalimba) ducked under it, and effects only on
 what is seen: the pan's sizzle, the bulb, the chef's hat landing, sparkles, hearts, the feed filling, the end card."""

@@ -1,5 +1,5 @@
-// taquito.js: "¿No sabes qué publicar?" — vertical 1080×1920, 31 s, Spanish voice-over.
-// Taquito, a taco mascot (not Clawd), stares at an empty post, then finds four ideas for a restaurant's page.
+// tamborcito.js: "¿No sabes qué publicar?" — vertical 1080×1920, 31 s, Spanish voice-over.
+// Tamborcito, Tambor Media's talking drum (not Clawd), stares at an empty post, then finds four ideas for a restaurant's page.
 //   A (0–4.6)    the empty post: sweat, "?"                                  VO1 0.4
 //   B (4.6–10)   idea 1, show your kitchen: a sizzling pan, a bulb            VO2 4.9
 //   C (10–13.8)  idea 2, the star dish up close: push-in, sparkles, craving   VO3 10.3
@@ -12,38 +12,46 @@
   const WARM = [TORTDK, TOM];
   const GROUND = 1460;
 
-  // ---------- Taquito: an upright taco (a U of tortilla, fillings out the top) with the kit's face ----------
+  // ---------- Tamborcito: Tambor Media's talking drum (gold shell, beige head, black hoops, drumsticks) ----------
+  const SHELL = '#D8B46E', HEAD = '#E8D8B5', HOOP = '#0F0F0F', CORD = '#F7F5F2';
   function taquito(x, y, u, o = {}) {
-    const key = o.boilKey ?? 'taq', rs = p => boilSeed(`${key} ${p}`);
+    const key = o.boilKey ?? 'tam', rs = p => boilSeed(`${key} ${p}`);
     const dy = (o.dy || 0) * u, sq = (o.sq || 0) + (o.take || 0), sw = clamp(u / 15, .5, 2.2), s = o.size ?? 1;
     rs('shadow');
     if (!o.noShadow) { const f = 1 - Math.min(.5, Math.abs(o.dy || 0) * .06); paint(ellPts(x, y + u * .2, u * 5 * f * s, u * .8 * f, 20), { fill: PAL.ink, fillOp: 70, bleed: .25, tex: .3, border: .1, ink: null }); }
     push(); translate(x, y + dy); if (o.rot) rotate(o.rot);
     scale(s * (1 + sq * .6) * (o.flip ? -1 : 1), s * (1 - sq));
+    const stick = (u, sw) => {                                  // a drumstick held at the arm tip, like the logo's
+      push(); rotate(-.9);
+      paint(ribbon([[0, 0], [4.6 * u, 0]], u * .4, u * .3), { wash: HOOP, ink: PAL.ink, sw: sw * .5 });
+      paint(ellPts(4.9 * u, 0, .6 * u, .5 * u, 12), { wash: HEAD, ink: PAL.ink, sw: sw * .6 });
+      pop();
+    };
     const arm = side => {
       rs('arm' + side);
       const a = side < 0 ? (o.aL ?? .2) : (o.aR ?? .2);
-      push(); translate(side * 5.2 * u, -3.4 * u); rotate(side < 0 ? a : -a);
-      paint(ribbon([[0, 0], [side * 1.2 * u, -.1 * u], [side * 2.2 * u, 0]], u * .6, u * .42), { wash: TORT, ink: PAL.ink, sw: sw * .8 });
-      if (side > 0 && o.armR) { translate(2.2 * u, 0); o.armR(u, sw); }
+      push(); translate(side * 5.1 * u, -4.4 * u); rotate(side < 0 ? a : -a);
+      paint(ribbon([[0, 0], [side * 1.2 * u, -.1 * u], [side * 2.1 * u, 0]], u * .55, u * .4), { wash: SHELL, ink: PAL.ink, sw: sw * .8 });
+      translate(side * 2.1 * u, 0);
+      if (side > 0 && o.armR) o.armR(u, sw); else if (side > 0 && o.stick !== false) stick(u, sw);
       pop();
     };
     arm(-1);
-    // fillings poking out of the top: lettuce frills, meat, tomato, cheese
-    rs('fill');
-    const top = -8.6 * u;
-    paint(ellPts(0, top + .4 * u, 5.2 * u, 1.3 * u, 22), { wash: MEAT, ink: PAL.ink, sw: sw * .7 });
-    const fr = []; for (let i = 0; i <= 12; i++) { const xx = lerp(-5.4, 5.4, i / 12) * u; fr.push([xx, top - (i % 2 ? 1.5 : .3) * u]); } fr.push([5.4 * u, top + .6 * u], [-5.4 * u, top + .6 * u]);
-    paint(fr, { wash: LETT, ink: PAL.ink, sw: sw * .7, curv: .4 });
-    for (const [cx, k] of [[-2.8, 0], [1.2, 1], [3.6, 2]]) paint(ellPts(cx * u, top - .2 * u, .85 * u, .6 * u, 12), { wash: k === 1 ? CHEESE : TOM, ink: PAL.ink, sw: sw * .6 });
-    // the shell
     rs('body');
-    const P = []; for (let a = 180; a >= 0; a -= 8) { const r = a * Math.PI / 180; P.push([Math.cos(r) * 5.6 * u, top + .5 * u + Math.sin(r) * 9 * u * .95]); }
-    paint(P, { wash: o.col || TORT, ink: null, curv: .4 });
-    paint(ellPts(-1.8 * u, -6.4 * u, 1.4 * u, 2 * u, 14, 0, -.3), { wash: '#FFE3A8', washOp: 160, ink: null });
-    for (let i = 0; i < 7; i++) paint(ellPts((hash(i + 2) - .5) * 8 * u, (-1 - hash(i + 9) * 6) * u, .25 * u, .2 * u, 8), { wash: TORTDK, ink: null });   // toasted spots
-    paint(P, { ink: PAL.ink, sw, curv: .4 });
-    inkLine([[-5.6 * u, top + .5 * u], [0, top + .9 * u], [5.6 * u, top + .5 * u]], sw * .8, PAL.ink, 'ink', .5);
+    const T = -9 * u, Bm = 0, bulge = .45 * u;                 // a slightly barrel-shaped shell
+    const shell = [];
+    for (let i = 0; i <= 10; i++) { const yy = lerp(T + .6 * u, Bm - .5 * u, i / 10); shell.push([5 * u + bulge * Math.sin(Math.PI * i / 10), yy]); }
+    for (let i = 10; i >= 0; i--) { const yy = lerp(T + .6 * u, Bm - .5 * u, i / 10); shell.push([-5 * u - bulge * Math.sin(Math.PI * i / 10), yy]); }
+    paint(shell, { wash: o.col || SHELL, ink: null, curv: .3 });
+    paint(ellPts(-2.6 * u, -5.2 * u, 1.2 * u, 2.6 * u, 14), { wash: '#EFD9A6', washOp: 170, ink: null });   // a soft shine
+    for (const sd of [-1, 1]) for (let j = 0; j < 3; j++) {     // tension cords on both sides, clear of the face
+      const x0 = sd * 4.1 * u, y0 = T + 1.4 * u + j * 2.3 * u;
+      inkLine([[x0 - sd * .9 * u, y0], [x0 + sd * .5 * u, y0 + 1.15 * u], [x0 - sd * .9 * u, y0 + 2.3 * u]], sw * .7, CORD, 'inkfine', 0);
+    }
+    paint(shell, { ink: PAL.ink, sw, curv: .3 });
+    paint(rrPts(-5.3 * u, Bm - 1.1 * u, 10.6 * u, 1.1 * u, .4 * u, .3), { wash: HOOP, ink: PAL.ink, sw: sw * .7 });   // bottom hoop
+    paint(rrPts(-5.3 * u, T + .2 * u, 10.6 * u, 1 * u, .4 * u, .3), { wash: HOOP, ink: PAL.ink, sw: sw * .7 });      // top hoop
+    paint(ellPts(0, T + .2 * u, 5.1 * u, 1.35 * u, 26), { wash: HEAD, ink: PAL.ink, sw: sw * .8 });                    // the drumhead
     if (o.blush) for (const sd of [-1, 1]) paint(ellPts(sd * 3 * u, -4.3 * u, .8 * u, .4 * u, 12), { fill: PAL.rose, fillOp: 150 * clamp(o.blush), ink: null });
     rs('eyes'); eyes(u, o, sw, [-1, 1], 0);
     rs('mouth'); mouth(u, o.mouth, sw);
@@ -139,7 +147,7 @@
     glow(580, 1145, 170, '#FF9A4A', .5 + .15 * Math.sin(t * 14));
     pan(580, 1120, t, true);
     const m = act(lt, [[0, 'surprised', { lookX: .6, lookY: -.3 }], [1.0, 'idea'], [2.6, 'excited']]);
-    taquito(230, GROUND, 26, { ...m, boilKey: 'tB' });
+    taquito(320, GROUND, 26, { ...m, boilKey: 'tB' });
     camEnd();
     boilSeed('transition'); if (lt < .3) brushWipe(.5 + lt / .6, WARM);
   }
