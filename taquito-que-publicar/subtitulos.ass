@@ -1,0 +1,25 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Sub,Poppins SemiBold,104,&H00F2F5F7,&H00F2F5F7,&H000F0F0F,&H64000000,0,0,0,0,100,100,0,0,1,7,3,8,90,170,280,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.40,0:00:01.97,Sub,,0,0,0,,{\fad(80,80)}¿Abres Instagram y no sabes
+Dialogue: 0,0:00:01.97,0:00:04.19,Sub,,0,0,0,,{\fad(80,80)}qué publicar para tu restaurante?
+Dialogue: 0,0:00:04.90,0:00:06.48,Sub,,0,0,0,,{\fad(80,80)}Primero: enseña tu cocina.
+Dialogue: 0,0:00:06.48,0:00:08.00,Sub,,0,0,0,,{\fad(80,80)}Lo que pasa detrás antoja
+Dialogue: 0,0:00:08.00,0:00:09.69,Sub,,0,0,0,,{\fad(80,80)}más que cualquier foto.
+Dialogue: 0,0:00:10.30,0:00:11.92,Sub,,0,0,0,,{\fad(80,80)}Segundo: tu plato estrella,
+Dialogue: 0,0:00:11.92,0:00:13.54,Sub,,0,0,0,,{\fad(80,80)}de cerca y sin prisas.
+Dialogue: 0,0:00:14.10,0:00:15.83,Sub,,0,0,0,,{\fad(80,80)}Tercero: presenta a tu equipo.
+Dialogue: 0,0:00:15.83,0:00:17.87,Sub,,0,0,0,,{\fad(80,80)}La gente le compra a personas.
+Dialogue: 0,0:00:18.30,0:00:19.37,Sub,,0,0,0,,{\fad(80,80)}Y cuarto: comparte
+Dialogue: 0,0:00:19.37,0:00:21.22,Sub,,0,0,0,,{\fad(80,80)}lo que dicen tus clientes.
+Dialogue: 0,0:00:21.70,0:00:22.98,Sub,,0,0,0,,{\fad(80,80)}Con estas cuatro ideas,
+Dialogue: 0,0:00:22.98,0:00:25.34,Sub,,0,0,0,,{\fad(80,80)}ya tienes contenido para todo el mes.

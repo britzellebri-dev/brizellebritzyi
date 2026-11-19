@@ -11,7 +11,6 @@
   const TORT = '#F2C46B', TORTDK = '#D99A3A', MEAT = '#9C4A2A', LETT = '#7DB34C', TOM = '#E2533C', CHEESE = '#FFE08A';
   const WARM = [TORTDK, TOM];
   const GROUND = 1460;
-  const B = window.BRAND || { name: 'Tu marca', handle: '@tumarca', cta: 'Escríbenos' };
 
   // ---------- Taquito: an upright taco (a U of tortilla, fillings out the top) with the kit's face ----------
   function taquito(x, y, u, o = {}) {
@@ -199,18 +198,21 @@
     camEnd();
     if (lt > dur - .5) iris(...eye, lerp(2400, 0, easeIn(seg(lt, dur - .5, dur - .02))));
   }
-  // ---------- G: end card with the brand ----------
+  // ---------- G: end card in Tambor Media's identity (blanco roto, negro, one gold accent, Poppins / Playfair italic) ----------
   function shotEnd(t, lt, dur) {
     camBegin(540, 960, 1);
-    paper('#FFF1DC');
-    const m = act(lt, [[0, 'happy'], [1.2, 'proud']]);
-    taquito(540, 1480, 32, { ...m, aR: 1.2 + .4 * Math.sin(lt * 10), boilKey: 'tG' });
+    paper('#F7F5F2');
+    boilSeed('rings');                                            // the brand's thin sound-wave rings, behind the logo
+    for (let i = 0; i < 3; i++) { const r = 330 + i * 70 + 12 * Math.sin(lt * 2 + i); inkLine(ellPts(540, 560, r, r, 48).concat([[540 + r, 560]]), .5, '#E2D3B0', 'inkfine', .9); }
+    const m = act(lt, [[0, 'happy'], [1.6, 'proud', { emote: null }]]); m.emote = null;
+    taquito(540, 1600, 22, { ...m, aR: 1.2 + .4 * Math.sin(lt * 10), boilKey: 'tG', noShadow: false });
     camEnd();
-    if (lt < .45) iris(540, 1350, lerp(0, 2400, easeIn(lt / .45)));
-    letter(B.name, 540, 520, 150, PAL.ink, { pop: seg(lt, .3, .7), screen: true });
-    letter(B.cta, 540, 720, 80, TOM, { pop: seg(lt, .9, 1.3), screen: true });
-    letter(B.handle, 540, 870, 66, PAL.ink, { pop: seg(lt, 1.3, 1.7), screen: true });
-    if (lt > dur - .3) flash(seg(lt, dur - .3, dur), '#FFF1DC');
+    if (lt < .45) iris(540, 1300, lerp(0, 2400, easeIn(lt / .45)));
+    const SB = s => `600 ${s}px "PoppinsSB", "Poppins", sans-serif`;
+    letter('', 540, 560, 640, '#0F0F0F', { img: 'brandlogo', pop: seg(lt, .35, .8), screen: true, ink: false });
+    letter('¿Te armamos el', 540, 1010, 78, '#0F0F0F', { font: SB(78), pop: seg(lt, 1.0, 1.35), screen: true, ink: false });
+    letter('calendario del mes?', 540, 1105, 78, '#B08D4E', { font: SB(78), pop: seg(lt, 1.25, 1.6), screen: true, ink: false });
+    letter('Escríbenos*', 540, 1240, 66, '#0F0F0F', { font: `italic 400 66px "PlayfairIt", serif`, pop: seg(lt, 1.9, 2.3), screen: true, ink: false });
   }
 
   shots([[0, shotEmpty], [4.6, shotKitchen], [10.0, shotDish], [13.8, shotTeam], [18.0, shotReviews], [21.4, shotFeed], [25.8, shotEnd]]);
