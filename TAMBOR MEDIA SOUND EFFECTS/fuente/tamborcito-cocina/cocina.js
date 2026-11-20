@@ -4,7 +4,7 @@
 //   KITCHEN file   (K0 .. K0+17.43): garlic in the pan · slicing garlic · pasta falling · chopping · boiling
 // Every hit (a bite, a chop, a splash) lands on an onset measured from that audio (SFX in sfx_data.js).
 (() => {
-  const F0 = 1.6, K0 = F0 + SFX.food.dur, KEND = K0 + SFX.kitchen.dur;
+  const F0 = 2.6, K0 = F0 + SFX.food.dur, KEND = K0 + SFX.kitchen.dur;
   const GROUND = 1460;
   const SHELL = '#D8B46E', HEAD = '#E8D8B5', HOOP = '#0F0F0F', CORD = '#F7F5F2', GOLD = '#B08D4E';
   const WALL = '#F6EBDA', TILE = '#EBDCC4', WOOD = '#D9B98C', WOODDK = '#B88F5E', STEEL = '#4A4246', STEEL2 = '#5E5559';
@@ -159,11 +159,11 @@
 
   // ---------- A: hello (silent, before the first sound) ----------
   function shotHello(t, lt, dur) {
-    cam(lt, dur, 540, 1130, 1.18, false, true);
+    cam(lt, dur, 540, 1010, 1.05, false, true);
     kitchen(540);
-    const hop = jump(lt, .25, .75, 3.5);
-    const m = act(lt, [[0, 'happy'], [.8, 'excited', { emote: '!' }]]);
-    tambor(540, GROUND, 32, { ...m, dy: m.dy + hop.dy, sq: (m.sq || 0) + hop.sq, aR: 1.1 + .5 * Math.sin(lt * 14), boilKey: 'tA' });
+    const hop = jump(lt, .35, .85, 3.5), hop2 = jump(lt, 1.6, 2.0, 2);
+    const m = act(lt, [[0, 'happy'], [.9, 'excited', { emote: '!' }], [1.9, 'starstruck']]);
+    tambor(540, GROUND, 32, { ...m, dy: m.dy + hop.dy + hop2.dy, sq: (m.sq || 0) + hop.sq + hop2.sq, aR: 1.1 + .5 * Math.sin(lt * 14), boilKey: 'tA' });
     const at = toScreen(540, GROUND - 6 * 32);
     camEnd();
     if (lt < .45) iris(...at, lerp(0, 2400, easeIn(lt / .45)), '#0F0F0F');

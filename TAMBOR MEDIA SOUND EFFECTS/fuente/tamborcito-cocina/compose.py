@@ -18,7 +18,7 @@ def decode(p):
 
 
 food, kit = decode(FOOD), decode(KITCHEN)
-F0 = 1.6
+F0 = 2.6
 K0 = F0 + len(food) / SR
 KEND = K0 + len(kit) / SR
 
@@ -81,12 +81,44 @@ def label(ctx, t):
 
 
 def intro(ctx, t):
+    """Hook: «Efecto de sonido ASMR para usar» · Tambor Media."""
     if t >= F0: return
-    k = min(back((t - .35) / .5), ease_out((F0 - t) / .2))
-    if k <= 0: return
-    pill(ctx, 230, 330, 620, 250, min(1, k))
-    ctext(ctx, "SONIDOS DE", 540, 405, 32, GOLD, track=12, a=min(1, k))
-    ctext(ctx, "la cocina", 540, 520, 120, INK, serif=True, a=min(1, k))
+    out = ease_out((F0 - t) / .2)
+    kc = min(ease_out((t - .2) / .3), out)
+    if kc <= 0: return
+    ctx.save(); ctx.translate(540, 520); s = .9 + .1 * kc; ctx.scale(s, s); ctx.translate(-540, -520)
+    r = 48; x, y, w, h = 90, 150, 900, 600
+    ctx.new_sub_path(); ctx.arc(x + w - r, y + r, r, -math.pi / 2, 0); ctx.arc(x + w - r, y + h - r, r, 0, math.pi / 2)
+    ctx.arc(x + r, y + h - r, r, math.pi / 2, math.pi); ctx.arc(x + r, y + r, r, math.pi, 3 * math.pi / 2); ctx.close_path()
+    ctx.set_source_rgba(*CREAM, .94 * kc); ctx.fill_preserve(); ctx.set_source_rgba(*GOLD, kc); ctx.set_line_width(4); ctx.stroke()
+    ctx.restore()
+
+    def line(start, fn):
+        k = min(back((t - start) / .35), out)
+        if k <= 0: return
+        a = min(1, max(0, (t - start) / .15)) * out
+        ctx.save(); ctx.translate(0, 40 * (1 - k)); fn(a); ctx.restore()
+
+    line(.35, lambda a: ctext(ctx, "EFECTO DE SONIDO", 540, 260, 56, INK, track=4, a=a))
+    def asmr(a):
+        k = back((t - .6) / .35); ctx.save(); ctx.translate(540, 450); ctx.scale(.6 + .4 * k, .6 + .4 * k); ctx.translate(-540, -450)
+        ctext(ctx, "ASMR", 540, 470, 230, GOLD, serif=True, a=a); ctx.restore()
+    line(.6, asmr)
+    line(.95, lambda a: ctext(ctx, "para usar", 540, 580, 76, INK, serif=True, a=a))
+    def brand(a):
+        font(ctx, False, 46)
+        parts = [("TAMB", INK), ("O", GOLD), ("R  MEDIA", INK)]
+        tr = 12
+        tot = sum(sum(ctx.text_extents(c).x_advance + tr for c in p) for p, _ in parts) - tr
+        xx = 540 - tot / 2
+        for p, col in parts:
+            ctx.set_source_rgba(*col, a)
+            for c in p: ctx.move_to(xx, 690); ctx.show_text(c); xx += ctx.text_extents(c).x_advance + tr
+        ctx.new_path()
+        ctx.set_source_rgba(*GOLD, a); ctx.set_line_width(3)
+        ctx.move_to(540 - tot / 2 - 110, 675); ctx.line_to(540 - tot / 2 - 30, 675); ctx.stroke()
+        ctx.move_to(540 + tot / 2 + 30, 675); ctx.line_to(540 + tot / 2 + 110, 675); ctx.stroke()
+    line(1.25, brand)
 
 
 rgba = np.asarray(Image.open(logo_path).convert("RGBA")).astype(np.float32)
