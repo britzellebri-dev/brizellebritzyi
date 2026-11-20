@@ -119,12 +119,12 @@
   }
 
   // ---------- T4 · social proof: notifications fly in around him ----------
-  const NOTES = [[-1, 140, 620, 'stars'], [1, 640, 760, '¡Delicioso!'], [-1, 120, 1000, '¡Volveré!'], [1, 600, 1160, 'stars'], [-1, 160, 1330, 'heart']];
+  const NOTES = [[-1, 120, 600, 'stars'], [1, 600, 760, '¡Delicioso!'], [-1, 110, 920, '¡Volveré!'], [1, 600, 1080, 'stars'], [-1, 120, 1240, 'heart']];
   function shotSocial(t, lt, dur) {
     camBegin(540, 1020, 1);
     paper('#FBE7E8'); floor('#F0D2D5', 1640);
     const m = act(lt, [[0, 'surprised'], [.8, 'love'], [2.2, 'proud']]);
-    tambor(540, 1640, 30, { ...m, boilKey: 'p4' });
+    tambor(560, 1660, 25, { ...m, boilKey: 'p4' });
     NOTES.forEach(([side, x, y, kind], i) => {
       const k = backOut(seg(lt, .2 + i * .32, .55 + i * .32)); if (k <= 0) return;
       const X = lerp(side < 0 ? -500 : W + 100, x, k), w = 380, h = 120;
@@ -133,7 +133,7 @@
       paint(ellPts(X + 58, y + h / 2, 34, 34, 16), { wash: ['#E9A07A', '#9CC6A2', '#B9A6E0', '#F2C46B', '#E78E9E'][i], ink: null });
       if (kind === 'stars') for (let j = 0; j < 5; j++) paint(starPts(X + 130 + j * 46, y + h / 2, 20, .45, 5), { wash: '#F5B83D', ink: INK, sw: .5 });
       else if (kind === 'heart') { paint(heartPts(X + 150, y + h / 2, 26), { wash: '#F06A7E', ink: null }); paint(heartPts(X + 210, y + h / 2, 26), { wash: '#F06A7E', ink: null }); }
-      else letter(kind, X + 245, y + h / 2, 44, INK, { font: SB(44), screen: true, ink: false });
+      else letter(kind, X + 230, y + h / 2, 40, INK, { font: SB(40), ink: false, align: 'center' });
     });
     camEnd();
   }
