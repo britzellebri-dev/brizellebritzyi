@@ -1,0 +1,103 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cerebro y novedad</title>
+<style>html,body{margin:0;background:#0F0F0F;overflow:hidden}canvas{display:block}</style></head>
+<body>
+<script type="module">
+// 3D insert: a feed of identical grey posts scrolls past a brain; one gold post breaks the pattern, the attention
+// network lights up (right temporo-parietal junction + ventral frontal cortex, Corbetta & Shulman 2002) and a beam
+// orients toward the novel post. Deterministic: render(t) depends on t only. 1080×1920, 7.6 s.
+import * as THREE from '/node_modules/three/build/three.module.js';
+const W = innerWidth, H = innerHeight, DUR = 7.6;
+const R = new THREE.WebGLRenderer({ antialias: true }); R.setSize(W, H); R.setPixelRatio(1);
+R.outputColorSpace = THREE.SRGBColorSpace; R.toneMapping = THREE.ACESFilmicToneMapping; R.toneMappingExposure = 1.05;
+document.body.appendChild(R.domElement);
+const S = new THREE.Scene(); S.background = new THREE.Color('#0F0F0F');
+const cam = new THREE.PerspectiveCamera(32, W / H, .1, 100);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), seg = (t, a, b) => clamp((t - a) / (b - a));
+const ease = x => x * x * (3 - 2 * x), eo = x => 1 - Math.pow(1 - x, 3), back = x => { const s = 1.7; x -= 1; return x * x * ((s + 1) * x + s) + 1; };
+
+// light: a warm key from upper left, a gold rim from behind, low fill
+S.add(new THREE.HemisphereLight('#FFF3E0', '#2A2020', .55));
+const key = new THREE.DirectionalLight('#FFF1E0', 2.2); key.position.set(-3, 4, 5); S.add(key);
+const rim = new THREE.DirectionalLight('#C8A96A', 2.6); rim.position.set(3, 2, -4); S.add(rim);
+
+// the brain: a displaced ellipsoid per hemisphere (folds from layered sines), cerebellum, brainstem
+function hemi(side) {
+  const g = new THREE.SphereGeometry(1, 160, 120), p = g.attributes.position, v = new THREE.Vector3();
+  for (let i = 0; i < p.count; i++) {
+    v.fromBufferAttribute(p, i);
+    const f1 = Math.sin(v.y * 13 + 1.8 * Math.sin(v.z * 6.5) + 1.2 * Math.sin(v.x * 5)), f2 = Math.sin(v.z * 15 + 1.5 * Math.sin(v.y * 7.5) + .9 * Math.cos(v.x * 6));
+    const ridge = Math.min(Math.abs(f1), Math.abs(f2));          // thin creases (sulci) between smooth folds (gyri)
+    const d = 1 + .05 * (Math.pow(ridge, .45) - .55) - (v.y < -.35 ? .18 * (-.35 - v.y) : 0);
+    v.multiplyScalar(d); v.x = v.x * .62 + side * .33; v.y *= .78; v.z *= 1.18;
+    { const k = Math.max(0, Math.min(1, (-.05 - v.y) / .3)) * Math.max(0, v.z - .2); v.y += .12 * k; }   // the temporal lobe tucks under, smoothly
+    p.setXYZ(i, v.x, v.y, v.z);
+  }
+  g.computeVertexNormals();
+  return new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: '#E7A9A2', roughness: .62, metalness: 0 }));
+}
+const brain = new THREE.Group(); brain.add(hemi(-1), hemi(1));
+const cb = new THREE.Mesh(new THREE.SphereGeometry(.42, 64, 48), new THREE.MeshStandardMaterial({ color: '#D99790', roughness: .7 }));
+cb.scale.set(1.5, .7, .9); cb.position.set(0, -.62, -.78); brain.add(cb);
+const stem = new THREE.Mesh(new THREE.CylinderGeometry(.16, .12, .8, 32), new THREE.MeshStandardMaterial({ color: '#D99790', roughness: .7 }));
+stem.position.set(0, -.95, -.35); stem.rotation.x = .35; brain.add(stem);
+brain.position.set(0, 1.25, 0); brain.scale.setScalar(1.05); S.add(brain);
+
+// the attention network on the right hemisphere: soft additive glows on the surface
+const glowTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d'), g = x.createRadialGradient(64, 64, 0, 64, 64, 64);
+  g.addColorStop(0, 'rgba(255,236,190,1)'); g.addColorStop(.35, 'rgba(232,190,110,.7)'); g.addColorStop(1, 'rgba(200,169,106,0)'); x.fillStyle = g; x.fillRect(0, 0, 128, 128); return new THREE.CanvasTexture(c); })();
+const spot = (pos, s) => { const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0 })); m.position.copy(pos); m.scale.setScalar(s); brain.add(m); return m; };
+const TPJ = spot(new THREE.Vector3(.98, .12, -.38), .9), VFC = spot(new THREE.Vector3(.86, -.12, .78), .8);
+
+// the feed: identical grey posts scroll down on the left; one gold post breaks the pattern
+const card = col => { const g = new THREE.Group();
+  const base = new THREE.Mesh(new THREE.BoxGeometry(1.1, 1.36, .05), new THREE.MeshStandardMaterial({ color: col, roughness: .5 }));
+  const img = new THREE.Mesh(new THREE.PlaneGeometry(.94, .86), new THREE.MeshStandardMaterial({ color: col === '#C8A96A' ? '#F7E6BF' : '#5C5A58', roughness: .8 }));
+  img.position.set(0, .14, .03); g.add(base, img);
+  for (let i = 0; i < 2; i++) { const l = new THREE.Mesh(new THREE.PlaneGeometry(i ? .5 : .78, .06), new THREE.MeshBasicMaterial({ color: col === '#C8A96A' ? '#0F0F0F' : '#77736F' })); l.position.set(i ? -.2 : -.08, -.42 - i * .12, .03); g.add(l); }
+  return g; };
+const feed = new THREE.Group(); S.add(feed); const cards = [];
+for (let i = 0; i < 7; i++) { const c = card(i === 4 ? '#C8A96A' : '#3E3C3B'); c.position.set(0, -i * 1.6, .9); feed.add(c); cards.push(c); }
+const NOVEL = cards[4];
+
+// the beam from the brain to the novel post
+const beamMat = new THREE.MeshBasicMaterial({ color: '#E9C98A', transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+const beam = new THREE.Mesh(new THREE.CylinderGeometry(.025, .09, 1, 24, 1, true), beamMat); S.add(beam);
+const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: 0 })); S.add(halo);
+
+// floating dust lit by the rim (seeded, not random per frame)
+const dust = new THREE.Group(); S.add(dust);
+for (let i = 0; i < 60; i++) { const h = k => { const x = Math.sin(i * 127.1 + k * 311.7) * 43758.5; return x - Math.floor(x); };
+  const d = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: .18 + .2 * h(3) }));
+  d.position.set((h(1) - .5) * 6, (h(2) - .5) * 9, -2 - h(4) * 3); d.scale.setScalar(.05 + .08 * h(5)); d.userData = { y: d.position.y, s: .1 + .2 * h(6) }; dust.add(d); }
+
+const tNovel = 2.4, tLight = 3.1, tBeam = 3.6;
+window.DUR = DUR;
+window.render = t => {
+  // the feed scrolls, then stops when the novel post reaches the eye line
+  const stop = eo(seg(t, 0, tNovel));                          // the feed scrolls up and settles with the gold post in view
+  feed.position.y = -1.75 + 1.6 * 4 - 6.4 * (1 - stop);
+  const pop = back(seg(t, tNovel - .05, tNovel + .35));
+  NOVEL.scale.setScalar(1 + .22 * pop); NOVEL.position.z = .9 + .5 * pop; NOVEL.rotation.y = 0;
+  feed.updateMatrixWorld(); cards.forEach(c => { const w = new THREE.Vector3(); c.getWorldPosition(w); c.visible = w.y < -.35; });   // the feed stays under the brain
+  // the brain turns slightly toward the post as attention orients
+  brain.rotation.y = -Math.PI / 2 + .08 * Math.sin(t * .5) - .25 * ease(seg(t, tBeam, tBeam + .8));
+  brain.rotation.x = .12 + .12 * ease(seg(t, tBeam, tBeam + .8));
+  const lit = ease(seg(t, tLight, tLight + .5)), pulse = .85 + .15 * Math.sin(t * 9);
+  TPJ.material.opacity = lit * pulse; VFC.material.opacity = ease(seg(t, tLight + .25, tLight + .75)) * pulse;
+  // beam
+  const a = new THREE.Vector3(), b = new THREE.Vector3();
+  brain.updateMatrixWorld(); VFC.getWorldPosition(a); NOVEL.getWorldPosition(b);
+  const k = eo(seg(t, tBeam, tBeam + .45)), end = a.clone().lerp(b, k), mid = a.clone().add(end).multiplyScalar(.5), len = a.distanceTo(end);
+  beam.position.copy(mid); beam.scale.set(1, Math.max(.001, len), 1); beam.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), end.clone().sub(a).normalize());
+  beamMat.opacity = .75 * k * (.85 + .15 * Math.sin(t * 13)); halo.position.copy(b); halo.scale.setScalar(2.2 * k); halo.material.opacity = .55 * k;
+  dust.children.forEach(d => { d.position.y = d.userData.y + (t * d.userData.s) % 9 - 4.5 * 0; });
+  // camera: a slow push and orbit
+  const r = 12.5 - 1.6 * ease(seg(t, 0, DUR)), ang = -.12 + .16 * ease(seg(t, 0, DUR));
+  cam.position.set(Math.sin(ang) * r, .3 + .15 * Math.sin(t * .4), Math.cos(ang) * r); cam.lookAt(0, -.05, 0);
+  R.render(S, cam);
+};
+window.render(0);
+window.READY = true;
+</script>
+</body></html>

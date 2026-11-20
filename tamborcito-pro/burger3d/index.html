@@ -1,0 +1,76 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Hamburguesa</title>
+<style>html,body{margin:0;background:#0F0F0F;overflow:hidden}canvas{display:block}</style></head>
+<body>
+<script type="module">
+// 3D insert: a burger assembles itself in slow motion under a warm key and a gold rim, steam rising, camera
+// orbiting low. Deterministic: render(t) depends on t only. 1080×1920, 3.0 s.
+import * as THREE from '/node_modules/three/build/three.module.js';
+const W = innerWidth, H = innerHeight, DUR = 3.0;
+const R = new THREE.WebGLRenderer({ antialias: true }); R.setSize(W, H); R.setPixelRatio(1);
+R.outputColorSpace = THREE.SRGBColorSpace; R.toneMapping = THREE.ACESFilmicToneMapping; R.toneMappingExposure = 1.1;
+R.shadowMap.enabled = true; document.body.appendChild(R.domElement);
+const S = new THREE.Scene(); S.background = new THREE.Color('#120E0C');
+const cam = new THREE.PerspectiveCamera(30, W / H, .1, 100);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), seg = (t, a, b) => clamp((t - a) / (b - a));
+const ease = x => x * x * (3 - 2 * x), eo = x => 1 - Math.pow(1 - x, 3);
+const bounce = x => { x = clamp(x); return x < .7 ? eo(x / .7) * 1.0 : 1 + .06 * Math.sin((x - .7) / .3 * Math.PI) * (1 - (x - .7) / .3); };
+const hash = i => { const x = Math.sin(i * 127.1 + 311.7) * 43758.5; return x - Math.floor(x); };
+
+S.add(new THREE.HemisphereLight('#FFE9CC', '#1A1010', .45));
+const key = new THREE.SpotLight('#FFE2B8', 70, 20, .55, .6); key.position.set(-3, 6, 4); key.castShadow = true; key.shadow.mapSize.set(1024, 1024); S.add(key); S.add(key.target);
+const rim = new THREE.DirectionalLight('#C8A96A', 3.2); rim.position.set(2.5, 2.5, -4); S.add(rim);
+const fill = new THREE.PointLight('#FF9A5A', 6, 8); fill.position.set(2.5, .5, 2.5); S.add(fill);
+
+// the board it lands on
+const board = new THREE.Mesh(new THREE.CylinderGeometry(2.2, 2.2, .14, 64), new THREE.MeshStandardMaterial({ color: '#5A3B26', roughness: .75 }));
+board.position.y = -.07; board.receiveShadow = true; S.add(board);
+
+const mat = (c, r = .6, m = 0) => new THREE.MeshStandardMaterial({ color: c, roughness: r, metalness: m });
+function bun(top) {
+  const g = new THREE.SphereGeometry(1.15, 64, 32, 0, Math.PI * 2, top ? 0 : Math.PI / 2, Math.PI / 2);
+  const mesh = new THREE.Mesh(g, mat(top ? '#C9822F' : '#C98A3E', .45)); mesh.scale.set(1, top ? .62 : .42, 1); mesh.castShadow = true;
+  const grp = new THREE.Group(); grp.add(mesh);
+  if (top) for (let i = 0; i < 46; i++) {                      // sesame seeds
+    const a = hash(i) * Math.PI * 2, r = Math.sqrt(hash(i + 50)) * .9, y = Math.sqrt(Math.max(0, 1 - (r / 1.15) ** 2)) * 1.15 * .62;
+    const s = new THREE.Mesh(new THREE.SphereGeometry(.045, 10, 8), mat('#F6E7C4', .5)); s.scale.set(1, .5, 1.7);
+    s.position.set(Math.cos(a) * r, y + .01, Math.sin(a) * r); s.lookAt(0, 3, 0); grp.add(s);
+  }
+  return grp;
+}
+function patty() { const m = new THREE.Mesh(new THREE.CylinderGeometry(1.18, 1.12, .34, 48, 4), mat('#5B2E1A', .85)); m.castShadow = true;
+  const p = m.geometry.attributes.position, v = new THREE.Vector3();
+  for (let i = 0; i < p.count; i++) { v.fromBufferAttribute(p, i); const n = .03 * Math.sin(v.x * 9) * Math.cos(v.z * 8); v.x *= 1 + n; v.z *= 1 + n; p.setXYZ(i, v.x, v.y, v.z); }
+  m.geometry.computeVertexNormals(); return m; }
+function cheese() { const g = new THREE.BoxGeometry(2.1, .05, 2.1, 20, 1, 20), p = g.attributes.position, v = new THREE.Vector3();
+  for (let i = 0; i < p.count; i++) { v.fromBufferAttribute(p, i); const r = Math.max(Math.abs(v.x), Math.abs(v.z)); if (r > .85) v.y -= (r - .85) * .55; p.setXYZ(i, v.x, v.y, v.z); }   // melting over the edge
+  g.computeVertexNormals(); const m = new THREE.Mesh(g, mat('#F2B233', .35)); m.rotation.y = .4; m.castShadow = true; return m; }
+function lettuce() { const g = new THREE.CylinderGeometry(1.35, 1.35, .05, 96, 1), p = g.attributes.position, v = new THREE.Vector3();
+  for (let i = 0; i < p.count; i++) { v.fromBufferAttribute(p, i); const a = Math.atan2(v.z, v.x), r = Math.hypot(v.x, v.z); v.y += .07 * Math.sin(a * 11) * (r / 1.35); p.setXYZ(i, v.x, v.y, v.z); }
+  g.computeVertexNormals(); const m = new THREE.Mesh(g, mat('#6DB33F', .55)); m.castShadow = true; return m; }
+function tomatoes() { const grp = new THREE.Group(); for (let i = 0; i < 3; i++) { const m = new THREE.Mesh(new THREE.CylinderGeometry(.48, .48, .1, 40), mat('#D93B2B', .4)); m.position.set(Math.cos(i * 2.1) * .55, 0, Math.sin(i * 2.1) * .55); m.castShadow = true; grp.add(m); } return grp; }
+
+// the stack, bottom to top: [object, resting y, drop start time]
+const L = [[bun(false), .49, 0], [patty(), .82, .25], [cheese(), 1.02, .55], [tomatoes(), 1.12, .8], [lettuce(), 1.22, 1.0], [bun(true), 1.29, 1.25]];
+L.forEach(([o]) => S.add(o));
+
+// steam rising from the patty once it lands (sprites on fixed seeds)
+const steamTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d'), g = x.createRadialGradient(64, 64, 0, 64, 64, 64);
+  g.addColorStop(0, 'rgba(255,245,235,.55)'); g.addColorStop(1, 'rgba(255,245,235,0)'); x.fillStyle = g; x.fillRect(0, 0, 128, 128); return new THREE.CanvasTexture(c); })();
+const steam = []; for (let i = 0; i < 14; i++) { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: steamTex, transparent: true, depthWrite: false, opacity: 0 })); S.add(s); steam.push(s); }
+
+window.DUR = DUR;
+window.render = t => {
+  const slow = t * .85;                                         // slow motion
+  L.forEach(([o, y, t0]) => { const k = bounce(seg(slow, t0, t0 + .55)); o.position.y = y + (1 - k) * 4.5; o.visible = slow > t0 - .02; o.rotation.y = (o.rotation.y0 ?? (o.rotation.y0 = o.rotation.y)) + (1 - k) * 1.2; });
+  steam.forEach((s, i) => { const k = (t * .45 + hash(i + 7)) % 1, on = seg(t, .6, 1.2);
+    s.position.set((hash(i + 3) - .5) * 1.6 + Math.sin(t * 2 + i) * .12, 1.7 + k * 2.4, (hash(i + 5) - .5) * 1.2); s.scale.setScalar(.35 + k * .7); s.material.opacity = .22 * on * Math.sin(k * Math.PI); });
+  const ang = -.6 + .55 * ease(seg(t, 0, DUR)), r = 10.8 - 1.6 * ease(seg(t, 0, DUR));
+  cam.position.set(Math.sin(ang) * r, 1.2 + .5 * ease(seg(t, 0, DUR)), Math.cos(ang) * r); cam.lookAt(0, 1.0, 0);
+  key.target.position.set(0, .6, 0);
+  R.render(S, cam);
+};
+window.render(0);
+window.READY = true;
+</script>
+</body></html>

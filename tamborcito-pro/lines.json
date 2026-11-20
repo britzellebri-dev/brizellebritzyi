@@ -1,0 +1,72 @@
+[
+ {
+  "id": "h",
+  "text": "¡Alto! ¿Tú tienes un negocio, y todavía publicas sin estrategia?",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 0.98
+ },
+ {
+  "id": "n1",
+  "text": "Tu cerebro tiene mecanismos especializados para detectar lo inesperado.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.08
+ },
+ {
+  "id": "n2",
+  "text": "Por eso, lo que rompe la rutina puede captar tu atención.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.08
+ },
+ {
+  "id": "t1",
+  "text": "Uno: educa. Enséñale algo que no sabía.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.1
+ },
+ {
+  "id": "t2",
+  "text": "Dos: producto. Haz que se le antoje.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.08
+ },
+ {
+  "id": "t3",
+  "text": "Tres: muestra lo que pasa detrás.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.08
+ },
+ {
+  "id": "t4",
+  "text": "Cuatro: deja que tus clientes hablen por ti.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.1
+ },
+ {
+  "id": "t5",
+  "text": "Y cinco: entretén. No todo tiene que ser vender.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.1
+ },
+ {
+  "id": "f",
+  "text": "Recuerda: no publiques por publicar. Publica con intención.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.0
+ },
+ {
+  "id": "c",
+  "text": "Síguenos para aprender a crear contenido que conecte con tus clientes.",
+  "voice": "ef_dora",
+  "lang": "es",
+  "speed": 1.12
+ }
+]
