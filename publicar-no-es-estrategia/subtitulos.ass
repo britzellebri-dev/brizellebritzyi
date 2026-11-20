@@ -1,0 +1,50 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Sub,Poppins SemiBold,78,&H00F2F5F7,&H00F2F5F7,&H000F0F0F,&H96000000,0,0,0,0,100,100,0,0,1,7,3,2,90,170,470,1
+Style: End,Poppins SemiBold,72,&H00F2F5F7,&H00F2F5F7,&H000F0F0F,&H96000000,0,0,0,0,100,100,0,0,1,6,3,5,90,150,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.25,0:00:01.51,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}¿Publicas {\c&H6AA9C8&}todos{\c&HF2F5F7&} los {\c&H6AA9C8&}días…{\c&HF2F5F7&}
+Dialogue: 0,0:00:01.51,0:00:02.99,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}y tu negocio sigue
+Dialogue: 0,0:00:02.99,0:00:04.01,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}{\c&H6AA9C8&}sin{\c&HF2F5F7&} {\c&H6AA9C8&}vender?{\c&HF2F5F7&}
+Dialogue: 0,0:00:04.35,0:00:05.17,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}Lunes,
+Dialogue: 0,0:00:05.17,0:00:05.95,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}martes,
+Dialogue: 0,0:00:05.95,0:00:06.75,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}miércoles…
+Dialogue: 0,0:00:06.75,0:00:07.27,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}post,
+Dialogue: 0,0:00:07.27,0:00:07.95,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}post,
+Dialogue: 0,0:00:07.95,0:00:09.23,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}post.
+Dialogue: 0,0:00:09.23,0:00:11.43,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}Muchas publicaciones.
+Dialogue: 0,0:00:11.43,0:00:12.99,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}{\c&H6AA9C8&}Cero{\c&HF2F5F7&} {\c&H6AA9C8&}resultados.{\c&HF2F5F7&}
+Dialogue: 0,0:00:13.05,0:00:13.91,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}Cuando tu cliente ve
+Dialogue: 0,0:00:13.91,0:00:14.81,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}lo mismo una y
+Dialogue: 0,0:00:14.81,0:00:15.61,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}otra vez,
+Dialogue: 0,0:00:15.61,0:00:16.87,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}su cerebro se {\c&H6AA9C8&}acostumbra…{\c&HF2F5F7&}
+Dialogue: 0,0:00:16.87,0:00:18.13,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}y {\c&H6AA9C8&}deja{\c&HF2F5F7&} de {\c&H6AA9C8&}prestarle{\c&HF2F5F7&}
+Dialogue: 0,0:00:18.13,0:00:18.99,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}{\c&H6AA9C8&}atención.{\c&HF2F5F7&}
+Dialogue: 0,0:00:19.15,0:00:20.05,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}Un estudio de {\c&H6AA9C8&}Campbell{\c&HF2F5F7&}
+Dialogue: 0,0:00:20.05,0:00:20.93,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}y {\c&H6AA9C8&}Keller,{\c&HF2F5F7&}
+Dialogue: 0,0:00:20.93,0:00:21.89,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}publicado en el Journal
+Dialogue: 0,0:00:21.89,0:00:23.31,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}of Consumer Research,
+Dialogue: 0,0:00:23.31,0:00:24.37,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}encontró que repetir el
+Dialogue: 0,0:00:24.37,0:00:25.83,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}mismo anuncio {\c&H6AA9C8&}desgasta{\c&HF2F5F7&} su
+Dialogue: 0,0:00:25.83,0:00:26.93,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}{\c&H6AA9C8&}efecto.{\c&HF2F5F7&}
+Dialogue: 0,0:00:26.93,0:00:27.83,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}Y en las marcas
+Dialogue: 0,0:00:27.83,0:00:29.11,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}poco conocidas,
+Dialogue: 0,0:00:29.11,0:00:31.05,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}ese desgaste {\c&H6AA9C8&}llega{\c&HF2F5F7&} {\c&H6AA9C8&}antes.{\c&HF2F5F7&}
+Dialogue: 0,0:00:31.05,0:00:32.05,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}La solución no es
+Dialogue: 0,0:00:32.05,0:00:33.79,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}publicar más.
+Dialogue: 0,0:00:33.79,0:00:35.53,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}Es publicar con {\c&H6AA9C8&}estrategia:{\c&HF2F5F7&}
+Dialogue: 0,0:00:35.53,0:00:36.99,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}contenido que {\c&H6AA9C8&}eduque,{\c&HF2F5F7&}
+Dialogue: 0,0:00:36.99,0:00:38.45,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}que genere {\c&H6AA9C8&}confianza,{\c&HF2F5F7&}
+Dialogue: 0,0:00:38.45,0:00:39.13,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}que {\c&H6AA9C8&}conecte…{\c&HF2F5F7&}
+Dialogue: 0,0:00:39.13,0:00:40.39,Sub,,0,0,0,,{\fscx85\fscy85\t(0,90,\fscx100\fscy100)}y que {\c&H6AA9C8&}convierta.{\c&HF2F5F7&}
+Dialogue: 0,0:00:40.55,0:00:46.00,End,,0,0,0,,{\pos(540,1180)}{\fscx60\fscy60\t(0,160,\fscx108\fscy108)\t(160,280,\fscx100\fscy100)}NO PUBLIQUES POR CUMPLIR.
+Dialogue: 0,0:00:42.90,0:00:46.00,End,,0,0,0,,{\pos(540,1380)}{\fscx60\fscy60\t(0,160,\fscx108\fscy108)\t(160,280,\fscx100\fscy100)}PUBLICA PARA CONSEGUIR {\c&H6AA9C8&}RESULTADOS

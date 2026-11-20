@@ -1,0 +1,257 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Publicar todos los días no es estrategia</title>
+<style>html,body{margin:0;background:#0F0F0F;overflow:hidden}canvas{display:block}</style></head>
+<body>
+<script type="module">
+// «Por qué publicar todos los días no es estrategia» — Tambor Media. 1080×1920, 46 s, all 3D (three.js).
+// Six scenes, each with its own animation, synced to the voice (word times from Whisper, see ../vo/words.json):
+//   S1 0–4.2    a phone fires post after post; the sales gauge stays at zero
+//   S2 4.2–13   a desk calendar flips day after day; posts pile up; the results line stays flat
+//   S3 13–19    the same ad hits a brain again and again; each response is weaker (habituation); it turns away
+//   S4 19–31    Campbell & Keller (2003), JCR: a journal opens on an illustrative wear-out chart (no numbers)
+//   S5 31–40.4  the pile becomes a system: a funnel of educación → confianza → conexión → conversión, gears turning
+//   S6 40.4–46  everything collapses into the Tambor Media logo
+// Deterministic: render(t) depends on t only.
+import * as THREE from '/node_modules/three/build/three.module.js';
+const W = innerWidth, H = innerHeight, DUR = 46;
+const R = new THREE.WebGLRenderer({ antialias: true }); R.setSize(W, H); R.setPixelRatio(1);
+R.outputColorSpace = THREE.SRGBColorSpace; R.toneMapping = THREE.ACESFilmicToneMapping; R.toneMappingExposure = 1.05;
+document.body.appendChild(R.domElement);
+const S = new THREE.Scene(); S.background = new THREE.Color('#0F0F0F'); S.fog = new THREE.Fog('#0F0F0F', 14, 30);
+const cam = new THREE.PerspectiveCamera(34, W / H, .1, 100);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x)), seg = (t, a, b) => clamp((t - a) / (b - a)), lerp = (a, b, k) => a + (b - a) * k;
+const ease = x => x * x * (3 - 2 * x), eo = x => 1 - Math.pow(1 - x, 3), ei = x => x * x * x;
+const back = x => { const s = 1.7; x -= 1; return x * x * ((s + 1) * x + s) + 1; };
+const hash = i => { const x = Math.sin(i * 127.1 + 311.7) * 43758.5; return x - Math.floor(x); };
+const GOLD = '#C8A96A', BEIGE = '#E8D8B5', CREAM = '#F7F5F2', GREY = '#3E3C3B';
+
+await new FontFace('PoppinsSB', 'url(assets/Poppins-SemiBold.ttf)').load().then(f => document.fonts.add(f));
+
+// ---------- lights ----------
+S.add(new THREE.HemisphereLight('#FFF3E0', '#1A1414', .5));
+const key = new THREE.DirectionalLight('#FFF1E0', 2.2); key.position.set(-3, 5, 6); S.add(key);
+const rim = new THREE.DirectionalLight(GOLD, 2.8); rim.position.set(4, 3, -5); S.add(rim);
+const goldLight = new THREE.PointLight('#E8C27A', 0, 9); S.add(goldLight);
+
+// ---------- helpers ----------
+const mat = (c, r = .55, m = 0, o = {}) => new THREE.MeshStandardMaterial({ color: c, roughness: r, metalness: m, ...o });
+function textTex(lines, o = {}) {   // a canvas texture with text, Poppins SemiBold
+  const w = o.w || 1024, h = o.h || 256, c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d');
+  if (o.bg) { x.fillStyle = o.bg; x.fillRect(0, 0, w, h); }
+  x.textAlign = o.align || 'center'; x.textBaseline = 'middle';
+  lines.forEach((L, i) => { x.font = `600 ${L.size || 110}px PoppinsSB`; x.fillStyle = L.color || CREAM; x.fillText(L.t, o.align === 'left' ? 40 : w / 2, (L.y ?? (h / (lines.length + 1)) * (i + 1))); });
+  const tx = new THREE.CanvasTexture(c); tx.colorSpace = THREE.SRGBColorSpace; tx.anisotropy = 4; return tx;
+}
+const plate = (tex, w, h, o = {}) => new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, ...o }));
+const glowTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 128; const x = c.getContext('2d'), g = x.createRadialGradient(64, 64, 0, 64, 64, 64);
+  g.addColorStop(0, 'rgba(255,238,200,1)'); g.addColorStop(.35, 'rgba(232,190,110,.65)'); g.addColorStop(1, 'rgba(200,169,106,0)'); x.fillStyle = g; x.fillRect(0, 0, 128, 128); return new THREE.CanvasTexture(c); })();
+const glow = (s, op = 0) => { const m = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true, opacity: op })); m.scale.setScalar(s); return m; };
+// a social post: a card with a photo square and caption lines. kind: 'grey' | 'gold' | 'ad'
+const postGeo = new THREE.BoxGeometry(1, 1.25, .04);
+const adTex = textTex([{ t: '¡OFERTA!', size: 150, color: '#0F0F0F' }], { bg: GOLD, w: 512, h: 256 });
+function post(kind = 'grey', seed = 0) {
+  const g = new THREE.Group();
+  g.add(new THREE.Mesh(postGeo, mat(kind === 'gold' ? GOLD : '#2A2827', .5, kind === 'gold' ? .3 : 0)));
+  const photoCol = kind === 'ad' ? '#FFFFFF' : kind === 'gold' ? '#F7E6BF' : ['#5C5551', '#6B5F55', '#4F5559', '#615A62'][seed % 4];
+  const ph = new THREE.Mesh(new THREE.PlaneGeometry(.86, .78), kind === 'ad' ? new THREE.MeshBasicMaterial({ map: adTex }) : mat(photoCol, .8));
+  ph.position.set(0, .14, .025); g.add(ph);
+  for (let i = 0; i < 2; i++) { const l = new THREE.Mesh(new THREE.PlaneGeometry(i ? .4 : .7, .05), new THREE.MeshBasicMaterial({ color: kind === 'gold' ? '#0F0F0F' : '#77736F' })); l.position.set(i ? -.21 : -.07, -.38 - i * .1, .025); g.add(l); }
+  return g;
+}
+// gold dust in the background (fixed seeds)
+const dust = new THREE.Group(); S.add(dust);
+for (let i = 0; i < 70; i++) { const d = glow(.05 + .1 * hash(i + 5), .15 + .25 * hash(i + 3)); d.position.set((hash(i) - .5) * 10, (hash(i + 1) - .5) * 16, -4 - hash(i + 2) * 6); d.userData.y = d.position.y; d.userData.s = .08 + .25 * hash(i + 6); dust.add(d); }
+
+// ---------- the brain (procedural: two hemispheres with sulci, cerebellum, stem) ----------
+function hemi(side) {
+  const g = new THREE.SphereGeometry(1, 160, 120), p = g.attributes.position, v = new THREE.Vector3();
+  for (let i = 0; i < p.count; i++) {
+    v.fromBufferAttribute(p, i);
+    const f1 = Math.sin(v.y * 13 + 1.8 * Math.sin(v.z * 6.5) + 1.2 * Math.sin(v.x * 5)), f2 = Math.sin(v.z * 15 + 1.5 * Math.sin(v.y * 7.5) + .9 * Math.cos(v.x * 6));
+    const ridge = Math.min(Math.abs(f1), Math.abs(f2));
+    v.multiplyScalar(1 + .05 * (Math.pow(ridge, .45) - .55) - (v.y < -.35 ? .18 * (-.35 - v.y) : 0));
+    v.x = v.x * .62 + side * .33; v.y *= .78; v.z *= 1.18;
+    { const k = clamp((-.05 - v.y) / .3) * Math.max(0, v.z - .2); v.y += .12 * k; }
+    p.setXYZ(i, v.x, v.y, v.z);
+  }
+  g.computeVertexNormals();
+  return new THREE.Mesh(g, mat('#E2A8A0', .5, 0, { emissive: '#3A1A16', emissiveIntensity: .25 }));
+}
+const brain = new THREE.Group(); const H1 = hemi(-1), H2 = hemi(1); brain.add(H1, H2);
+{ const cb = new THREE.Mesh(new THREE.SphereGeometry(.42, 64, 48), mat('#D99790', .6)); cb.scale.set(1.5, .7, .9); cb.position.set(0, -.62, -.78); brain.add(cb);
+  const st = new THREE.Mesh(new THREE.CylinderGeometry(.16, .12, .8, 32), mat('#D99790', .6)); st.position.set(0, -.95, -.35); st.rotation.x = .35; brain.add(st); }
+const visual = glow(1.4); visual.position.set(0, .1, -1.15); brain.add(visual);       // the visual/attention response at the back
+const brainHalo = glow(5); brain.add(brainHalo);
+
+// ======================= S1 · phone, posts, sales gauge =======================
+const s1 = new THREE.Group(); S.add(s1);
+const phone = new THREE.Group(); s1.add(phone);
+phone.add(new THREE.Mesh(new THREE.BoxGeometry(1.5, 3, .16), mat('#141214', .3, .6)));
+const scr = new THREE.Mesh(new THREE.PlaneGeometry(1.36, 2.82), new THREE.MeshBasicMaterial({ color: '#1E1C1C' })); scr.position.z = .085; phone.add(scr);
+const onScreen = post('grey', 2); onScreen.scale.setScalar(1.05); onScreen.position.set(0, .15, .1); phone.add(onScreen);
+const s1posts = []; for (let i = 0; i < 9; i++) { const p = post('grey', i); p.scale.setScalar(.85); s1.add(p); s1posts.push(p); }
+const gauge = new THREE.Group(); s1.add(gauge); gauge.position.set(.15, -2.15, .3);
+gauge.add(new THREE.Mesh(new THREE.RingGeometry(.75, .95, 64, 1, 0, Math.PI), mat('#2B2827', .4, .5)));
+const gArc = new THREE.Mesh(new THREE.RingGeometry(.75, .95, 64, 1, Math.PI * .92, Math.PI * .08), new THREE.MeshBasicMaterial({ color: '#D7261B' })); gauge.add(gArc);
+const needle = new THREE.Mesh(new THREE.BoxGeometry(.8, .05, .05), mat(CREAM, .3)); needle.geometry.translate(.4, 0, 0); needle.position.z = .03; gauge.add(needle);
+const gLabel = plate(textTex([{ t: 'VENTAS', size: 120, color: CREAM }, { t: '0', size: 170, color: '#D7261B' }], { w: 512, h: 512 }), 1.1, 1.1); gLabel.position.set(0, -.5, .05); gauge.add(gLabel);
+
+// ======================= S2 · calendar, pile, flat results =======================
+const s2 = new THREE.Group(); S.add(s2);
+const DAYS = ['LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO', 'DOMINGO'];
+const cal = new THREE.Group(); s2.add(cal); cal.position.set(-.75, 1.3, 0);
+{ const bk = new THREE.Mesh(new THREE.BoxGeometry(2.1, 2.5, .12), mat('#1C1A1A', .5)); bk.position.set(0, -1.25, -.1); cal.add(bk); }
+for (let i = 0; i < 7; i++) { const ring = new THREE.Mesh(new THREE.TorusGeometry(.07, .02, 8, 16), mat(GOLD, .3, .8)); ring.position.set(-.75 + i * .25, 0, .02); ring.rotation.y = Math.PI / 2; cal.add(ring); }
+const pages = [];
+for (let i = 0; i < 14; i++) {
+  const day = DAYS[i % 7], num = String(i + 1);
+  const tex = textTex([{ t: day, size: 90, color: '#0F0F0F', y: 110 }, { t: num, size: 300, color: i % 7 === 5 || i % 7 === 6 ? '#B8281F' : '#0F0F0F', y: 330 }], { w: 600, h: 520, bg: CREAM });
+  const pg = new THREE.Mesh(new THREE.PlaneGeometry(2, 2.3), new THREE.MeshStandardMaterial({ map: tex, roughness: .9, side: THREE.DoubleSide }));
+  pg.geometry.translate(0, -1.15, 0); const pv = new THREE.Group(); pv.add(pg); pv.position.z = .02 + (14 - i) * .002; cal.add(pv); pages.push(pv);
+}
+const pile = new THREE.Group(); s2.add(pile); pile.position.set(.9, -1.9, 0);
+const pilePosts = []; for (let i = 0; i < 16; i++) { const p = post('grey', i); p.scale.setScalar(.75); pile.add(p); pilePosts.push(p); }
+const chart = new THREE.Group(); s2.add(chart); chart.position.set(-.35, -1.2, -1.2);
+chart.add(new THREE.Mesh(new THREE.BoxGeometry(2.6, .02, .02), mat('#5B5754'))); chart.children[0].position.set(0, -.6, 0);
+const flatLine = new THREE.Mesh(new THREE.BoxGeometry(2.4, .05, .05), new THREE.MeshBasicMaterial({ color: '#D7261B' })); flatLine.geometry.translate(1.2, 0, 0); flatLine.position.set(-1.2, -.55, 0); chart.add(flatLine);
+const resLabel = plate(textTex([{ t: 'RESULTADOS', size: 110, color: CREAM }], { w: 1024, h: 180 }), 1.9, .33); resLabel.position.set(0, -.95, 0); chart.add(resLabel);
+
+// ======================= S3 · the same ad, a brain that gets used to it =======================
+const s3 = new THREE.Group(); S.add(s3);
+const s3brain = new THREE.Group(); s3.add(s3brain);
+const ring = new THREE.Mesh(new THREE.TorusGeometry(2.25, .035, 12, 160, Math.PI * 2), new THREE.MeshBasicMaterial({ color: GOLD })); s3.add(ring);
+const ads = []; for (let i = 0; i < 7; i++) { const a = post('ad', i); a.scale.setScalar(.9); s3.add(a); ads.push(a); }
+const HITS = [13.75, 14.35, 14.95, 15.55, 16.15, 16.75, 17.35];          // one ad every 0.6 s, from "ve lo mismo"
+const RESP = [1, .75, .55, .4, .26, .14, .05];                              // weaker each time: habituation
+
+// ======================= S4 · the study: a journal that opens on a chart =======================
+const s4 = new THREE.Group(); S.add(s4);
+const book = new THREE.Group(); s4.add(book);
+const coverTex = textTex([{ t: 'Journal of', size: 70, color: GOLD, y: 190 }, { t: 'Consumer Research', size: 70, color: GOLD, y: 280 }, { t: 'Campbell & Keller', size: 64, color: CREAM, y: 520 }, { t: '2003', size: 90, color: CREAM, y: 620 }], { w: 700, h: 900, bg: '#1E2A33' });
+const back4 = new THREE.Mesh(new THREE.BoxGeometry(2.2, 2.8, .08), mat('#1E2A33', .6)); back4.position.set(1.1, 0, -.06); book.add(back4);
+const pageTexC = document.createElement('canvas'); pageTexC.width = 900; pageTexC.height = 1150;
+const pageTex = new THREE.CanvasTexture(pageTexC); pageTex.colorSpace = THREE.SRGBColorSpace;
+const pageM = new THREE.Mesh(new THREE.PlaneGeometry(2.1, 2.7), new THREE.MeshStandardMaterial({ map: pageTex, roughness: .95 })); pageM.position.set(1.1, 0, -.01); book.add(pageM);
+const coverPiv = new THREE.Group(); book.add(coverPiv);
+const cover = new THREE.Mesh(new THREE.BoxGeometry(2.2, 2.8, .06), [mat('#1E2A33'), mat('#1E2A33'), mat('#1E2A33'), mat('#1E2A33'), new THREE.MeshStandardMaterial({ map: coverTex, roughness: .6 }), mat('#E9E2D3', .9)]);
+cover.position.set(1.1, 0, .02); coverPiv.add(cover);
+// the chart is drawn on the page canvas each frame: effect vs repetitions, two qualitative curves, no numbers
+function drawPage(kA, kB, hl) {
+  const c = pageTexC.getContext('2d'), w = 900, h = 1150; c.fillStyle = '#F4EFE4'; c.fillRect(0, 0, w, h);
+  c.fillStyle = '#0F0F0F'; c.font = '600 46px PoppinsSB'; c.textAlign = 'left'; c.fillText('Repetir el mismo anuncio', 70, 110); c.fillText('desgasta su efecto', 70, 168); c.font = '600 30px PoppinsSB';
+  const x0 = 110, y0 = 860, x1 = 820, y1 = 300;
+  c.strokeStyle = '#0F0F0F'; c.lineWidth = 5; c.beginPath(); c.moveTo(x0, y1 - 30); c.lineTo(x0, y0); c.lineTo(x1 + 20, y0); c.stroke();
+  c.font = '600 32px PoppinsSB'; c.fillStyle = '#4A4643'; c.fillText('repeticiones →', x1 - 230, y0 + 60);
+  c.save(); c.translate(x0 - 40, y0 - 40); c.rotate(-Math.PI / 2); c.fillText('efecto →', 0, 0); c.restore();
+  const curve = (peakAt, drop, k, col, width) => { if (k <= 0) return; c.strokeStyle = col; c.lineWidth = width; c.lineCap = 'round'; c.beginPath();
+    for (let i = 0; i <= 100 * k; i++) { const u = i / 100, rise = Math.min(1, u / .18), fall = Math.max(0, (u - peakAt) / drop); const e = rise * (1 - .8 * Math.min(1, fall * fall));
+      const X = lerp(x0 + 10, x1, u), Y = lerp(y0 - 20, y1 + 40, e); i ? c.lineTo(X, Y) : c.moveTo(X, Y); } c.stroke(); };
+  curve(.62, .38, kA, '#B08D4E', 9);                   // a well-known brand: wear-out comes later
+  curve(.3, .45, kB, hl ? '#D7261B' : '#7A736C', hl ? 12 : 9);   // a little-known brand: wear-out comes sooner
+  c.font = '600 34px PoppinsSB';
+  if (kA > .05) { c.fillStyle = '#B08D4E'; c.fillRect(70, 232, 44, 9); c.fillStyle = '#6E5428'; c.fillText('marca conocida', 125, 248); }
+  if (kB > .05) { c.fillStyle = hl ? '#D7261B' : '#7A736C'; c.fillRect(440, 232, 44, hl ? 12 : 9); c.fillText('marca poco conocida', 495, 248); }
+  c.font = '600 26px PoppinsSB'; c.fillStyle = '#8C8680'; c.fillText('Gráfico ilustrativo, sin cifras · Campbell y Keller (2003)', 70, 1060);
+  pageTex.needsUpdate = true;
+}
+
+// ======================= S5 · the system: a funnel with four stages and gears =======================
+const s5 = new THREE.Group(); S.add(s5);
+const STAGES = ['EDUCACIÓN', 'CONFIANZA', 'CONEXIÓN', 'CONVERSIÓN'], STAGE_T = [36.28, 37.46, 38.56, 39.48];
+const funnel = new THREE.Group(); s5.add(funnel);
+const rings = [], labels = [];
+STAGES.forEach((n, i) => {
+  const r = 1.55 - i * .32, y = 1.5 - i * .95;
+  const rg = new THREE.Mesh(new THREE.TorusGeometry(r, .06, 16, 96), mat(GOLD, .25, .9, { emissive: GOLD, emissiveIntensity: 0 })); rg.rotation.x = Math.PI / 2 - .25; rg.position.y = y; funnel.add(rg); rings.push(rg);
+  const lb = plate(textTex([{ t: n, size: 120, color: CREAM }], { w: 1100, h: 200 }), 2.2, .4); lb.position.set(0, y + .02, r * .97 + .1); funnel.add(lb); labels.push(lb);
+});
+const cone = new THREE.Mesh(new THREE.CylinderGeometry(1.55, .5, 2.85, 64, 1, true), new THREE.MeshStandardMaterial({ color: GOLD, roughness: .2, metalness: .6, transparent: true, opacity: .12, side: THREE.DoubleSide })); cone.position.y = .08; funnel.add(cone);
+const gears = [];
+const gearGeo = (r, n) => { const sh = new THREE.Shape(); for (let i = 0; i <= n * 2; i++) { const a = i / (n * 2) * Math.PI * 2, rr = i % 2 ? r : r * 1.18; i ? sh.lineTo(Math.cos(a) * rr, Math.sin(a) * rr) : sh.moveTo(Math.cos(a) * rr, Math.sin(a) * rr); }
+  const hole = new THREE.Path(); hole.absarc(0, 0, r * .35, 0, Math.PI * 2, true); sh.holes.push(hole); return new THREE.ExtrudeGeometry(sh, { depth: .14, bevelEnabled: true, bevelSize: .02, bevelThickness: .02, curveSegments: 4 }); };
+[[ -1.75, -1.6, .55, 12, 1], [-1.05, -2.35, .4, 9, -1.35], [1.75, -1.9, .5, 11, -1.1]].forEach(([x, y, r, n, sp]) => { const g = new THREE.Mesh(gearGeo(r, n), mat(GOLD, .35, .55, { emissive: '#4A3818', emissiveIntensity: .5 })); g.position.set(x, y, -.4); g.userData.sp = sp; s5.add(g); gears.push(g); });
+const flowPosts = []; for (let i = 0; i < 10; i++) { const p = post('grey', i); p.scale.setScalar(.5); s5.add(p); flowPosts.push(p); }
+const coinGlow = glow(2.5); coinGlow.position.set(0, -2.3, .3); s5.add(coinGlow);
+const coin = new THREE.Group(); { const c = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, .08, 48), mat(GOLD, .3, .5, { emissive: '#8A6A2A', emissiveIntensity: .8 })); c.rotation.x = Math.PI / 2; coin.add(c); } coin.position.set(0, -2.3, .4); s5.add(coin);
+
+// ======================= S6 · logo =======================
+const s6 = new THREE.Group(); S.add(s6);
+const logoTex = await new Promise(res => { const im = new Image(); im.onload = () => { const c = document.createElement('canvas'); c.width = im.width; c.height = im.height; const x = c.getContext('2d'); x.drawImage(im, 0, 0);
+  const d = x.getImageData(0, 0, c.width, c.height), a = d.data; for (let i = 0; i < a.length; i += 4) { const l = .3 * a[i] + .59 * a[i + 1] + .11 * a[i + 2]; if (l < 90) { a[i] = 247; a[i + 1] = 245; a[i + 2] = 242; } }   // dark ink → cream on black
+  x.putImageData(d, 0, 0); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; res(t); }; im.src = 'assets/tambor-logo.png'; });
+const logo = plate(logoTex, 3.2, 3.2 * 786 / 891); s6.add(logo);
+const logoRings = []; for (let i = 0; i < 3; i++) { const r = new THREE.Mesh(new THREE.TorusGeometry(2 + i * .38, .012, 8, 160), new THREE.MeshBasicMaterial({ color: '#6E5C3A', transparent: true })); s6.add(r); logoRings.push(r); }
+
+const SCENES = [[s1, 0, 4.2], [s2, 4.2, 13], [s3, 13, 19], [s4, 19, 31], [s5, 31, 40.4], [s6, 40.4, DUR]];
+window.DUR = DUR;
+window.render = t => {
+  SCENES.forEach(([g, a, b]) => g.visible = t >= a && t < b);
+  dust.children.forEach(d => { d.position.y = ((d.userData.y + t * d.userData.s + 8) % 16) - 8; });
+  goldLight.intensity = 0;
+  if (brain.parent) brain.parent.remove(brain);
+
+  if (t < 4.2) {                                         // ---- S1
+    const lt = t;
+    const fire = i => .25 + i * .38;
+    s1posts.forEach((p, i) => { const k = seg(lt, fire(i), fire(i) + .9); p.visible = k > 0 && k < 1;
+      p.position.set(Math.sin(i * 2.1) * (.4 + 1.3 * eo(k)), .2 + 4.2 * eo(k), .3 + .6 * k); p.rotation.set(-.3 * k, Math.sin(i) * .8 * k, Math.sin(i * 3) * .5 * k); });
+    phone.position.set(0, .2 + .05 * Math.sin(lt * 6), 0); phone.rotation.set(-.12, .25 * Math.sin(lt * .8), 0);
+    needle.rotation.z = Math.PI - .04 - .03 * Math.abs(Math.sin(lt * 23));   // stuck at zero, trembling
+    gArc.material.color.set(lt % .5 < .25 ? '#D7261B' : '#7A1712');
+    const z = lerp(8.5, 10.4, eo(seg(lt, 0, .5)));          // punch-in at the first frame
+    cam.position.set(.4 * Math.sin(lt * .5), .1, z); cam.lookAt(0, -.15, 0);
+  } else if (t < 13) {                                   // ---- S2
+    const lt = t - 4.2, FL = [4.4, 5.22, 6.0, 6.8, 7.32, 8.0, 8.5, 8.9, 9.25, 9.55, 9.8, 10.05, 10.25];   // flips on "lunes, martes, miércoles", "post post post", then faster
+    pages.forEach((pg, i) => { const k = i < FL.length ? eo(seg(t, FL[i], FL[i] + .28)) : 0; pg.rotation.x = -Math.PI * .98 * k; pg.visible = k < .999; });
+    pilePosts.forEach((p, i) => { const tf = FL[Math.min(i, FL.length - 1)] + .15 + (i >= FL.length ? (i - FL.length + 1) * .18 : 0); const k = seg(t, tf, tf + .45);
+      p.visible = k > 0; const h = i * .05; p.position.set((hash(i) - .5) * .6, lerp(3.5, h, eo(k)), (hash(i + 4) - .5) * .3); p.rotation.set(-.95 + (hash(i + 2) - .5) * .5, (hash(i + 7) - .5) * 1.2, (hash(i + 9) - .5) * .7 + (1 - k) * 2); });
+    flatLine.scale.x = eo(seg(t, 9.3, 10.4)) + .001; resLabel.visible = t > 9.3;
+    const zero = seg(t, 11.48, 11.7); flatLine.material.color.set(zero > 0 && Math.floor(t * 6) % 2 ? '#FF4A3A' : '#D7261B');
+    const z = lerp(9.6, 8.6, ease(seg(lt, 0, 8.8)));
+    cam.position.set(lerp(-1.2, .9, ease(seg(lt, 0, 8.8))), .4 + .3 * Math.sin(lt * .4), z); cam.lookAt(0, -.1, 0);
+  } else if (t < 19) {                                   // ---- S3
+    const lt = t - 13; s3brain.add(brain); brain.position.set(.6, .2, 0); brain.scale.setScalar(1.15);
+    let resp = 0, kick = 0;
+    ads.forEach((a, i) => { const h = HITS[i], k = seg(t, h - .5, h); const after = t - h;
+      a.visible = t > h - .5 && after < (i >= 4 ? 1.2 : .25);
+      if (after < 0) { a.position.set(lerp(-3.6, -.2, ei(k)), lerp(1.4, .3, ei(k)) + (i % 2 ? .3 : -.3) * (1 - k), lerp(1.5, .4, k)); a.rotation.set(0, .5 - .5 * k, .2 * (1 - k)); }
+      else if (i >= 4) { a.position.set(-.2 - after * 1.6, .3 - after * after * 4, .4 + after); a.rotation.z = after * 3; a.children[1].material.color?.set('#888'); }   // later ads bounce off
+      else { a.scale.setScalar(.9 * (1 - after * 3)); }
+      if (after > 0) { const r = RESP[i] * Math.exp(-after * 3.5); resp = Math.max(resp, r); kick = Math.max(kick, RESP[i] * Math.exp(-after * 8)); } });
+    visual.material.opacity = resp; brainHalo.material.opacity = .35 * resp; goldLight.intensity = 6 * resp; goldLight.position.set(.6, .2, 1.5);
+    brain.rotation.y = -Math.PI / 2 + .25 * ease(seg(t, 16.3, 17.8)) + .05 * kick; brain.rotation.x = .1 - .06 * kick;
+    H1.material.emissiveIntensity = .25 + .9 * resp; H2.material.emissiveIntensity = H1.material.emissiveIntensity;
+    const att = clamp(1 - seg(t, 13.75, 18.2) * .92); ring.geometry.dispose(); ring.geometry = new THREE.TorusGeometry(2.25, .035, 12, 160, Math.PI * 2 * att);   // attention ring shrinking
+    ring.position.set(.6, .2, -.3); ring.rotation.z = Math.PI / 2;
+    ring.material.color.set(att < .3 ? '#7A736C' : GOLD);
+    cam.position.set(-.3 + .3 * Math.sin(lt * .5), .3, lerp(9.8, 8.4, ease(seg(lt, 0, 6)))); cam.lookAt(.2, .1, 0);
+  } else if (t < 31) {                                   // ---- S4
+    const lt = t - 19;
+    book.position.set(-1.1, .55, 0); book.rotation.set(-.08, lerp(.9, .03, eo(seg(lt, 0, 1.4))), 0);
+    coverPiv.rotation.y = -Math.PI * .97 * ease(seg(t, 23.2, 24.2));       // opens on "encontró"
+    drawPage(eo(seg(t, 24.4, 26.0)), eo(seg(t, 24.6, 26.2)), t > 27.4);
+    const hl = seg(t, 29.3, 30.0); goldLight.intensity = 2 * hl; goldLight.position.set(-.3, .2, 1.4);
+    const zoom = ease(seg(t, 26.4, 28.0));
+    cam.position.set(lerp(.2, 0, zoom), lerp(.2, .05, zoom), lerp(10.5, 8.2, ease(seg(lt, 0, 3))) - 1.2 * zoom); cam.lookAt(0, lerp(0, -.05, zoom), 0);
+  } else if (t < 40.4) {                                 // ---- S5
+    const lt = t - 31;
+    gears.forEach(g => g.rotation.z = t * g.userData.sp * (t > 34.5 ? 1 : .15));
+    funnel.position.y = .55; funnel.rotation.y = .15 * Math.sin(lt * .4);
+    STAGES.forEach((_, i) => { const on = eo(seg(t, STAGE_T[i] - .2, STAGE_T[i] + .25)); rings[i].material.emissiveIntensity = .9 * on; labels[i].material.opacity = on; labels[i].scale.setScalar(.6 + .4 * back(seg(t, STAGE_T[i] - .2, STAGE_T[i] + .3))); });
+    flowPosts.forEach((p, i) => { const t0 = 32.1 + i * .55, k = seg(t, t0, t0 + 1.8); p.visible = k > 0 && k < 1;   // posts organise: in at the top, spiral down
+      const a = i * 1.7 + k * 6, r = lerp(1.6, .3, k); p.position.set(Math.cos(a) * r, lerp(3.4, -1.9, ease(k)), Math.sin(a) * r * .5 + .3); p.rotation.set(0, -a, 0);
+      if (k > .5) p.children[0].material = mat(GOLD, .4, .4); });
+    const win = seg(t, 39.4, 39.9); coin.visible = win > 0; coin.scale.setScalar(back(win)); coin.rotation.y = .7 * Math.sin(t * 3); coinGlow.material.opacity = .9 * win;
+    cam.position.set(.5 * Math.sin(lt * .3), lerp(1.4, .3, ease(seg(lt, 0, 4))), lerp(14.5, 13.2, ease(seg(lt, 0, 9)))); cam.lookAt(0, .1, 0);
+  } else {                                               // ---- S6
+    const lt = t - 40.4;
+    logo.position.set(0, 1.25, 0); logo.scale.setScalar(.3 + .7 * back(seg(lt, .1, .8))); logo.material.opacity = seg(lt, .1, .4);
+    logoRings.forEach((r, i) => { r.position.set(0, 1.25, -.1); r.scale.setScalar(.6 + .4 * eo(seg(lt, .2 + i * .1, 1.0 + i * .1)) + .02 * Math.sin(t * 2 + i)); r.material.opacity = seg(lt, .2, .8); });
+    cam.position.set(0, .2, 9.4 - .5 * ease(seg(lt, 0, 5.6))); cam.lookAt(0, .2, 0);
+  }
+  R.render(S, cam);
+};
+window.render(0);
+window.READY = true;
+</script>
+</body></html>

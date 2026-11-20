@@ -1,0 +1,39 @@
+[
+ {
+  "id": "s1",
+  "text": "¿Publicas todos los días… y tu negocio sigue sin vender?",
+  "voice": "es-DO-RamonaNeural",
+  "rate": "+8%"
+ },
+ {
+  "id": "s2",
+  "text": "Lunes, martes, miércoles… post, post, post. Muchas publicaciones. Cero resultados.",
+  "voice": "es-DO-RamonaNeural",
+  "rate": "+16%"
+ },
+ {
+  "id": "s3",
+  "text": "Cuando tu cliente ve lo mismo una y otra vez, su cerebro se acostumbra… y deja de prestarle atención.",
+  "voice": "es-DO-RamonaNeural",
+  "rate": "+12%"
+ },
+ {
+  "id": "s4",
+  "text": "Un estudio de Campbell y Keller, publicado en el Journal of Consumer Research, encontró que repetir el mismo anuncio desgasta su efecto. Y en las marcas poco conocidas, ese desgaste llega antes.",
+  "voice": "es-DO-RamonaNeural",
+  "rate": "+14%",
+  "say": "Un estudio de Cámbel y Kéler, publicado en el Journal of Consumer Research, encontró que repetir el mismo anuncio desgasta su efecto. Y en las marcas poco conocidas, ese desgaste llega antes."
+ },
+ {
+  "id": "s5",
+  "text": "La solución no es publicar más. Es publicar con estrategia: contenido que eduque, que genere confianza, que conecte… y que convierta.",
+  "voice": "es-DO-RamonaNeural",
+  "rate": "+12%"
+ },
+ {
+  "id": "s6",
+  "text": "No publiques por cumplir. Publica para conseguir resultados.",
+  "voice": "es-DO-RamonaNeural",
+  "rate": "+0%"
+ }
+]
