@@ -12,6 +12,7 @@ Plantilla y pruebas de vídeo hechas con código para contenido gastronómico.
 | [`publicar-no-es-estrategia/`](publicar-no-es-estrategia/) | three.js (3D) | Pieza educativa 3D: por qué publicar todos los días no es estrategia (Campbell y Keller, 2003). |
 | [`tamborcito-pro/`](tamborcito-pro/) | Animación + 3D + imagen real | **Spot de agencia** de Tambor Media: qué contenido publicar (hook, neurociencia, 5 tipos, cierre). |
 | [`tamborcito-que-publicar/`](tamborcito-que-publicar/) | Claude Animation Base | Corto animado de Tamborcito (mascota de Tambor Media): qué publicar en la página de un restaurante. |
+| [`coquito-receta/`](coquito-receta/) | Python + ffmpeg | **Receta real**: coquito boricua con ASMR, speed ramps y textos animados; versión con textos y limpia. |
 | [`agua-animacion/`](agua-animacion/) | Claude Animation Base | Corto animado «¡Toma agua!» con Gota, voz en español y subtítulos. |
 | [`tortita-animacion/`](tortita-animacion/) | Claude Animation Base | Prueba: corto animado pintado a mano. |
 | [`remotion-shaders/`](remotion-shaders/) | Remotion + Paper Shaders | Pruebas: título sobre fondo animado y tres fondos de shaders. |
