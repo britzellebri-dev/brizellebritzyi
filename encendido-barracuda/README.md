@@ -1,7 +1,7 @@
 # Barracuda · Gran Encendido Navideño (promo 9:16)
 
 Promo vertical de 36,5 s para el **Gran Encendido Navideño** de Barracuda Gastrobar & Rooftop:
-viernes 27 de noviembre, con batucada y Luanne Acústico, en Paseo Real Marina, Aguadilla.
+viernes 27 de noviembre a las 8:00 PM, con batucada y Luanne Acústico, en Paseo Real Marina, Aguadilla.
 
 ## Entregas (`entregas/`)
 
@@ -22,10 +22,10 @@ viernes 27 de noviembre, con batucada y Luanne Acústico, en Paseo Real Marina, 
 | 4–7 s | Brindis frente al árbol · copa al atardecer en el rooftop · cóctel con espuma y canela | «Este viernes, 27 de noviembre,» | VIERNES 27 DE NOVIEMBRE |
 | 7–10 s | El árbol apagado que parpadea y **se enciende** en el segundo 8 | «celebramos nuestro gran encendido navideño» | GRAN ENCENDIDO NAVIDEÑO |
 | 10–14 s | Batucada: un corte por golpe (parrilla, langosta, sartén, cócteles, burger) | «¡con batucada!» | ¡CON BATUCADA! |
-| 14–18 s | Baja la energía: cóctel frente a Santa y el salón | «¡y la música de Luanne Acústico!» | música en vivo · LUANNE ACÚSTICO |
+| 14–18 s | Baja la energía: el flyer oficial «Noche de Divas» con la foto de Luanne, y luego el salón | «¡y la música de Luanne Acústico!» | (el flyer) · luego: música en vivo · LUANNE ACÚSTICO |
 | 18–26 s | Montaje a todo ritmo: pulpo, ceviche con chips de malanga, langosta, cócteles | — | Navidad a lo boricua |
 | 26–30 s | Copa en el rooftop frente al malecón | «¡Te esperamos en Paseo Real Marina, Aguadilla!» | — |
-| 30–36,5 s | Cierre sobre el árbol desenfocado; cada línea entra con un golpe | — | GRAN ENCENDIDO NAVIDEÑO · VIERNES 27 DE NOVIEMBRE · BATUCADA + LUANNE ACÚSTICO · BARRACUDA GASTROBAR & ROOFTOP · PASEO REAL MARINA · AGUADILLA |
+| 30–36,5 s | Cierre sobre el árbol desenfocado; cada línea entra con un golpe | — | GRAN ENCENDIDO NAVIDEÑO · VIERNES 27 DE NOVIEMBRE · 8:00 PM · BATUCADA + LUANNE ACÚSTICO · logo de Barracuda · GASTROBAR & ROOFTOP · PASEO REAL MARINA · AGUADILLA |
 
 ### Para grabar la voz real
 
@@ -53,10 +53,12 @@ Al no usar grabaciones de terceros, no hay problema de derechos.
 
 - Fotos y videos de la carpeta de Drive «baracuda fotos y videos» (cámara Canon y teléfono).
 - Clips `entrada`, `salon` y `pulpo` del proyecto anterior (`../barracuda-pulpo`).
-- En la carpeta **no había** fotos ni videos de Luanne ni de una batucada, ni el archivo del logo.
-  Por eso Luanne y la batucada se presentan con tipografía y sonido (sin inventar imágenes de una
-  presentación), y la marca aparece en el letrero real de la entrada y de la barra.
-  Si llegan fotos de Luanne o el logo en PNG, se pueden añadir en el tramo 14–18 s y en el cierre.
+- El flyer oficial «Noche de Divas» (`assets/flyer_noche_de_divas.png`): de ahí salen la foto de
+  Luanne (se muestra el flyer completo, sin recortar ni retocar su cara), la hora (8:00 PM) y el logo.
+- `assets/logo_barracuda.png`: el logo del flyer con el fondo rojo quitado. No se redibujó ni se
+  deformó; solo se escala.
+- En la carpeta no había tomas de una batucada, así que se presenta con tipografía, cortes al golpe
+  y sonido, sin inventar imágenes de una presentación.
 
 ## Cómo volver a generarlo
 

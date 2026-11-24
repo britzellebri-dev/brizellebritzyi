@@ -194,6 +194,24 @@ P = {
 }
 arbol_blur = cv2.GaussianBlur(P["arbol"], (0, 0), 22)
 arbol_blur = (arbol_blur.astype(np.float32) * 0.55).astype(np.uint8)
+
+# flyer oficial "Noche de Divas" (foto real de Luanne): entero, sobre un fondo
+# desenfocado del mismo flyer, sin recortarle ni retocarle la cara
+def flyer_frame():
+    fl = cv2.imread(os.path.join(HERE, "assets", "flyer_noche_de_divas.png"))
+    sc_ = 1.18
+    bg = cv2.resize(fl, (int(W * sc_), int(H * sc_)))
+    bg = (cv2.GaussianBlur(bg, (0, 0), 30).astype(np.float32) * 0.45).astype(np.uint8)
+    fw = int(W * sc_ * 0.86); fh = int(fl.shape[0] * fw / fl.shape[1])
+    f2 = cv2.resize(fl, (fw, fh), interpolation=cv2.INTER_CUBIC)
+    y0 = (bg.shape[0] - fh) // 2 - 40; x0 = (bg.shape[1] - fw) // 2
+    bg[y0:y0 + fh, x0:x0 + fw] = f2
+    return bg
+P["flyer"] = flyer_frame()
+
+_lg = np.array(Image.open(os.path.join(HERE, "assets", "logo_barracuda.png")).convert("RGBA")).astype(np.float32)
+_lg = cv2.resize(_lg, None, fx=1.55, fy=1.55, interpolation=cv2.INTER_CUBIC)
+LOGO = _lg[:, :, [2, 1, 0, 3]]
 CL = {
     "entrada": load_clip(C("entrada.mp4"), 0.0, 2.2),
     "salon": load_clip(C("salon.mp4"), 0.2, 2.1),
@@ -226,7 +244,7 @@ SHOTS = [
     (13.0, 13.5, "clip", "langosta_cola", {}),
     (13.5, 14.0, "photo", "burger", dict(z0=1.12, z1=1.0)),
     # Luanne acústico
-    (14.0, 16.0, "photo", "santa", dict(z0=1.0, z1=1.09, dy=0.15)),
+    (14.0, 16.0, "photo", "flyer", dict(z0=1.0, z1=1.06, dy=-0.2)),
     (16.0, 18.0, "clip", "salon", {}),
     # montaje
     (18.0, 19.0, "clip", "pulpo", {}),
@@ -302,7 +320,7 @@ def draw_text(img, t):
         img = put(img, text_img("¡CON", "Poppins-ExtraBold.ttf", 80, GOLD), 540, 830, a, 1.0)
         img = put(img, text_img("BATUCADA!", "Poppins-Black.ttf", 168, WHITE, glow=(80, 60, 230)), 540, 970, a, s)
     # Luanne
-    a, s = pop(t, 14.25, 17.9, 0.3, 0.3)
+    a, s = pop(t, 16.0, 17.95, 0.2, 0.3)   # 14–16 s: el flyer oficial ya dice LUANNE
     img = put(img, text_img("música en vivo", "PlayfairDisplay-Italic.ttf", 78, GOLD), 540, 1180, a, 1.0)
     img = put(img, text_img("LUANNE", "Poppins-Black.ttf", 160, WHITE), 540, 1320, a, s)
     img = put(img, text_img("ACÚSTICO", "Poppins-Bold.ttf", 84, WHITE, track=14), 540, 1460, a, s)
@@ -315,14 +333,14 @@ def draw_text(img, t):
             return min(1, max(0, (t - t0) / 0.2)) * min(1, max(0, (DUR - 0.05 - t) / 0.45))
         def sc(t0):
             u = min(1, max(0, (t - t0) / 0.2)); return 1.15 - 0.15 * (1 - (1 - u) ** 3)
-        img = put(img, text_img("GRAN ENCENDIDO", "Poppins-Black.ttf", 108, GOLD, glow=(255, 200, 110)), 540, 640, stage(30.0), sc(30.0))
-        img = put(img, text_img("NAVIDEÑO", "Poppins-Black.ttf", 150, GOLD, glow=(255, 200, 110)), 540, 790, stage(30.0), sc(30.0))
-        img = put(img, text_img("VIERNES 27 DE NOVIEMBRE", "Poppins-ExtraBold.ttf", 74, WHITE), 540, 960, stage(31.0), sc(31.0))
-        img = put(img, text_img("BATUCADA + LUANNE ACÚSTICO", "Poppins-Bold.ttf", 62, WHITE), 540, 1070, stage(32.0), sc(32.0))
-        line_bar(img, 540, 1165, 200, stage(33.0))
-        img = put(img, text_img("BARRACUDA", "Poppins-Black.ttf", 132, WHITE, track=10), 540, 1280, stage(33.0), sc(33.0))
-        img = put(img, text_img("GASTROBAR & ROOFTOP", "Poppins-SemiBold.ttf", 58, GOLD, track=12), 540, 1395, stage(33.0), sc(33.0))
-        img = put(img, text_img("PASEO REAL MARINA · AGUADILLA", "Poppins-Medium.ttf", 48, WHITE, track=4), 540, 1490, stage(33.5), sc(33.5))
+        img = put(img, text_img("GRAN ENCENDIDO", "Poppins-Black.ttf", 108, GOLD, glow=(255, 200, 110)), 540, 470, stage(30.0), sc(30.0))
+        img = put(img, text_img("NAVIDEÑO", "Poppins-Black.ttf", 150, GOLD, glow=(255, 200, 110)), 540, 615, stage(30.0), sc(30.0))
+        img = put(img, text_img("VIERNES 27 DE NOVIEMBRE · 8:00 PM", "Poppins-ExtraBold.ttf", 66, WHITE), 540, 775, stage(31.0), sc(31.0))
+        img = put(img, text_img("BATUCADA + LUANNE ACÚSTICO", "Poppins-Bold.ttf", 60, WHITE), 540, 870, stage(32.0), sc(32.0))
+        line_bar(img, 540, 965, 200, stage(33.0))
+        img = put(img, LOGO, 540, 1135, stage(33.0), sc(33.0))   # logo original, solo escalado
+        img = put(img, text_img("GASTROBAR & ROOFTOP", "Poppins-SemiBold.ttf", 54, GOLD, track=12), 540, 1365, stage(33.0), sc(33.0))
+        img = put(img, text_img("PASEO REAL MARINA · AGUADILLA", "Poppins-Medium.ttf", 48, WHITE, track=4), 540, 1445, stage(33.5), sc(33.5))
     return img
 
 def frame(i):
@@ -345,7 +363,7 @@ def frame(i):
     g = cv2.resize(GRAIN[i % 6], (W, H), interpolation=cv2.INTER_NEAREST)[..., None]
     img = np.clip(f + g, 0, 255).astype(np.uint8)
     if not NOTEXT:
-        if t < 30.0:   # banda oscura suave detrás de la zona de textos
+        if t < 30.0 and not 14.0 <= t < 16.0:   # banda oscura suave detrás de la zona de textos
             img = (img.astype(np.float32) * TBAND).astype(np.uint8)
         img = draw_text(img, t)
     # destellos en los golpes grandes
@@ -362,7 +380,7 @@ def frame(i):
     return img
 
 if "--prueba" in sys.argv:   # hoja de control con algunos fotogramas
-    ts = [0.6, 2.8, 4.6, 7.4, 8.15, 9.0, 10.1, 11.2, 13.2, 14.8, 16.8, 18.5, 20.4, 23.5, 27.5, 30.5, 33.7, 35.2]
+    ts = [0.6, 2.8, 4.6, 7.4, 8.15, 10.1, 11.2, 14.5, 15.5, 16.8, 18.5, 20.4, 23.5, 27.5, 30.5, 32.5, 33.7, 35.2]
     th = [cv2.resize(frame(int(t * FPS)), (270, 480)) for t in ts]
     rows = [np.hstack(th[k:k + 6]) for k in range(0, len(th), 6)]
     cv2.imwrite(OUTF, np.vstack(rows)); sys.exit()
