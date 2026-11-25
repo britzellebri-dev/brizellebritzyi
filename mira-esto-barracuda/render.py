@@ -97,15 +97,36 @@ R = lambda n: os.path.join(M, "raw", n)
 Hc = lambda n: os.path.join(M, "heic", n)
 print("cargando…", flush=True)
 # (inicio, fin, foto, foco, zoom de/a, posición del "This")
+def cover_box(path, box, sc=1.12):
+    """recorta primero una zona (x0,y0,x1 en fracciones) y luego encuadra 9:16"""
+    im = cv2.imread(path); h, w = im.shape[:2]
+    x0, y0, x1 = int(box[0] * w), int(box[1] * h), int(box[2] * w)
+    hh = int((x1 - x0) * H / W)
+    tmp = os.path.join(M, "_box.jpg"); cv2.imwrite(tmp, im[y0:y0 + hh, x0:x1], [cv2.IMWRITE_JPEG_QUALITY, 97])
+    return cover(tmp, (0.5, 0.5), sc)
+
+def clip(path, start, dur, transpose=None, speed=1.0):
+    vf = ([f"transpose={transpose}"] if transpose is not None else []) + \
+         [f"setpts=PTS/{speed}", f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H}", f"fps={FPS}"]
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", str(start), "-t", str(dur / speed + 0.4), "-i", path,
+                          "-vf", ",".join(vf), "-pix_fmt", "bgr24", "-f", "rawvideo", "-"], capture_output=True, check=True).stdout
+    fr = np.frombuffer(raw, np.uint8).reshape(-1, H, W, 3).copy()
+    for f in fr:
+        for c in range(3): f[:, :, c] = cv2.LUT(f[:, :, c], LUT[c])
+    return list(fr)
+
+V = lambda n: os.path.join(M, "vid", n)
+PULPO = os.path.join(REPO, "barracuda-pulpo", "assets", "clips", "pulpo.mp4")
+# mariscos al frente, dos bebidas
 SHOTS = [
-    (2.4167, 3.0833, cover(R("HM1A1098.jpg"), (0.64, 0.55)), (1.0, 1.06), (560, 1500)),
-    (3.0833, 3.7083, cover(R("HM1A1059.jpg"), (0.5, 0.5)), (1.06, 1.0), (760, 1180)),
-    (3.7083, 4.4167, cover(R("HM1A1062.jpg"), (0.42, 0.5)), (1.0, 1.07), (690, 1460)),
-    (4.4167, 5.0, cover(R("HM1A1056.jpg"), (0.5, 0.55)), (1.07, 1.0), (330, 620)),
-    (5.0, 5.5833, cover(R("HM1A1079.jpg"), (0.5, 0.55)), (1.0, 1.06), (740, 1000)),
-    (5.5833, 6.40, cover(R("HM1A1082.jpg"), (0.5, 0.6)), (1.06, 1.0), (560, 1560)),
+    (2.4167, 3.0833, cover_box(R("HM1A1091.jpg"), (0.0, 0.03, 0.52)), (1.0, 1.07), (640, 1480)),   # langosta a la parrilla
+    (3.0833, 3.7083, cover(R("HM1A1079.jpg"), (0.5, 0.55)), (1.06, 1.0), (740, 1000)),              # cóctel de piña
+    (3.7083, 4.4167, clip(V("HM1A1088.MP4"), 36.0, 0.75, transpose=1), None, (700, 1450)),           # colas de langosta
+    (4.4167, 5.0, cover(R("HM1A1059.jpg"), (0.5, 0.5)), (1.06, 1.0), (760, 1180)),                  # copa al atardecer
+    (5.0, 5.5833, clip(PULPO, 0.4, 0.6), None, (720, 1500)),                                         # pulpo
+    (5.5833, 6.40, clip(V("HM1A1088.MP4"), 65.6, 0.85, transpose=1, speed=0.8), None, (560, 1560)),  # carne de langosta
 ]
-HERO = cover(Hc("IMG_6125.jpg"), (0.5, 0.47), 1.15)
+HERO = cover(R("HM1A1063.jpg"), (0.42, 0.5), 1.15)   # ceviche de pescado con chips de malanga
 LOGO = np.array(Image.open(os.path.join(REPO, "encendido-barracuda", "assets", "logo_barracuda.png")).convert("RGBA")).astype(np.float32)[:, :, [2, 1, 0, 3]]
 LOGO_S = cv2.resize(LOGO, None, fx=0.6, fy=0.6, interpolation=cv2.INTER_AREA)
 LOGO_L = cv2.resize(LOGO, None, fx=1.55, fy=1.55, interpolation=cv2.INTER_CUBIC)
@@ -151,10 +172,13 @@ def frame(i):
         if t >= 1.875:
             img = put(img, timg("at.......", 200), 560, 1260, 1, popin(t, 1.875))
     elif t < 6.40:
-        for t0, t1, ph, (z0, z1), (tx, ty) in SHOTS:
+        for t0, t1, ph, zz, (tx, ty) in SHOTS:
             if t0 <= t < t1:
                 u = (t - t0) / (t1 - t0)
-                img = kb(ph, u, z0, z1).astype(np.float32)
+                if isinstance(ph, list):
+                    img = ph[min(len(ph) - 1, int((t - t0) * FPS))].astype(np.float32)
+                else:
+                    img = kb(ph, u, *zz).astype(np.float32)
                 img = put(img, timg("This", 200), tx, ty, 1, popin(t, t0 + 0.04))
                 break
         if t >= 6.22:   # la última toma sale barrida
