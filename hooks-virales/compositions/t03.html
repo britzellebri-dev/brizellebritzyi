@@ -1,0 +1,106 @@
+<template>
+<style>
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-Medium.ttf');font-weight:500}
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-SemiBold.ttf');font-weight:600}
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-ExtraBold.ttf');font-weight:800}
+@font-face{font-family:'TM Serif';src:url('assets/fonts/PlayfairDisplay-Italic.ttf');font-style:italic;font-weight:400 900}
+#root{position:absolute;inset:0;overflow:hidden;background:#0F0F0F;font-family:'TM Sans',sans-serif;color:#F7F5F2}
+.bg{position:absolute;inset:0;overflow:hidden}
+.grid{position:absolute;left:-120px;top:-240px;width:1320px;height:2400px;
+  background-image:linear-gradient(rgba(247,245,242,.045) 2px,transparent 2px),linear-gradient(90deg,rgba(247,245,242,.045) 2px,transparent 2px);
+  background-size:120px 120px}
+.glow{position:absolute;width:1200px;height:1200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,169,106,.30) 0%,rgba(200,169,106,.10) 35%,rgba(200,169,106,0) 68%)}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse 80% 65% at 50% 48%,rgba(15,15,15,0) 55%,rgba(5,5,5,.85) 100%)}
+.stage{position:absolute;inset:0}
+.num{position:absolute;left:120px;top:286px;font-weight:800;font-size:180px;line-height:1;letter-spacing:-.04em;transform-origin:0 0}
+.num span{position:absolute;left:0;top:0;white-space:nowrap}
+.num .sh{color:transparent;-webkit-text-stroke:2px rgba(200,169,106,.35)}
+.num .o{color:transparent;-webkit-text-stroke:3px #C8A96A}
+.num .f{color:#C8A96A;clip-path:inset(100% 0 0 0)}
+.num .r{color:transparent;-webkit-text-stroke:3px #D7261B;opacity:0}
+.num .c{color:transparent;-webkit-text-stroke:3px #7FD6E0;opacity:0}
+.num .ghost{visibility:hidden;position:relative}
+.prog{position:absolute;left:400px;top:318px;width:488px}
+.prog .lb{font-weight:600;font-size:28px;letter-spacing:.32em;color:#C8A96A}
+.prog .lb b{color:#F7F5F2;font-weight:600}
+.prog .bar{display:flex;gap:8px;margin-top:22px}
+.prog .bar i{flex:1;height:8px;border-radius:4px;background:rgba(247,245,242,.14)}
+.prog .bar i.on{background:#C8A96A}
+.prog .bar i.now{background:#F7F5F2}
+.name{position:absolute;left:120px;right:120px;top:1050px;text-align:center;font-weight:800;font-size:80px;line-height:1.02;letter-spacing:-.025em;text-transform:uppercase}
+.name .w{display:inline-block;margin:0 .12em}
+.name .k{font-family:'TM Serif',serif;font-style:italic;font-weight:700;text-transform:none;color:#C8A96A;letter-spacing:-.01em;font-size:1.12em}
+.concept{position:absolute;left:140px;right:140px;top:700px;text-align:center;font-weight:500;font-size:32px;line-height:1.3;color:#F7F5F2}
+.concept .w{display:inline-block;margin:0 .13em;opacity:.28}
+.demo{position:absolute;left:120px;top:826px;width:780px;height:240px}
+.hook{position:absolute;left:120px;top:1084px;width:780px;padding:30px 34px 28px;border-radius:28px;background:rgba(27,26,25,.92);
+  border:2px solid rgba(200,169,106,.55);box-shadow:0 30px 60px rgba(0,0,0,.55)}
+.hook .tag{position:absolute;left:30px;top:-22px;background:#C8A96A;color:#0F0F0F;font-weight:800;font-size:26px;letter-spacing:.2em;padding:6px 18px;border-radius:30px}
+.hook p{margin:0;font-weight:600;font-size:34px;line-height:1.28;color:#F7F5F2}
+.hook p .w{display:inline-block;margin-right:.22em}
+.hook p .g{color:#C8A96A}
+.hook .disc{margin-top:10px;font-weight:500;font-size:26px;color:rgba(247,245,242,.55)}
+.card{background:#1B1A19;border:2px solid rgba(247,245,242,.08);border-radius:24px}
+.cnt{position:absolute;left:0;top:4px;width:780px;display:flex;align-items:baseline;justify-content:center;gap:22px}
+.cnt b{font-weight:800;font-size:132px;line-height:1;color:#C8A96A;letter-spacing:-.04em;min-width:170px;text-align:right}
+.cnt span{font-weight:600;font-size:34px;letter-spacing:.18em}
+.tiles{position:absolute;left:0;top:140px;width:780px;display:flex;gap:14px}
+.tiles div{flex:1;height:100px;border-radius:14px;background:linear-gradient(160deg,#3A342C,#1C1A18);border:2px solid rgba(200,169,106,.45);display:flex;align-items:center;justify-content:center}
+.tiles svg{width:30px;height:30px}
+.arrow{position:absolute;left:350px;top:110px;width:80px;height:20px}</style>
+<div id="root" data-composition-id="t03" data-width="1080" data-height="1920">
+<div id="t03-bg" class="clip bg" data-start="0" data-duration="7.66">
+  <div class="grid" id="t03-grid"></div>
+  <div class="glow" id="t03-glow" style="left:-60px;top:100px"></div>
+  <div class="vig"></div>
+</div>
+<div id="t03-stage" class="clip stage" data-start="0" data-duration="7.66" data-layout-allow-overflow data-layout-allow-overlap>
+ <div id="t03-in" class="stage" style="perspective:1400px">
+ 
+ <div class="num" id="t03-num"><span class="sh">03</span><span class="r">03</span><span class="c">03</span><span class="o">03</span><span class="f">03</span><span class="ghost">03</span></div>
+ <div class="prog" id="t03-prog"><div class="lb">TRUCO <b>03</b> / 10</div><div class="bar"><i class="on"></i><i class="on"></i><i class="now"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
+ <div class="name" id="t03-name"><span class="w">La</span><span class="w">solución</span><span class="w k">directa</span></div>
+ <div class="concept" id="t03-con"><span class="w">Muestra</span><span class="w">el</span><span class="w">resultado</span><span class="w">primero,</span><span class="w">y</span><span class="w">después</span><span class="w">explica</span><span class="w">cómo</span></div>
+ <div class="demo" id="t03-demo"><div class="cnt"><b id="t03-n">0</b><span>CLIENTES</span></div>
+<div class="tiles"><div id="t03-v0"><svg viewBox="0 0 24 24" fill="#F7F5F2"><path d="M7 4l13 8-13 8z"/></svg></div><div id="t03-v1"><svg viewBox="0 0 24 24" fill="#F7F5F2"><path d="M7 4l13 8-13 8z"/></svg></div><div id="t03-v2"><svg viewBox="0 0 24 24" fill="#F7F5F2"><path d="M7 4l13 8-13 8z"/></svg></div><div id="t03-v3"><svg viewBox="0 0 24 24" fill="#F7F5F2"><path d="M7 4l13 8-13 8z"/></svg></div><div id="t03-v4"><svg viewBox="0 0 24 24" fill="#F7F5F2"><path d="M7 4l13 8-13 8z"/></svg></div><div id="t03-v5"><svg viewBox="0 0 24 24" fill="#F7F5F2"><path d="M7 4l13 8-13 8z"/></svg></div><div id="t03-v6"><svg viewBox="0 0 24 24" fill="#F7F5F2"><path d="M7 4l13 8-13 8z"/></svg></div></div></div>
+ <div class="hook" id="t03-hook"><div class="tag">HOOK</div><p><span class="w">“Conseguí</span><span class="w g">10</span><span class="w g">clientes</span><span class="w g">en</span><span class="w g">una</span><span class="w g">semana</span><span class="w">usando</span><span class="w">estos</span><span class="w">7</span><span class="w">videos.”</span></p><div class="disc">*Ejemplo ilustrativo, no es un caso real.</div></div>
+ </div>
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const D = 7.66;
+const N="#t03-num", TC=2.495, TH=5.307, TN=[1.213, 1.374, 1.957], TW=[2.745, 3.142, 3.229, 3.787, 4.494, 4.581, 5.027, 5.56];
+tl.fromTo("#t03-grid",{y:0},{y:-240,duration:D,ease:"none"},0);
+tl.fromTo("#t03-glow",{scale:.8,x:-60},{scale:1.15,x:60,duration:D,ease:"sine.inOut"},0);
+tl.fromTo("#t03-in",{y:200,opacity:0},{y:0,opacity:1,duration:.5,ease:"expo.out"},0);
+// big centred number (phase A) -> header (phase B)
+tl.fromTo(N,{x:128,y:230,scale:2.6},{x:128,y:230,scale:2.6,duration:.01},0);
+tl.fromTo(N+" .o",{y:260,opacity:0},{y:0,opacity:1,duration:.55,ease:"back.out(1.6)"},0.05);
+tl.fromTo(N+" .f",{clipPath:"inset(100% 0 0 0)"},{clipPath:"inset(0% 0 0 0)",duration:.6,ease:"power2.inOut"},.55);
+tl.to(N,{x:0,y:0,scale:1,duration:.6,ease:"expo.inOut"},TC-.35);
+tl.fromTo("#t03-prog",{opacity:0,x:40},{opacity:1,x:0,duration:.45,ease:"power3.out"},TC);
+tl.fromTo("#t03-prog .now",{scaleX:0,transformOrigin:"0 50%"},{scaleX:1,duration:.5,ease:"power2.out"},TC+.2);
+// name: word by word with the voice, then up to the header
+document.querySelectorAll("#t03-name .w").forEach((el,i)=>tl.fromTo(el,{y:60,opacity:0,rotationX:-80},{y:0,opacity:1,rotationX:0,duration:.35,ease:"back.out(1.6)"},TN[i]-.08));
+tl.to("#t03-name",{y:-580,scale:.92,duration:.6,ease:"expo.inOut"},TC-.35);
+// concept: karaoke
+tl.fromTo("#t03-con",{opacity:0,y:20},{opacity:1,y:0,duration:.3},TC);
+document.querySelectorAll("#t03-con .w").forEach((el,i)=>tl.fromTo(el,{opacity:.28,color:"#F7F5F2"},{opacity:1,color:i%3==2?"#C8A96A":"#F7F5F2",duration:.12},TW[i]-.04));
+tl.fromTo("#t03-demo",{opacity:0},{opacity:1,duration:.2},TC);
+const cnt={v:0};tl.fromTo(cnt,{v:0},{v:10,duration:1.2,ease:"power2.out",onUpdate:()=>{document.querySelector("#t03-n").textContent=Math.round(cnt.v)}},TC);
+tl.fromTo("#t03-n",{scale:1},{scale:1.25,duration:.14,yoyo:true,repeat:1,ease:"power2.out",transformOrigin:"100% 80%"},TC+1.2);
+for(let i=0;i<7;i++) tl.fromTo("#t03-v"+i,{y:60,opacity:0,rotationX:-70},{y:0,opacity:1,rotationX:0,duration:.4,ease:"back.out(1.8)"},TC+1.3+i*.08);
+// the hook card
+tl.fromTo("#t03-hook",{y:140,opacity:0,scale:.94},{y:0,opacity:1,scale:1,duration:.5,ease:"expo.out"},TH);
+tl.fromTo("#t03-hook .tag",{scale:0},{scale:1,duration:.3,ease:"back.out(3)"},TH+.2);
+tl.fromTo("#t03-hook p .w",{opacity:0,y:14,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.22,stagger:.045,ease:"power2.out"},TH+.15);
+tl.to("#t03-demo",{opacity:.6,duration:.4},TH);
+tl.to("#t03-in",{scale:1.05,duration:.5,ease:"power2.in"},D-.5);
+
+window.__timelines["t03"] = tl;
+})();
+</script>
+</template>

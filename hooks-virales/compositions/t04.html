@@ -1,0 +1,113 @@
+<template>
+<style>
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-Medium.ttf');font-weight:500}
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-SemiBold.ttf');font-weight:600}
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-ExtraBold.ttf');font-weight:800}
+@font-face{font-family:'TM Serif';src:url('assets/fonts/PlayfairDisplay-Italic.ttf');font-style:italic;font-weight:400 900}
+#root{position:absolute;inset:0;overflow:hidden;background:#0F0F0F;font-family:'TM Sans',sans-serif;color:#F7F5F2}
+.bg{position:absolute;inset:0;overflow:hidden}
+.grid{position:absolute;left:-120px;top:-240px;width:1320px;height:2400px;
+  background-image:linear-gradient(rgba(247,245,242,.045) 2px,transparent 2px),linear-gradient(90deg,rgba(247,245,242,.045) 2px,transparent 2px);
+  background-size:120px 120px}
+.glow{position:absolute;width:1200px;height:1200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,169,106,.30) 0%,rgba(200,169,106,.10) 35%,rgba(200,169,106,0) 68%)}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse 80% 65% at 50% 48%,rgba(15,15,15,0) 55%,rgba(5,5,5,.85) 100%)}
+.stage{position:absolute;inset:0}
+.num{position:absolute;left:120px;top:286px;font-weight:800;font-size:180px;line-height:1;letter-spacing:-.04em;transform-origin:0 0}
+.num span{position:absolute;left:0;top:0;white-space:nowrap}
+.num .sh{color:transparent;-webkit-text-stroke:2px rgba(200,169,106,.35)}
+.num .o{color:transparent;-webkit-text-stroke:3px #C8A96A}
+.num .f{color:#C8A96A;clip-path:inset(100% 0 0 0)}
+.num .r{color:transparent;-webkit-text-stroke:3px #D7261B;opacity:0}
+.num .c{color:transparent;-webkit-text-stroke:3px #7FD6E0;opacity:0}
+.num .ghost{visibility:hidden;position:relative}
+.prog{position:absolute;left:400px;top:318px;width:488px}
+.prog .lb{font-weight:600;font-size:28px;letter-spacing:.32em;color:#C8A96A}
+.prog .lb b{color:#F7F5F2;font-weight:600}
+.prog .bar{display:flex;gap:8px;margin-top:22px}
+.prog .bar i{flex:1;height:8px;border-radius:4px;background:rgba(247,245,242,.14)}
+.prog .bar i.on{background:#C8A96A}
+.prog .bar i.now{background:#F7F5F2}
+.name{position:absolute;left:120px;right:120px;top:1050px;text-align:center;font-weight:800;font-size:80px;line-height:1.02;letter-spacing:-.025em;text-transform:uppercase}
+.name .w{display:inline-block;margin:0 .12em}
+.name .k{font-family:'TM Serif',serif;font-style:italic;font-weight:700;text-transform:none;color:#C8A96A;letter-spacing:-.01em;font-size:1.12em}
+.concept{position:absolute;left:140px;right:140px;top:700px;text-align:center;font-weight:500;font-size:32px;line-height:1.3;color:#F7F5F2}
+.concept .w{display:inline-block;margin:0 .13em;opacity:.28}
+.demo{position:absolute;left:120px;top:826px;width:780px;height:240px}
+.hook{position:absolute;left:120px;top:1084px;width:780px;padding:30px 34px 28px;border-radius:28px;background:rgba(27,26,25,.92);
+  border:2px solid rgba(200,169,106,.55);box-shadow:0 30px 60px rgba(0,0,0,.55)}
+.hook .tag{position:absolute;left:30px;top:-22px;background:#C8A96A;color:#0F0F0F;font-weight:800;font-size:26px;letter-spacing:.2em;padding:6px 18px;border-radius:30px}
+.hook p{margin:0;font-weight:600;font-size:34px;line-height:1.28;color:#F7F5F2}
+.hook p .w{display:inline-block;margin-right:.22em}
+.hook p .g{color:#C8A96A}
+.hook .disc{margin-top:10px;font-weight:500;font-size:26px;color:rgba(247,245,242,.55)}
+.card{background:#1B1A19;border:2px solid rgba(247,245,242,.08);border-radius:24px}
+.dots{position:absolute;left:330px;top:20px;display:flex;gap:16px}
+.dots i{width:24px;height:24px;border-radius:50%;background:#E8D8B5}
+.notif{position:absolute;left:0;top:70px;width:780px;height:160px;border-radius:34px;background:rgba(58,56,54,.96);display:flex;align-items:center;gap:24px;padding:0 30px;box-shadow:0 24px 50px rgba(0,0,0,.6)}
+.notif .ic{width:86px;height:86px;border-radius:22px;background:#C8A96A;display:flex;align-items:center;justify-content:center;flex:none;position:relative}
+.notif .ic svg{width:48px;height:48px}
+.notif .bd{position:absolute;right:-10px;top:-10px;width:36px;height:36px;border-radius:50%;background:#D7261B;color:#fff;font-weight:800;font-size:22px;line-height:36px;text-align:center}
+.notif .t1{font-weight:600;font-size:26px;color:rgba(247,245,242,.6);display:flex;justify-content:space-between;width:560px}
+.notif .t2{font-weight:600;font-size:31px;margin-top:6px}
+.dark{position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 52%,rgba(0,0,0,0),rgba(0,0,0,.92));opacity:0;pointer-events:none}</style>
+<div id="root" data-composition-id="t04" data-width="1080" data-height="1920">
+<div id="t04-bg" class="clip bg" data-start="0" data-duration="6.8">
+  <div class="grid" id="t04-grid"></div>
+  <div class="glow" id="t04-glow" style="left:-300px;top:300px"></div>
+  <div class="vig"></div>
+</div>
+<div id="t04-stage" class="clip stage" data-start="0" data-duration="6.8" data-layout-allow-overflow data-layout-allow-overlap>
+ <div id="t04-in" class="stage" style="perspective:1400px">
+ <div class="dark" id="t04-dark"></div>
+ <div class="num" id="t04-num"><span class="sh">04</span><span class="r">04</span><span class="c">04</span><span class="o">04</span><span class="f">04</span><span class="ghost">04</span></div>
+ <div class="prog" id="t04-prog"><div class="lb">TRUCO <b>04</b> / 10</div><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="now"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
+ <div class="name" id="t04-name"><span class="w">La</span><span class="w">historia</span><span class="w">con</span><span class="w k">suspenso</span></div>
+ <div class="concept" id="t04-con"><span class="w">Empieza</span><span class="w">por</span><span class="w">el</span><span class="w">momento</span><span class="w">más</span><span class="w">intenso</span></div>
+ <div class="demo" id="t04-demo"><div class="dots" id="t04-dots"><i></i><i></i><i></i></div>
+<div class="notif" id="t04-nt"><div class="ic"><svg viewBox="0 0 24 24" fill="#0F0F0F"><path d="M4 4h16v12H8l-4 4z"/></svg><div class="bd">1</div></div>
+ <div><div class="t1"><span>MENSAJES</span><span>ahora</span></div><div class="t2">Tenemos que hablar sobre tu negocio…</div></div></div></div>
+ <div class="hook" id="t04-hook"><div class="tag">HOOK</div><p><span class="w">“Estuve</span><span class="w">a</span><span class="w">punto</span><span class="w">de</span><span class="w g">cerrar</span><span class="w g">mi</span><span class="w g">negocio</span><span class="w">por</span><span class="w">este</span><span class="w">mensaje…”</span></p></div>
+ </div>
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const D = 6.8;
+const N="#t04-num", TC=2.743, TH=4.452, TN=[1.176, 1.349, 1.858, 2.056], TW=[2.993, 3.514, 3.663, 3.762, 4.221, 4.506];
+tl.fromTo("#t04-grid",{y:0},{y:-240,duration:D,ease:"none"},0);
+tl.fromTo("#t04-glow",{scale:.8,x:-60},{scale:1.15,x:60,duration:D,ease:"sine.inOut"},0);
+tl.fromTo("#t04-in",{scale:.82,opacity:0},{scale:1,opacity:1,duration:.7,ease:"power2.out"},0);
+// big centred number (phase A) -> header (phase B)
+tl.fromTo(N,{x:128,y:230,scale:2.6},{x:128,y:230,scale:2.6,duration:.01},0);
+tl.fromTo(N+" .o",{opacity:0,scaleX:1.8,transformOrigin:"0 50%"},{opacity:1,scaleX:1,duration:1.1,ease:"power3.out"},0.05);
+tl.fromTo(N+" .f",{clipPath:"inset(100% 0 0 0)"},{clipPath:"inset(0% 0 0 0)",duration:.6,ease:"power2.inOut"},.55);
+tl.to(N,{x:0,y:0,scale:1,duration:.6,ease:"expo.inOut"},TC-.35);
+tl.fromTo("#t04-prog",{opacity:0,x:40},{opacity:1,x:0,duration:.45,ease:"power3.out"},TC);
+tl.fromTo("#t04-prog .now",{scaleX:0,transformOrigin:"0 50%"},{scaleX:1,duration:.5,ease:"power2.out"},TC+.2);
+// name: word by word with the voice, then up to the header
+document.querySelectorAll("#t04-name .w").forEach((el,i)=>tl.fromTo(el,{y:60,opacity:0,rotationX:-80},{y:0,opacity:1,rotationX:0,duration:.35,ease:"back.out(1.6)"},TN[i]-.08));
+tl.to("#t04-name",{y:-580,scale:.92,duration:.6,ease:"expo.inOut"},TC-.35);
+// concept: karaoke
+tl.fromTo("#t04-con",{opacity:0,y:20},{opacity:1,y:0,duration:.3},TC);
+document.querySelectorAll("#t04-con .w").forEach((el,i)=>tl.fromTo(el,{opacity:.28,color:"#F7F5F2"},{opacity:1,color:i%3==2?"#C8A96A":"#F7F5F2",duration:.12},TW[i]-.04));
+tl.fromTo("#t04-demo",{opacity:0},{opacity:1,duration:.2},TC);
+tl.fromTo("#t04-dark",{opacity:0},{opacity:1,duration:1.2,ease:"sine.inOut"},TC-.2);
+tl.fromTo("#t04-dots",{opacity:0},{opacity:1,duration:.2},TC);
+tl.to("#t04-dots i",{y:-12,duration:.2,yoyo:true,repeat:3,stagger:.1,ease:"sine.inOut"},TC);
+tl.to("#t04-dots",{opacity:0,duration:.2},TC+1.0);
+tl.fromTo("#t04-nt",{y:-260,opacity:0},{y:0,opacity:1,duration:.55,ease:"expo.out"},TC+1.05);
+tl.to("#t04-nt",{scale:1.04,duration:.12,yoyo:true,repeat:3,ease:"power1.inOut"},TC+1.8);
+tl.to("#t04-dark",{opacity:.6,duration:.6},TH+.6);
+// the hook card
+tl.fromTo("#t04-hook",{y:140,opacity:0,scale:.94},{y:0,opacity:1,scale:1,duration:.5,ease:"expo.out"},TH);
+tl.fromTo("#t04-hook .tag",{scale:0},{scale:1,duration:.3,ease:"back.out(3)"},TH+.2);
+tl.fromTo("#t04-hook p .w",{opacity:0,y:14,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.22,stagger:.045,ease:"power2.out"},TH+.15);
+tl.to("#t04-demo",{opacity:.6,duration:.4},TH);
+tl.to("#t04-in",{scale:1.05,duration:.5,ease:"power2.in"},D-.5);
+
+window.__timelines["t04"] = tl;
+})();
+</script>
+</template>

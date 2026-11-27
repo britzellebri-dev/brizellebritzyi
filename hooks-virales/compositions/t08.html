@@ -1,0 +1,111 @@
+<template>
+<style>
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-Medium.ttf');font-weight:500}
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-SemiBold.ttf');font-weight:600}
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-ExtraBold.ttf');font-weight:800}
+@font-face{font-family:'TM Serif';src:url('assets/fonts/PlayfairDisplay-Italic.ttf');font-style:italic;font-weight:400 900}
+#root{position:absolute;inset:0;overflow:hidden;background:#0F0F0F;font-family:'TM Sans',sans-serif;color:#F7F5F2}
+.bg{position:absolute;inset:0;overflow:hidden}
+.grid{position:absolute;left:-120px;top:-240px;width:1320px;height:2400px;
+  background-image:linear-gradient(rgba(247,245,242,.045) 2px,transparent 2px),linear-gradient(90deg,rgba(247,245,242,.045) 2px,transparent 2px);
+  background-size:120px 120px}
+.glow{position:absolute;width:1200px;height:1200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,169,106,.30) 0%,rgba(200,169,106,.10) 35%,rgba(200,169,106,0) 68%)}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse 80% 65% at 50% 48%,rgba(15,15,15,0) 55%,rgba(5,5,5,.85) 100%)}
+.stage{position:absolute;inset:0}
+.num{position:absolute;left:120px;top:286px;font-weight:800;font-size:180px;line-height:1;letter-spacing:-.04em;transform-origin:0 0}
+.num span{position:absolute;left:0;top:0;white-space:nowrap}
+.num .sh{color:transparent;-webkit-text-stroke:2px rgba(200,169,106,.35)}
+.num .o{color:transparent;-webkit-text-stroke:3px #C8A96A}
+.num .f{color:#C8A96A;clip-path:inset(100% 0 0 0)}
+.num .r{color:transparent;-webkit-text-stroke:3px #D7261B;opacity:0}
+.num .c{color:transparent;-webkit-text-stroke:3px #7FD6E0;opacity:0}
+.num .ghost{visibility:hidden;position:relative}
+.prog{position:absolute;left:400px;top:318px;width:488px}
+.prog .lb{font-weight:600;font-size:28px;letter-spacing:.32em;color:#C8A96A}
+.prog .lb b{color:#F7F5F2;font-weight:600}
+.prog .bar{display:flex;gap:8px;margin-top:22px}
+.prog .bar i{flex:1;height:8px;border-radius:4px;background:rgba(247,245,242,.14)}
+.prog .bar i.on{background:#C8A96A}
+.prog .bar i.now{background:#F7F5F2}
+.name{position:absolute;left:120px;right:120px;top:1050px;text-align:center;font-weight:800;font-size:80px;line-height:1.02;letter-spacing:-.025em;text-transform:uppercase}
+.name .w{display:inline-block;margin:0 .12em}
+.name .k{font-family:'TM Serif',serif;font-style:italic;font-weight:700;text-transform:none;color:#C8A96A;letter-spacing:-.01em;font-size:1.12em}
+.concept{position:absolute;left:140px;right:140px;top:700px;text-align:center;font-weight:500;font-size:32px;line-height:1.3;color:#F7F5F2}
+.concept .w{display:inline-block;margin:0 .13em;opacity:.28}
+.demo{position:absolute;left:120px;top:826px;width:780px;height:240px}
+.hook{position:absolute;left:120px;top:1084px;width:780px;padding:30px 34px 28px;border-radius:28px;background:rgba(27,26,25,.92);
+  border:2px solid rgba(200,169,106,.55);box-shadow:0 30px 60px rgba(0,0,0,.55)}
+.hook .tag{position:absolute;left:30px;top:-22px;background:#C8A96A;color:#0F0F0F;font-weight:800;font-size:26px;letter-spacing:.2em;padding:6px 18px;border-radius:30px}
+.hook p{margin:0;font-weight:600;font-size:34px;line-height:1.28;color:#F7F5F2}
+.hook p .w{display:inline-block;margin-right:.22em}
+.hook p .g{color:#C8A96A}
+.hook .disc{margin-top:10px;font-weight:500;font-size:26px;color:rgba(247,245,242,.55)}
+.card{background:#1B1A19;border:2px solid rgba(247,245,242,.08);border-radius:24px}
+.bigq{position:absolute;left:470px;top:-140px;font-family:'TM Serif',serif;font-style:italic;font-weight:900;font-size:440px;line-height:1;color:rgba(200,169,106,.22)}
+.views{position:absolute;left:30px;top:30px;display:flex;align-items:center;gap:26px}
+.views svg{width:96px;height:96px}
+.views b{font-weight:800;font-size:150px;line-height:1;letter-spacing:-.04em;min-width:300px}
+.views span{display:block;font-weight:600;font-size:28px;letter-spacing:.24em;color:rgba(247,245,242,.6);margin-top:6px}
+.stuck{position:absolute;left:36px;top:206px;font-weight:800;font-size:28px;letter-spacing:.16em;color:#FF6A5E;display:flex;align-items:center;gap:10px}
+.stuck i{width:14px;height:14px;border-radius:50%;background:#D7261B}</style>
+<div id="root" data-composition-id="t08" data-width="1080" data-height="1920">
+<div id="t08-bg" class="clip bg" data-start="0" data-duration="6.15">
+  <div class="grid" id="t08-grid"></div>
+  <div class="glow" id="t08-glow" style="left:200px;top:0px"></div>
+  <div class="vig"></div>
+</div>
+<div id="t08-stage" class="clip stage" data-start="0" data-duration="6.15" data-layout-allow-overflow data-layout-allow-overlap>
+ <div id="t08-in" class="stage" style="perspective:1400px">
+ 
+ <div class="num" id="t08-num"><span class="sh">08</span><span class="r">08</span><span class="c">08</span><span class="o">08</span><span class="f">08</span><span class="ghost">08</span></div>
+ <div class="prog" id="t08-prog"><div class="lb">TRUCO <b>08</b> / 10</div><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="now"></i><i class=""></i><i class=""></i></div></div>
+ <div class="name" id="t08-name"><span class="w">La</span><span class="w">pregunta</span><span class="w k">incómoda</span></div>
+ <div class="concept" id="t08-con"><span class="w">Toca</span><span class="w">directo</span><span class="w">su</span><span class="w">frustración</span></div>
+ <div class="demo" id="t08-demo"><div class="bigq" id="t08-bq">?</div>
+<div class="views"><svg viewBox="0 0 24 24" fill="none" stroke="#C8A96A" stroke-width="2"><path d="M1.5 12S5.5 4.5 12 4.5 22.5 12 22.5 12 18.5 19.5 12 19.5 1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3.6" fill="#C8A96A"/></svg>
+ <div><b id="t08-v">0</b><span>REPRODUCCIONES</span></div></div>
+<div class="stuck" id="t08-s"><i></i>ESTANCADO · DÍA TRAS DÍA</div></div>
+ <div class="hook" id="t08-hook"><div class="tag">HOOK</div><p><span class="w">“¿Por</span><span class="w">qué</span><span class="w">publicas</span><span class="w">todos</span><span class="w">los</span><span class="w">días,</span><span class="w">pero</span><span class="w g">no</span><span class="w g">sales</span><span class="w g">de</span><span class="w g">las</span><span class="w g">200</span><span class="w g">views?</span><span class="w">”</span></p></div>
+ </div>
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const D = 6.15;
+const N="#t08-num", TC=2.545, TH=4.245, TN=[1.213, 1.374, 1.845], TW=[2.795, 3.08, 3.539, 3.675];
+tl.fromTo("#t08-grid",{y:0},{y:-240,duration:D,ease:"none"},0);
+tl.fromTo("#t08-glow",{scale:.8,x:-60},{scale:1.15,x:60,duration:D,ease:"sine.inOut"},0);
+tl.fromTo("#t08-in",{y:-200,opacity:0},{y:0,opacity:1,duration:.5,ease:"expo.out"},0);
+// big centred number (phase A) -> header (phase B)
+tl.fromTo(N,{x:128,y:230,scale:2.6},{x:128,y:230,scale:2.6,duration:.01},0);
+tl.fromTo(N+" .o",{y:-700,opacity:1},{y:0,duration:.75,ease:"bounce.out"},0.0);
+tl.fromTo(N+" .f",{clipPath:"inset(100% 0 0 0)"},{clipPath:"inset(0% 0 0 0)",duration:.6,ease:"power2.inOut"},.55);
+tl.to(N,{x:0,y:0,scale:1,duration:.6,ease:"expo.inOut"},TC-.35);
+tl.fromTo("#t08-prog",{opacity:0,x:40},{opacity:1,x:0,duration:.45,ease:"power3.out"},TC);
+tl.fromTo("#t08-prog .now",{scaleX:0,transformOrigin:"0 50%"},{scaleX:1,duration:.5,ease:"power2.out"},TC+.2);
+// name: word by word with the voice, then up to the header
+document.querySelectorAll("#t08-name .w").forEach((el,i)=>tl.fromTo(el,{y:60,opacity:0,rotationX:-80},{y:0,opacity:1,rotationX:0,duration:.35,ease:"back.out(1.6)"},TN[i]-.08));
+tl.to("#t08-name",{y:-580,scale:.92,duration:.6,ease:"expo.inOut"},TC-.35);
+// concept: karaoke
+tl.fromTo("#t08-con",{opacity:0,y:20},{opacity:1,y:0,duration:.3},TC);
+document.querySelectorAll("#t08-con .w").forEach((el,i)=>tl.fromTo(el,{opacity:.28,color:"#F7F5F2"},{opacity:1,color:i%3==2?"#C8A96A":"#F7F5F2",duration:.12},TW[i]-.04));
+tl.fromTo("#t08-demo",{opacity:0},{opacity:1,duration:.2},TC);
+const vv={v:0};tl.fromTo(vv,{v:0},{v:200,duration:1.0,ease:"power3.out",onUpdate:()=>{document.querySelector("#t08-v").textContent=Math.round(vv.v)}},TC);
+tl.to("#t08-v",{x:6,duration:.05,yoyo:true,repeat:9,ease:"none"},TC+1.05);
+tl.fromTo("#t08-v",{color:"#F7F5F2"},{color:"#FF6A5E",duration:.2},TC+1.05);
+tl.fromTo("#t08-s",{opacity:0,x:-30},{opacity:1,x:0,duration:.35,ease:"power3.out"},TC+1.15);
+tl.fromTo("#t08-bq",{scale:.3,rotation:-30,opacity:0},{scale:1,rotation:8,opacity:1,duration:.7,ease:"back.out(1.8)"},TC+.4);
+tl.to("#t08-bq",{rotation:-4,duration:1.6,ease:"sine.inOut"},TC+1.1);
+// the hook card
+tl.fromTo("#t08-hook",{y:140,opacity:0,scale:.94},{y:0,opacity:1,scale:1,duration:.5,ease:"expo.out"},TH);
+tl.fromTo("#t08-hook .tag",{scale:0},{scale:1,duration:.3,ease:"back.out(3)"},TH+.2);
+tl.fromTo("#t08-hook p .w",{opacity:0,y:14,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.22,stagger:.045,ease:"power2.out"},TH+.15);
+tl.to("#t08-demo",{opacity:.6,duration:.4},TH);
+tl.to("#t08-in",{scale:1.05,duration:.5,ease:"power2.in"},D-.5);
+
+window.__timelines["t08"] = tl;
+})();
+</script>
+</template>

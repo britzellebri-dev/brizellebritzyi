@@ -1,0 +1,5 @@
+node_modules/
+.hyperframes/
+out/
+out_render.log
+renders/

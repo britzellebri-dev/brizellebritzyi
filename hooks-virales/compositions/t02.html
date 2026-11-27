@@ -1,0 +1,126 @@
+<template>
+<style>
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-Medium.ttf');font-weight:500}
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-SemiBold.ttf');font-weight:600}
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-ExtraBold.ttf');font-weight:800}
+@font-face{font-family:'TM Serif';src:url('assets/fonts/PlayfairDisplay-Italic.ttf');font-style:italic;font-weight:400 900}
+#root{position:absolute;inset:0;overflow:hidden;background:#0F0F0F;font-family:'TM Sans',sans-serif;color:#F7F5F2}
+.bg{position:absolute;inset:0;overflow:hidden}
+.grid{position:absolute;left:-120px;top:-240px;width:1320px;height:2400px;
+  background-image:linear-gradient(rgba(247,245,242,.045) 2px,transparent 2px),linear-gradient(90deg,rgba(247,245,242,.045) 2px,transparent 2px);
+  background-size:120px 120px}
+.glow{position:absolute;width:1200px;height:1200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,169,106,.30) 0%,rgba(200,169,106,.10) 35%,rgba(200,169,106,0) 68%)}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse 80% 65% at 50% 48%,rgba(15,15,15,0) 55%,rgba(5,5,5,.85) 100%)}
+.stage{position:absolute;inset:0}
+.num{position:absolute;left:120px;top:286px;font-weight:800;font-size:180px;line-height:1;letter-spacing:-.04em;transform-origin:0 0}
+.num span{position:absolute;left:0;top:0;white-space:nowrap}
+.num .sh{color:transparent;-webkit-text-stroke:2px rgba(200,169,106,.35)}
+.num .o{color:transparent;-webkit-text-stroke:3px #C8A96A}
+.num .f{color:#C8A96A;clip-path:inset(100% 0 0 0)}
+.num .r{color:transparent;-webkit-text-stroke:3px #D7261B;opacity:0}
+.num .c{color:transparent;-webkit-text-stroke:3px #7FD6E0;opacity:0}
+.num .ghost{visibility:hidden;position:relative}
+.prog{position:absolute;left:400px;top:318px;width:488px}
+.prog .lb{font-weight:600;font-size:28px;letter-spacing:.32em;color:#C8A96A}
+.prog .lb b{color:#F7F5F2;font-weight:600}
+.prog .bar{display:flex;gap:8px;margin-top:22px}
+.prog .bar i{flex:1;height:8px;border-radius:4px;background:rgba(247,245,242,.14)}
+.prog .bar i.on{background:#C8A96A}
+.prog .bar i.now{background:#F7F5F2}
+.name{position:absolute;left:120px;right:120px;top:1050px;text-align:center;font-weight:800;font-size:80px;line-height:1.02;letter-spacing:-.025em;text-transform:uppercase}
+.name .w{display:inline-block;margin:0 .12em}
+.name .k{font-family:'TM Serif',serif;font-style:italic;font-weight:700;text-transform:none;color:#C8A96A;letter-spacing:-.01em;font-size:1.12em}
+.concept{position:absolute;left:140px;right:140px;top:700px;text-align:center;font-weight:500;font-size:32px;line-height:1.3;color:#F7F5F2}
+.concept .w{display:inline-block;margin:0 .13em;opacity:.28}
+.demo{position:absolute;left:120px;top:826px;width:780px;height:240px}
+.hook{position:absolute;left:120px;top:1084px;width:780px;padding:30px 34px 28px;border-radius:28px;background:rgba(27,26,25,.92);
+  border:2px solid rgba(200,169,106,.55);box-shadow:0 30px 60px rgba(0,0,0,.55)}
+.hook .tag{position:absolute;left:30px;top:-22px;background:#C8A96A;color:#0F0F0F;font-weight:800;font-size:26px;letter-spacing:.2em;padding:6px 18px;border-radius:30px}
+.hook p{margin:0;font-weight:600;font-size:34px;line-height:1.28;color:#F7F5F2}
+.hook p .w{display:inline-block;margin-right:.22em}
+.hook p .g{color:#C8A96A}
+.hook .disc{margin-top:10px;font-weight:500;font-size:26px;color:rgba(247,245,242,.55)}
+.card{background:#1B1A19;border:2px solid rgba(247,245,242,.08);border-radius:24px}
+.vf{position:absolute;inset:0;border-radius:24px;background:linear-gradient(160deg,#2A2826,#161514);overflow:hidden}
+.vf .cn{position:absolute;width:44px;height:44px;border-color:#F7F5F2;border-style:solid;opacity:.8}
+.vf .rec{position:absolute;left:34px;top:26px;font-weight:600;font-size:28px;display:flex;align-items:center;gap:10px}
+.vf .rec i{width:16px;height:16px;border-radius:50%;background:#D7261B}
+.vf .tc{position:absolute;right:34px;top:26px;font-weight:500;font-size:28px;opacity:.8}
+.vf .per{position:absolute;left:70px;bottom:-10px;width:170px;height:200px}
+.bub{position:absolute;left:250px;top:86px;padding:18px 26px;border-radius:22px 22px 22px 4px;background:#F7F5F2;color:#0F0F0F;font-weight:600;font-size:30px;white-space:nowrap}
+.strike{position:absolute;left:240px;top:112px;width:0;height:6px;background:#D7261B;border-radius:3px}
+.ret{position:absolute;left:236px;top:72px;width:480px;height:96px;border:4px solid #D7261B;border-radius:18px;opacity:0}
+.alert{position:absolute;right:26px;bottom:22px;display:flex;align-items:center;gap:12px;background:#D7261B;color:#fff;font-weight:800;font-size:26px;letter-spacing:.12em;padding:12px 20px;border-radius:14px}
+.alert svg{width:30px;height:30px}
+.flash{position:absolute;inset:0;border-radius:24px;border:6px solid #D7261B;opacity:0}</style>
+<div id="root" data-composition-id="t02" data-width="1080" data-height="1920">
+<div id="t02-bg" class="clip bg" data-start="0" data-duration="7.41">
+  <div class="grid" id="t02-grid"></div>
+  <div class="glow" id="t02-glow" style="left:200px;top:0px"></div>
+  <div class="vig"></div>
+</div>
+<div id="t02-stage" class="clip stage" data-start="0" data-duration="7.41" data-layout-allow-overflow data-layout-allow-overlap>
+ <div id="t02-in" class="stage" style="perspective:1400px">
+ 
+ <div class="num" id="t02-num"><span class="sh">02</span><span class="r">02</span><span class="c">02</span><span class="o">02</span><span class="f">02</span><span class="ghost">02</span></div>
+ <div class="prog" id="t02-prog"><div class="lb">TRUCO <b>02</b> / 10</div><div class="bar"><i class="on"></i><i class="now"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
+ <div class="name" id="t02-name"><span class="w">El</span><span class="w">error</span><span class="w k">oculto</span></div>
+ <div class="concept" id="t02-con"><span class="w">Señala</span><span class="w">el</span><span class="w">error</span><span class="w">que</span><span class="w">tu</span><span class="w">audiencia</span><span class="w">comete</span><span class="w">sin</span><span class="w">darse</span><span class="w">cuenta</span></div>
+ <div class="demo" id="t02-demo"><div class="vf" id="t02-vf">
+ <div class="cn" style="left:18px;top:18px;border-width:4px 0 0 4px"></div><div class="cn" style="right:18px;top:18px;border-width:4px 4px 0 0"></div>
+ <div class="cn" style="left:18px;bottom:18px;border-width:0 0 4px 4px"></div><div class="cn" style="right:18px;bottom:18px;border-width:0 4px 4px 0"></div>
+ <div class="rec"><i id="t02-dot"></i>REC</div><div class="tc">00:00:03</div>
+ <svg class="per" viewBox="0 0 170 200"><circle cx="85" cy="62" r="42" fill="#E8D8B5"/><path d="M8 200c0-60 34-92 77-92s77 32 77 92z" fill="#C8A96A"/></svg>
+ <div class="bub" id="t02-bub">«Hola, bienvenidos a mi canal…»</div>
+ <div class="strike" id="t02-strike"></div><div class="ret" id="t02-ret"></div>
+ <div class="alert" id="t02-al"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2 1 21h22z"/><rect x="11" y="9" width="2" height="6" fill="#D7261B"/><rect x="11" y="16.5" width="2" height="2" fill="#D7261B"/></svg>ERROR</div>
+ <div class="flash" id="t02-fl"></div>
+</div></div>
+ <div class="hook" id="t02-hook"><div class="tag">HOOK</div><p><span class="w">“Hay</span><span class="w">un</span><span class="w">error</span><span class="w">que</span><span class="w">cometes</span><span class="w g">al</span><span class="w g">grabar</span><span class="w g">contenido</span><span class="w">y</span><span class="w">por</span><span class="w">eso</span><span class="w g">nadie</span><span class="w g">te</span><span class="w g">compra.</span><span class="w">”</span></p></div>
+ </div>
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const D = 7.41;
+const N="#t02-num", TC=2.297, TH=5.047, TN=[1.213, 1.411, 1.746], TW=[2.547, 3.093, 3.192, 3.514, 3.651, 3.738, 4.234, 4.68, 4.916, 5.25];
+tl.fromTo("#t02-grid",{y:0},{y:-240,duration:D,ease:"none"},0);
+tl.fromTo("#t02-glow",{scale:.8,x:-60},{scale:1.15,x:60,duration:D,ease:"sine.inOut"},0);
+tl.fromTo("#t02-in",{x:140,opacity:0},{x:0,opacity:1,duration:.45,ease:"power3.out"},0);
+// big centred number (phase A) -> header (phase B)
+tl.fromTo(N,{x:128,y:230,scale:2.6},{x:128,y:230,scale:2.6,duration:.01},0);
+tl.fromTo(N+" .o",{opacity:0},{opacity:1,duration:.05},0.05);tl.fromTo(N+" .r",{x:-26,opacity:.9},{x:0,opacity:0,duration:.5,ease:"steps(6)"},0.05);tl.fromTo(N+" .c",{x:26,opacity:.9},{x:0,opacity:0,duration:.5,ease:"steps(6)"},0.05);tl.to(N,{skewX:14,duration:.05,yoyo:true,repeat:5,ease:"steps(1)"},0.1);
+tl.fromTo(N+" .f",{clipPath:"inset(100% 0 0 0)"},{clipPath:"inset(0% 0 0 0)",duration:.6,ease:"power2.inOut"},.55);
+tl.to(N,{x:0,y:0,scale:1,duration:.6,ease:"expo.inOut"},TC-.35);
+tl.fromTo("#t02-prog",{opacity:0,x:40},{opacity:1,x:0,duration:.45,ease:"power3.out"},TC);
+tl.fromTo("#t02-prog .now",{scaleX:0,transformOrigin:"0 50%"},{scaleX:1,duration:.5,ease:"power2.out"},TC+.2);
+// name: word by word with the voice, then up to the header
+document.querySelectorAll("#t02-name .w").forEach((el,i)=>tl.fromTo(el,{y:60,opacity:0,rotationX:-80},{y:0,opacity:1,rotationX:0,duration:.35,ease:"back.out(1.6)"},TN[i]-.08));
+tl.to("#t02-name",{y:-580,scale:.92,duration:.6,ease:"expo.inOut"},TC-.35);
+// concept: karaoke
+tl.fromTo("#t02-con",{opacity:0,y:20},{opacity:1,y:0,duration:.3},TC);
+document.querySelectorAll("#t02-con .w").forEach((el,i)=>tl.fromTo(el,{opacity:.28,color:"#F7F5F2"},{opacity:1,color:i%3==2?"#C8A96A":"#F7F5F2",duration:.12},TW[i]-.04));
+tl.fromTo("#t02-demo",{opacity:0},{opacity:1,duration:.2},TC);
+tl.fromTo("#t02-vf",{scale:.85,opacity:0},{scale:1,opacity:1,duration:.5,ease:"power3.out"},TC);
+tl.to("#t02-dot",{opacity:.15,duration:.3,yoyo:true,repeat:9,ease:"steps(1)"},TC);
+tl.fromTo("#t02-bub",{scale:.6,opacity:0,transformOrigin:"0% 100%"},{scale:1,opacity:1,duration:.4,ease:"back.out(2)"},TC+.35);
+tl.fromTo("#t02-ret",{opacity:0,scale:1.6},{opacity:1,scale:1,duration:.35,ease:"power4.out"},TC+1.05);
+tl.to("#t02-ret",{opacity:.3,duration:.08,yoyo:true,repeat:3},TC+1.4);
+tl.fromTo("#t02-strike",{width:0},{width:440,duration:.3,ease:"power2.inOut"},TC+1.35);
+tl.to("#t02-bub",{opacity:.45,duration:.3},TC+1.5);
+tl.fromTo("#t02-al",{scale:0,rotation:-12},{scale:1,rotation:0,duration:.4,ease:"back.out(3)"},TC+1.45);
+tl.fromTo("#t02-fl",{opacity:0},{opacity:1,duration:.1,yoyo:true,repeat:3},TC+1.45);
+tl.to("#t02-vf",{x:10,duration:.05,yoyo:true,repeat:5,ease:"none"},TC+1.45);
+// the hook card
+tl.fromTo("#t02-hook",{y:140,opacity:0,scale:.94},{y:0,opacity:1,scale:1,duration:.5,ease:"expo.out"},TH);
+tl.fromTo("#t02-hook .tag",{scale:0},{scale:1,duration:.3,ease:"back.out(3)"},TH+.2);
+tl.fromTo("#t02-hook p .w",{opacity:0,y:14,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.22,stagger:.045,ease:"power2.out"},TH+.15);
+tl.to("#t02-demo",{opacity:.6,duration:.4},TH);
+tl.to("#t02-in",{scale:1.05,duration:.5,ease:"power2.in"},D-.5);
+
+window.__timelines["t02"] = tl;
+})();
+</script>
+</template>

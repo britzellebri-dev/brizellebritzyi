@@ -1,0 +1,114 @@
+<template>
+<style>
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-Medium.ttf');font-weight:500}
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-SemiBold.ttf');font-weight:600}
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-ExtraBold.ttf');font-weight:800}
+@font-face{font-family:'TM Serif';src:url('assets/fonts/PlayfairDisplay-Italic.ttf');font-style:italic;font-weight:400 900}
+#root{position:absolute;inset:0;overflow:hidden;background:#0F0F0F;font-family:'TM Sans',sans-serif;color:#F7F5F2}
+.bg{position:absolute;inset:0;overflow:hidden}
+.grid{position:absolute;left:-120px;top:-240px;width:1320px;height:2400px;
+  background-image:linear-gradient(rgba(247,245,242,.045) 2px,transparent 2px),linear-gradient(90deg,rgba(247,245,242,.045) 2px,transparent 2px);
+  background-size:120px 120px}
+.glow{position:absolute;width:1200px;height:1200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,169,106,.30) 0%,rgba(200,169,106,.10) 35%,rgba(200,169,106,0) 68%)}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse 80% 65% at 50% 48%,rgba(15,15,15,0) 55%,rgba(5,5,5,.85) 100%)}
+.stage{position:absolute;inset:0}
+.num{position:absolute;left:120px;top:286px;font-weight:800;font-size:180px;line-height:1;letter-spacing:-.04em;transform-origin:0 0}
+.num span{position:absolute;left:0;top:0;white-space:nowrap}
+.num .sh{color:transparent;-webkit-text-stroke:2px rgba(200,169,106,.35)}
+.num .o{color:transparent;-webkit-text-stroke:3px #C8A96A}
+.num .f{color:#C8A96A;clip-path:inset(100% 0 0 0)}
+.num .r{color:transparent;-webkit-text-stroke:3px #D7261B;opacity:0}
+.num .c{color:transparent;-webkit-text-stroke:3px #7FD6E0;opacity:0}
+.num .ghost{visibility:hidden;position:relative}
+.prog{position:absolute;left:400px;top:318px;width:488px}
+.prog .lb{font-weight:600;font-size:28px;letter-spacing:.32em;color:#C8A96A}
+.prog .lb b{color:#F7F5F2;font-weight:600}
+.prog .bar{display:flex;gap:8px;margin-top:22px}
+.prog .bar i{flex:1;height:8px;border-radius:4px;background:rgba(247,245,242,.14)}
+.prog .bar i.on{background:#C8A96A}
+.prog .bar i.now{background:#F7F5F2}
+.name{position:absolute;left:120px;right:120px;top:1050px;text-align:center;font-weight:800;font-size:80px;line-height:1.02;letter-spacing:-.025em;text-transform:uppercase}
+.name .w{display:inline-block;margin:0 .12em}
+.name .k{font-family:'TM Serif',serif;font-style:italic;font-weight:700;text-transform:none;color:#C8A96A;letter-spacing:-.01em;font-size:1.12em}
+.concept{position:absolute;left:140px;right:140px;top:700px;text-align:center;font-weight:500;font-size:32px;line-height:1.3;color:#F7F5F2}
+.concept .w{display:inline-block;margin:0 .13em;opacity:.28}
+.demo{position:absolute;left:120px;top:826px;width:780px;height:240px}
+.hook{position:absolute;left:120px;top:1084px;width:780px;padding:30px 34px 28px;border-radius:28px;background:rgba(27,26,25,.92);
+  border:2px solid rgba(200,169,106,.55);box-shadow:0 30px 60px rgba(0,0,0,.55)}
+.hook .tag{position:absolute;left:30px;top:-22px;background:#C8A96A;color:#0F0F0F;font-weight:800;font-size:26px;letter-spacing:.2em;padding:6px 18px;border-radius:30px}
+.hook p{margin:0;font-weight:600;font-size:34px;line-height:1.28;color:#F7F5F2}
+.hook p .w{display:inline-block;margin-right:.22em}
+.hook p .g{color:#C8A96A}
+.hook .disc{margin-top:10px;font-weight:500;font-size:26px;color:rgba(247,245,242,.55)}
+.card{background:#1B1A19;border:2px solid rgba(247,245,242,.08);border-radius:24px}
+.sw{position:absolute;left:10px;top:0;width:250px;height:250px}
+.sw .ring{transform:rotate(-90deg);transform-origin:125px 135px}
+.sw text{font-family:'TM Sans';font-weight:800}
+.mess{position:absolute;left:300px;top:20px;width:480px;height:210px}
+.trk{position:absolute;left:0;height:24px;border-radius:6px}
+.steps{position:absolute;left:300px;top:30px;width:480px;display:flex;flex-direction:column;gap:14px}
+.steps div{height:56px;border-radius:14px;background:#C8A96A;color:#0F0F0F;font-weight:800;font-size:26px;letter-spacing:.06em;display:flex;align-items:center;gap:14px;padding:0 20px}
+.steps div b{width:34px;height:34px;border-radius:50%;background:#0F0F0F;color:#C8A96A;font-size:20px;line-height:34px;text-align:center}</style>
+<div id="root" data-composition-id="t09" data-width="1080" data-height="1920">
+<div id="t09-bg" class="clip bg" data-start="0" data-duration="7.09">
+  <div class="grid" id="t09-grid"></div>
+  <div class="glow" id="t09-glow" style="left:-60px;top:100px"></div>
+  <div class="vig"></div>
+</div>
+<div id="t09-stage" class="clip stage" data-start="0" data-duration="7.09" data-layout-allow-overflow data-layout-allow-overlap>
+ <div id="t09-in" class="stage" style="perspective:1400px">
+ 
+ <div class="num" id="t09-num"><span class="sh">09</span><span class="r">09</span><span class="c">09</span><span class="o">09</span><span class="f">09</span><span class="ghost">09</span></div>
+ <div class="prog" id="t09-prog"><div class="lb">TRUCO <b>09</b> / 10</div><div class="bar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="now"></i><i class=""></i></div></div>
+ <div class="name" id="t09-name"><span class="w">El</span><span class="w">mínimo</span><span class="w k">esfuerzo</span></div>
+ <div class="concept" id="t09-con"><span class="w">Promete</span><span class="w">el</span><span class="w">resultado</span><span class="w">sin</span><span class="w">complicar</span><span class="w">el</span><span class="w">proceso</span></div>
+ <div class="demo" id="t09-demo"><svg class="sw" viewBox="0 0 250 260"><rect x="105" y="0" width="40" height="22" rx="6" fill="#F7F5F2"/><circle cx="125" cy="135" r="108" fill="#1B1A19" stroke="rgba(247,245,242,.15)" stroke-width="14"/>
+ <circle class="ring" id="t09-rg" cx="125" cy="135" r="108" fill="none" stroke="#C8A96A" stroke-width="14" stroke-linecap="round" stroke-dasharray="679" stroke-dashoffset="679"/>
+ <text x="125" y="150" text-anchor="middle" font-size="62" fill="#F7F5F2" id="t09-tm">00:00</text><text x="125" y="190" text-anchor="middle" font-size="28" fill="#C8A96A" letter-spacing="4">MIN</text></svg>
+<div class="mess" id="t09-ms"><div class="trk" style="top:0px;left:0px;width:60px;background:#55524F"></div><div class="trk" style="top:0px;left:137px;width:144px;background:#7A736C"></div><div class="trk" style="top:0px;left:274px;width:88px;background:#9C7F45"></div><div class="trk" style="top:36px;left:53px;width:116px;background:#7A736C"></div><div class="trk" style="top:36px;left:190px;width:60px;background:#9C7F45"></div><div class="trk" style="top:36px;left:27px;width:144px;background:#3E3C3B"></div><div class="trk" style="top:72px;left:106px;width:172px;background:#9C7F45"></div><div class="trk" style="top:72px;left:243px;width:116px;background:#3E3C3B"></div><div class="trk" style="top:72px;left:80px;width:60px;background:#D99790"></div><div class="trk" style="top:108px;left:159px;width:88px;background:#3E3C3B"></div><div class="trk" style="top:108px;left:296px;width:172px;background:#D99790"></div><div class="trk" style="top:108px;left:133px;width:116px;background:#6B5F55"></div><div class="trk" style="top:144px;left:212px;width:144px;background:#D99790"></div><div class="trk" style="top:144px;left:49px;width:88px;background:#6B5F55"></div><div class="trk" style="top:144px;left:186px;width:172px;background:#55524F"></div><div class="trk" style="top:180px;left:265px;width:60px;background:#6B5F55"></div><div class="trk" style="top:180px;left:102px;width:144px;background:#55524F"></div><div class="trk" style="top:180px;left:239px;width:88px;background:#7A736C"></div></div>
+<div class="steps" id="t09-st"><div><b>1</b>GRABA</div><div><b>2</b>CORTA</div><div><b>3</b>PUBLICA</div></div></div>
+ <div class="hook" id="t09-hook"><div class="tag">HOOK</div><p><span class="w">“Cómo</span><span class="w">editar</span><span class="w">tus</span><span class="w">videos</span><span class="w g">en</span><span class="w g">10</span><span class="w g">minutos</span><span class="w">sin</span><span class="w">tener</span><span class="w">ni</span><span class="w">idea</span><span class="w">de</span><span class="w">edición.”</span></p></div>
+ </div>
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const D = 7.09;
+const N="#t09-num", TC=2.533, TH=4.75, TN=[1.275, 1.461, 1.845], TW=[2.783, 3.229, 3.365, 3.936, 4.171, 4.668, 4.779];
+tl.fromTo("#t09-grid",{y:0},{y:-240,duration:D,ease:"none"},0);
+tl.fromTo("#t09-glow",{scale:.8,x:-60},{scale:1.15,x:60,duration:D,ease:"sine.inOut"},0);
+tl.fromTo("#t09-in",{scale:.6,opacity:0},{scale:1,opacity:1,duration:.4,ease:"back.out(1.6)"},0);
+// big centred number (phase A) -> header (phase B)
+tl.fromTo(N,{x:128,y:230,scale:2.6},{x:128,y:230,scale:2.6,duration:.01},0);
+tl.fromTo(N+" .o",{scale:0,rotation:-25,opacity:1},{scale:1,rotation:0,duration:.4,ease:"back.out(2.4)"},0.05);
+tl.fromTo(N+" .f",{clipPath:"inset(100% 0 0 0)"},{clipPath:"inset(0% 0 0 0)",duration:.6,ease:"power2.inOut"},.55);
+tl.to(N,{x:0,y:0,scale:1,duration:.6,ease:"expo.inOut"},TC-.35);
+tl.fromTo("#t09-prog",{opacity:0,x:40},{opacity:1,x:0,duration:.45,ease:"power3.out"},TC);
+tl.fromTo("#t09-prog .now",{scaleX:0,transformOrigin:"0 50%"},{scaleX:1,duration:.5,ease:"power2.out"},TC+.2);
+// name: word by word with the voice, then up to the header
+document.querySelectorAll("#t09-name .w").forEach((el,i)=>tl.fromTo(el,{y:60,opacity:0,rotationX:-80},{y:0,opacity:1,rotationX:0,duration:.35,ease:"back.out(1.6)"},TN[i]-.08));
+tl.to("#t09-name",{y:-580,scale:.92,duration:.6,ease:"expo.inOut"},TC-.35);
+// concept: karaoke
+tl.fromTo("#t09-con",{opacity:0,y:20},{opacity:1,y:0,duration:.3},TC);
+document.querySelectorAll("#t09-con .w").forEach((el,i)=>tl.fromTo(el,{opacity:.28,color:"#F7F5F2"},{opacity:1,color:i%3==2?"#C8A96A":"#F7F5F2",duration:.12},TW[i]-.04));
+tl.fromTo("#t09-demo",{opacity:0},{opacity:1,duration:.2},TC);
+tl.fromTo(".sw",{scale:0},{scale:1,duration:.45,ease:"back.out(2)"},TC);
+tl.fromTo("#t09-rg",{attr:{"stroke-dashoffset":679}},{attr:{"stroke-dashoffset":0},duration:2.0,ease:"power1.inOut"},TC+.2);
+const mm={v:0};tl.fromTo(mm,{v:0},{v:600,duration:2.0,ease:"power1.inOut",onUpdate:()=>{const s=Math.round(mm.v);document.querySelector("#t09-tm").textContent=String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}},TC+.2);
+tl.fromTo("#t09-ms .trk",{scaleX:0,transformOrigin:"0 50%"},{scaleX:1,duration:.3,stagger:.025,ease:"power2.out"},TC+.1);
+tl.to("#t09-ms .trk",{x:(i)=>((i*37)%9-4)*6,duration:.08,yoyo:true,repeat:5},TC+.6);
+tl.to("#t09-ms",{scaleY:0,opacity:0,duration:.4,ease:"power3.in"},TC+1.25);
+tl.fromTo("#t09-st div",{x:80,opacity:0},{x:0,opacity:1,duration:.4,stagger:.14,ease:"back.out(1.8)"},TC+1.55);
+// the hook card
+tl.fromTo("#t09-hook",{y:140,opacity:0,scale:.94},{y:0,opacity:1,scale:1,duration:.5,ease:"expo.out"},TH);
+tl.fromTo("#t09-hook .tag",{scale:0},{scale:1,duration:.3,ease:"back.out(3)"},TH+.2);
+tl.fromTo("#t09-hook p .w",{opacity:0,y:14,filter:"blur(6px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.22,stagger:.045,ease:"power2.out"},TH+.15);
+tl.to("#t09-demo",{opacity:.6,duration:.4},TH);
+tl.to("#t09-in",{scale:1.05,duration:.5,ease:"power2.in"},D-.5);
+
+window.__timelines["t09"] = tl;
+})();
+</script>
+</template>

@@ -1,0 +1,109 @@
+<template>
+<style>
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-Medium.ttf');font-weight:500}
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-SemiBold.ttf');font-weight:600}
+@font-face{font-family:'TM Sans';src:url('assets/fonts/Poppins-ExtraBold.ttf');font-weight:800}
+@font-face{font-family:'TM Serif';src:url('assets/fonts/PlayfairDisplay-Italic.ttf');font-style:italic;font-weight:400 900}
+#root{position:absolute;inset:0;overflow:hidden;background:#0F0F0F;font-family:'TM Sans',sans-serif;color:#F7F5F2}
+.bg{position:absolute;inset:0;overflow:hidden}
+.grid{position:absolute;left:-120px;top:-240px;width:1320px;height:2400px;
+  background-image:linear-gradient(rgba(247,245,242,.045) 2px,transparent 2px),linear-gradient(90deg,rgba(247,245,242,.045) 2px,transparent 2px);
+  background-size:120px 120px}
+.glow{position:absolute;width:1200px;height:1200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,169,106,.30) 0%,rgba(200,169,106,.10) 35%,rgba(200,169,106,0) 68%)}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse 80% 65% at 50% 48%,rgba(15,15,15,0) 55%,rgba(5,5,5,.85) 100%)}
+.stage{position:absolute;inset:0}
+.num{position:absolute;left:120px;top:286px;font-weight:800;font-size:180px;line-height:1;letter-spacing:-.04em;transform-origin:0 0}
+.num span{position:absolute;left:0;top:0;white-space:nowrap}
+.num .sh{color:transparent;-webkit-text-stroke:2px rgba(200,169,106,.35)}
+.num .o{color:transparent;-webkit-text-stroke:3px #C8A96A}
+.num .f{color:#C8A96A;clip-path:inset(100% 0 0 0)}
+.num .r{color:transparent;-webkit-text-stroke:3px #D7261B;opacity:0}
+.num .c{color:transparent;-webkit-text-stroke:3px #7FD6E0;opacity:0}
+.num .ghost{visibility:hidden;position:relative}
+.prog{position:absolute;left:400px;top:318px;width:488px}
+.prog .lb{font-weight:600;font-size:28px;letter-spacing:.32em;color:#C8A96A}
+.prog .lb b{color:#F7F5F2;font-weight:600}
+.prog .bar{display:flex;gap:8px;margin-top:22px}
+.prog .bar i{flex:1;height:8px;border-radius:4px;background:rgba(247,245,242,.14)}
+.prog .bar i.on{background:#C8A96A}
+.prog .bar i.now{background:#F7F5F2}
+.name{position:absolute;left:120px;right:120px;top:1050px;text-align:center;font-weight:800;font-size:80px;line-height:1.02;letter-spacing:-.025em;text-transform:uppercase}
+.name .w{display:inline-block;margin:0 .12em}
+.name .k{font-family:'TM Serif',serif;font-style:italic;font-weight:700;text-transform:none;color:#C8A96A;letter-spacing:-.01em;font-size:1.12em}
+.concept{position:absolute;left:140px;right:140px;top:700px;text-align:center;font-weight:500;font-size:32px;line-height:1.3;color:#F7F5F2}
+.concept .w{display:inline-block;margin:0 .13em;opacity:.28}
+.demo{position:absolute;left:120px;top:826px;width:780px;height:240px}
+.hook{position:absolute;left:120px;top:1084px;width:780px;padding:30px 34px 28px;border-radius:28px;background:rgba(27,26,25,.92);
+  border:2px solid rgba(200,169,106,.55);box-shadow:0 30px 60px rgba(0,0,0,.55)}
+.hook .tag{position:absolute;left:30px;top:-22px;background:#C8A96A;color:#0F0F0F;font-weight:800;font-size:26px;letter-spacing:.2em;padding:6px 18px;border-radius:30px}
+.hook p{margin:0;font-weight:600;font-size:34px;line-height:1.28;color:#F7F5F2}
+.hook p .w{display:inline-block;margin-right:.22em}
+.hook p .g{color:#C8A96A}
+.hook .disc{margin-top:10px;font-weight:500;font-size:26px;color:rgba(247,245,242,.55)}
+.card{background:#1B1A19;border:2px solid rgba(247,245,242,.08);border-radius:24px}
+.chips{position:absolute;left:150px;top:300px;width:780px;display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.chip{height:110px;border-radius:24px;border:3px solid #C8A96A;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:52px;color:#C8A96A;letter-spacing:-.02em;background:rgba(27,26,25,.8)}
+.m1{position:absolute;left:110px;right:110px;top:600px;text-align:center}
+.m1 .w{display:inline-block;margin:0 .1em}
+.m1 .a{font-weight:800;font-size:58px;line-height:1.08;letter-spacing:-.02em;color:rgba(247,245,242,.9)}
+.m1 .b{font-weight:800;font-size:58px;line-height:1.08;letter-spacing:-.02em;margin-top:34px}
+.m1 .k{display:block;font-family:'TM Serif',serif;font-style:italic;font-weight:700;color:#C8A96A;font-size:220px;line-height:1;margin-top:6px}
+.m2{position:absolute;left:110px;right:110px;top:640px;text-align:center}
+.m2 .q{font-weight:800;font-size:64px;line-height:1.08;letter-spacing:-.02em}
+.m2 .q .w{display:inline-block;margin:0 .1em}
+.m2 .q .g{color:#C8A96A}
+.cmt{margin:56px auto 0;width:760px;height:96px;border-radius:48px;background:rgba(247,245,242,.08);border:2px solid rgba(247,245,242,.18);display:flex;align-items:center;gap:20px;padding:0 30px;font-weight:500;font-size:32px;text-align:left}
+.cmt i{width:56px;height:56px;border-radius:50%;background:#E8D8B5;flex:none}
+.cmt span{flex:1;color:#F7F5F2}
+.cmt .cur{display:inline-block;width:3px;height:38px;background:#C8A96A;vertical-align:middle;margin-left:4px}
+.cmt b{color:#C8A96A;font-weight:800;font-size:28px;letter-spacing:.06em}
+.endc{position:absolute;inset:0;background:#F7F5F2}
+.logo{position:absolute;left:250px;top:620px;width:580px}
+.endc .rule{position:absolute;left:390px;width:300px;top:1180px;height:2px;background:#C8A96A}</style>
+<div id="root" data-composition-id="cierre" data-width="1080" data-height="1920">
+<div id="cierre-bg" class="clip bg" data-start="0" data-duration="11.5">
+  <div class="grid" id="cierre-grid"></div>
+  <div class="glow" id="cierre-glow" style="left:-60px;top:220px"></div>
+  <div class="vig"></div>
+</div>
+<div id="cierre-a" class="clip stage" data-start="0" data-duration="9.2" data-layout-allow-overflow data-layout-allow-overlap>
+ <div class="chips" id="ci-chips"><div class="chip" id="ci-c0">01</div><div class="chip" id="ci-c1">02</div><div class="chip" id="ci-c2">03</div><div class="chip" id="ci-c3">04</div><div class="chip" id="ci-c4">05</div><div class="chip" id="ci-c5">06</div><div class="chip" id="ci-c6">07</div><div class="chip" id="ci-c7">08</div><div class="chip" id="ci-c8">09</div><div class="chip" id="ci-c9">10</div></div>
+ <div class="m1" id="ci-m1"><div class="a"><span class="w">UN</span><span class="w">BUEN</span><span class="w">VIDEO</span><span class="w">NO</span><span class="w">COMIENZA</span><span class="w">CON</span><span class="w">SUERTE.</span></div><div class="b"><span class="w">COMIENZA</span><span class="w">CON</span><span class="w">UN</span><span class="w">BUEN</span><span class="k" id="ci-k">hook.</span></div></div>
+ <div class="m2" id="ci-m2"><div class="q"><span class="w">¿CUÁL</span><span class="w">DE</span><span class="w">ESTOS</span><span class="w g">10</span><span class="w">VAS</span><span class="w">A</span><span class="w">UTILIZAR</span><span class="w">EN</span><span class="w">TU</span><span class="w">PRÓXIMO</span><span class="w g">REEL?</span></div>
+  <div class="cmt" id="ci-cmt"><i></i><span><span id="ci-typed"></span><span class="cur" id="ci-cur"></span></span><b>PUBLICAR</b></div></div>
+</div>
+<div id="cierre-end" class="clip stage" data-start="9.2" data-duration="2.3">
+ <div class="endc" id="ci-endc"><img class="logo" id="ci-logo" src="assets/tambor-logo.png" alt="Tambor Media"><div class="rule" id="ci-rule"></div></div>
+</div>
+</div>
+<script>
+(function(){
+const tl = gsap.timeline({ paused: true });
+const D = 11.5;
+const T1=[0.6, 0.761, 0.922, 1.319, 1.505, 2.013, 2.199, 2.926, 3.471, 3.67, 3.819, 4.042], T2=[5.143, 5.378, 5.465, 5.812, 6.122, 6.321, 6.37, 6.693, 6.804, 6.928, 7.424], L=9.2, O2=5.043;
+tl.fromTo("#cierre-grid",{y:0},{y:-160,duration:D,ease:"none"},0);
+// the ten numbers fly in from everywhere and lock into the grid
+for(let i=0;i<10;i++){ const a=i*2.39996; tl.fromTo("#ci-c"+i,{x:Math.cos(a)*900,y:Math.sin(a)*1200+500,rotation:(i%2?1:-1)*120,scale:2,opacity:0},{x:0,y:0,rotation:0,scale:1,opacity:1,duration:.8,ease:"expo.out"},.05+i*.05); }
+tl.to("#ci-chips .chip",{backgroundColor:"#C8A96A",color:"#0F0F0F",duration:.12,stagger:.07,yoyo:true,repeat:1},1.1);
+// message 1, word by word
+document.querySelectorAll("#ci-m1 .w").forEach((el,i)=>tl.fromTo(el,{y:40,opacity:0},{y:0,opacity:1,duration:.28,ease:"back.out(1.7)"},T1[i]-.08));
+tl.fromTo("#ci-k",{scale:2.6,opacity:0,filter:"blur(12px)"},{scale:1,opacity:1,filter:"blur(0px)",duration:.35,ease:"expo.out"},T1[T1.length-1]-.05);
+tl.to("#ci-chips .chip",{borderColor:"#F7F5F2",duration:.1,stagger:.03,yoyo:true,repeat:1},T1[T1.length-1]);
+tl.to("#ci-m1",{y:-60,opacity:0,duration:.35,ease:"power3.in"},O2-.4);
+// message 2: the question + a comment being typed
+document.querySelectorAll("#ci-m2 .q .w").forEach((el,i)=>tl.fromTo(el,{scale:.5,opacity:0},{scale:1,opacity:1,duration:.25,ease:"back.out(2.2)"},T2[i]-.06));
+tl.fromTo("#ci-cmt",{y:60,opacity:0},{y:0,opacity:1,duration:.45,ease:"expo.out"},O2+1.0);
+const msg="El 04, sin duda 🔥", ty=document.querySelector("#ci-typed"), tv={v:0};
+tl.fromTo(tv,{v:0},{v:msg.length,duration:1.1,ease:"none",onUpdate:()=>{ty.textContent=Array.from(msg).slice(0,Math.round(tv.v)).join("")}},O2+1.5);
+tl.to("#ci-cur",{opacity:0,duration:.25,yoyo:true,repeat:7,ease:"steps(1)"},O2+1.0);
+tl.fromTo("#ci-c3",{scale:1},{scale:1.25,backgroundColor:"#C8A96A",color:"#0F0F0F",duration:.3,ease:"back.out(3)"},O2+2.5);
+// clean end card
+tl.fromTo("#ci-endc",{clipPath:"circle(0% at 50% 50%)"},{clipPath:"circle(75% at 50% 50%)",duration:.7,ease:"expo.inOut"},L);
+tl.fromTo("#ci-logo",{scale:.85,opacity:0},{scale:1,opacity:1,duration:.8,ease:"expo.out"},L+.35);
+tl.fromTo("#ci-rule",{scaleX:0},{scaleX:1,duration:.6,ease:"power3.inOut"},L+.8);
+
+window.__timelines["cierre"] = tl;
+})();
+</script>
+</template>
