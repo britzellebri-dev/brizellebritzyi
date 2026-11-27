@@ -1,0 +1,58 @@
+# Barracuda — "¿Qué es Barracuda?" edit decision list
+# Each block: voice = list of (clip, in, out, subtitle_text) or None; dur for voice-less blocks
+# vis = list of (src, src_in | "sync", dur | None(=fill), opts)
+#   src "sync" -> same clip as the voice piece, in-point locked to the audio
+BLOCKS = [
+  dict(name="intro", dur=1.2, ambient="6122", vis=[("6122", 3.0, None, dict(push=True))]),
+  dict(name="hook", voice=[("6010", 0.96, 4.40, "Si todavía no han visitado Barracuda, por aquí les voy a demostrar lo que se están perdiendo.")],
+       vis=[("sync", None, None, dict(push=True))]),
+  dict(name="vip1", voice=[("6023", 0.00, 2.55, "En esta área pueden reservar actividades,")],
+       vis=[("6022", 0.3, None, dict(push=True))]),
+  dict(name="vip2", voice=[("6023", 3.98, 8.32, "tenemos espacio de 35 personas, 40. Pueden ser cumpleaños, bodas.")],
+       vis=[("sync", None, None, {})]),
+  dict(name="salon", voice=[("6041", 1.12, 4.98, "Tenemos el salón, que los viernes, sábado y domingo se convierte en pista de baile.")],
+       vis=[("sync", None, 1.85, {}), ("6042", 0.05, None, dict(push=True))]),
+  dict(name="stairs", dur=0.8, ambient="6034", vis=[("6034", 2.2, None, {})], whoosh=True),
+  dict(name="rooftop", voice=[("6047", 0.72, 4.56, "En el rooftop tenemos otra barrita, que si deseas te puedes dar un traguito con la vista.")],
+       vis=[("6057", 0.2, 1.6, dict(push=True)), ("6051", 0.0, 0.75, {}), ("6121", 0.3, None, {})]),
+  dict(name="vista", voice=[("6055", 16.90, 19.80, "Y sobre todo, ver la mejor vista de toda Aguadilla.")],
+       vis=[("sync", None, None, {})]),
+  dict(name="breath", dur=0.5, ambient="6058", vis=[("6058", 8.2, None, dict(push=True))]),
+  dict(name="horario", voice=[("6060", 3.88, 7.40, "El horario: estamos de lunes a jueves, 11 a 10."),
+                              ("6060", 8.08, 9.99, "Y de viernes a sábado,"),
+                              ("6060", 11.17, 12.25, "11 a 2."),
+                              ("6060", 12.33, 13.21, "Y el domingo,"),
+                              ("6060", 14.10, 15.05, "11 a 12.")],
+       vis=[("sync", None, None, dict(zoomcycle=True))]),
+  dict(name="comida", voice=[("6063", 1.88, 3.15, "Tenemos pork belly,"),
+                             ("6063", 3.20, 4.52, "tenemos tuna tartar,"),
+                             ("6063", 4.66, 6.94, "ofrecemos cualquier tipo de mariscos que ustedes deseen,"),
+                             ("6063", 6.94, 7.99, "tipo de carnes también"),
+                             ("6063", 7.99, 9.93, "y tenemos todo tipo de aperitivos.")],
+       vis=[("6173", 0.3, "p0", dict(push=True)), ("sync", None, "p1", dict(zoom=1.12)),
+            ("6225", 5.0, 1.15, {}), ("6128", 2.3, "p2", {}),
+            ("6216", 1.6, "p3", {}), ("6219", 3.6, "p4", {})]),
+  dict(name="chillo", voice=[("6065", 0.76, 2.60, "Y lo más vendido, yo diría,"),
+                             ("6065", 3.66, 6.80, "serían el chillo entero, que es el más fresco del área.")],
+       vis=[("sync", None, "p0", {}), ("6205", 2.0, 1.5, {}), ("6206", 0.4, None, dict(push=True))]),
+  dict(name="langosta", voice=[("6067", 0.00, 5.60, "Contamos con langosta, con pescado entero fresco y también contamos con una variedad de paellas.")],
+       vis=[("6201", 2.6, 1.9, dict(push=True)), ("6207", 6.4, 1.6, {}), ("sync", "sync", None, {})]),
+  dict(name="cocteles", voice=[("6074", 1.55, 5.90, "Contamos con una variedad de cócteles creativos y unas bebidas bien frías.")],
+       vis=[("6109", 2.2, 1.7, {}), ("6162", 1.0, 1.2, dict(push=True)), ("6131", 6.8, None, {})], bedgain=0.35),
+  dict(name="musica", voice=[("6082", 3.12, 5.92, "Los viernes, sábado y domingo tenemos DJ y música en vivo.")],
+       vis=[("sync", None, None, {})]),
+  dict(name="cierre", voice=[("6083", 0.00, 3.15, "Así que ya saben cuál es su lugar de encuentro: Barracuda Aguadilla.")],
+       vis=[("sync", None, None, {})]),
+  dict(name="logo", dur=3.0, ambient="6152", vis=[("6152", 5.6, None, dict(push=True, dim=True))], whoosh=True),
+]
+
+# keyword titles (block name, offset from block start, duration, title, subtitle)
+TITLES = [
+  ("intro", 0.1, 1.1, "¿YA CONOCES", "BARRACUDA?"),
+  ("vip1", 0.3, 4.2, "RESERVACIONES", "35 – 40 personas"),
+  ("salon", 1.8, 2.4, "PISTA DE BAILE", "viernes · sábado · domingo"),
+  ("rooftop", 0.2, 3.0, "ROOFTOP", None),
+  ("chillo", 1.9, 2.7, "CHILLO ENTERO", "lo más vendido"),
+  ("cocteles", 0.3, 3.6, "CÓCTELES", "creativos y bien fríos"),
+  ("musica", 0.3, 2.7, "DJ & MÚSICA EN VIVO", "viernes · sábado · domingo"),
+]
