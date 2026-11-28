@@ -10,7 +10,7 @@ Entregas en `entregas/`: `Barracuda_PreguntasFrecuentes_Textos_9x16.mp4` y `Barr
 |---|---|---|---|
 | 0–1,75 s | Gancho | Cóctel alzado frente al atardecer (cámara lenta) | «Lo que todos nos preguntan · en Aguadilla*» |
 | 1,75–12,4 s | 01 Horario | Presentadora, luego atardecer desde la terraza | Tarjeta de horario; cada fila entra cuando ella la dice |
-| 12,4–24,7 s | 02 El menú | Mariscos, hamburguesa, ceviche, langosta, pescado entero, paella | Rótulo de sección |
+| 12,4–24,7 s | 02 El menú | Mariscos, hamburguesa, ceviche, langosta, pescado entero, paella de mariscos | Rótulo de sección |
 | 24,7–31,2 s | 03 El más vendido | Presentadora, chillo saliendo del aceite (cámara lenta), chillo emplatado | «Chillo entero* · El más fresco del área» |
 | 31,2–35,3 s | 04 Cócteles | Vertido de cóctel, espuma, vertido sobre hielo | Rótulo de sección |
 | 35,3–38,8 s | 05 Espacios | Presentadora, escalera de neón, rooftop | Rótulo de sección |
@@ -34,8 +34,8 @@ Entregas en `entregas/`: `Barracuda_PreguntasFrecuentes_Textos_9x16.mp4` y `Barr
 
 - Textos: `compositions/gancho.html`, `horario.html`, `rotulos.html` y `cierre.html`.
 - Tomas de B-roll: `shots.json` (los clips de `assets/broll/` ya están recortados). Subtítulos: `words.json`.
-- Después de cambiar `shots.json` o `words.json`, ejecuta `python3 build.py` y luego `python3 build.py --limpia`.
-- Para renderizar: `npx hyperframes render -q delivery` y `npx hyperframes render -c index.limpia.html -q delivery`.
+- Después de cambiar `shots.json` o `words.json`, ejecuta `python3 build.py`.
+- Para renderizar: `npx hyperframes render -q delivery`. La versión limpia: `python3 build.py --limpia`, `npx hyperframes render -c index.limpia.html -q delivery` y luego borra `index.limpia.html` (dos raíces a la vez hacen fallar el check).
 
 ## Para revisar antes de publicar
 

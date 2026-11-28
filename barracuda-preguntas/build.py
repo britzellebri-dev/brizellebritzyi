@@ -18,7 +18,7 @@ shots = json.load(open(os.path.join(HERE, "shots.json")))
 words = json.load(open(os.path.join(HERE, "words.json")))
 
 # tomas cuyo sonido original lleva voces de fondo o está vacío: se silencian
-MUTE = {"b01", "b02", "b15", "b16", "b18"}
+MUTE = {"b08", "b01", "b02", "b15", "b16", "b18"}
 
 def f(x):
     return f"{x:.3f}".rstrip("0").rstrip(".")
