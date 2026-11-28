@@ -5,6 +5,7 @@ Plantilla y pruebas de vídeo hechas con código para contenido gastronómico.
 | Carpeta | Herramienta | Qué es |
 |---|---|---|
 | [`plantilla-comida/`](plantilla-comida/) | HyperFrames | **Plantilla de trabajo**: vídeo vertical 9:16 con gancho, detalles, resultado y CTA; versión con textos y versión limpia. |
+| [`barracuda-3-platos/`](barracuda-3-platos/) | ffmpeg + Python | **Reel**: 3 platos que tienes que pedir en Barracuda (hamburguesa, chillo frito, langosta caribeña), voz boricua, subtítulos y marca. |
 | [`barracuda-pulpo/`](barracuda-pulpo/) | HyperFrames | **Primer vídeo real**: Barracuda Gastro Bar, pulpo + entrada + salón, con la plantilla. |
 | [`boutique-ventas/`](boutique-ventas/) | HyperFrames | Motion graphics: por qué las publicaciones de boutiques no venden (psicología del consumidor). |
 | [`hf-pan-con-tomate/`](hf-pan-con-tomate/) | HyperFrames | Prueba: receta en 3 pasos con tarjetas. |
