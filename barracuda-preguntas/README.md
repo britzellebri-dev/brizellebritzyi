@@ -1,6 +1,6 @@
 # Barracuda Gastrobar · Preguntas frecuentes (HyperFrames)
 
-Reel vertical de 1080×1920 a 30 fps y 50,5 s. La presentadora responde las preguntas frecuentes de los clientes y el montaje alterna su toma con B-roll real del restaurante.
+Reel vertical de 1080×1920 a 30 fps y 45,1 s. La presentadora responde las preguntas frecuentes de los clientes y el montaje alterna su toma con B-roll real del restaurante.
 
 Entregas en `entregas/`: `Barracuda_PreguntasFrecuentes_Textos_9x16.mp4` y `Barracuda_PreguntasFrecuentes_Limpia_9x16.mp4` (sin textos ni gráficos), ambas a −14 LUFS.
 
@@ -9,17 +9,18 @@ Entregas en `entregas/`: `Barracuda_PreguntasFrecuentes_Textos_9x16.mp4` y `Barr
 | Tiempo | Bloque | Imagen | Gráfico |
 |---|---|---|---|
 | 0–1,75 s | Gancho | Cóctel alzado frente al atardecer (cámara lenta) | «Lo que todos nos preguntan · en Aguadilla*» |
-| 1,75–12,4 s | 01 Horario | Presentadora, luego atardecer desde la terraza | Tarjeta de horario; cada fila entra cuando ella la dice |
-| 12,4–24,7 s | 02 El menú | Mariscos, hamburguesa, ceviche, langosta, pescado entero, paella de mariscos | Rótulo de sección |
-| 24,7–31,2 s | 03 El más vendido | Presentadora, chillo saliendo del aceite (cámara lenta), chillo emplatado | «Chillo entero* · El más fresco del área» |
-| 31,2–35,3 s | 04 Cócteles | Vertido de cóctel, espuma, vertido sobre hielo | Rótulo de sección |
-| 35,3–38,8 s | 05 Espacios | Presentadora, escalera de neón, rooftop | Rótulo de sección |
-| 38,8–46,35 s | 06 Fin de semana | Presentadora, terraza al atardecer, letrero de neón «Beach View» | «DJ & música en vivo*» |
-| 46,35–50,5 s | Cierre | Fachada con el letrero real y después la marca | Emblema · BARRACUDA · Aguadilla · «Tu lugar de encuentro*» · TE ESPERAMOS |
+| 1,75–7,07 s | 01 Horario | Presentadora («…el horario.»), luego atardecer desde la terraza | Tarjeta: Domingo–Jueves 11 AM a 10 PM · Viernes–Sábado 11 AM a 12 AM |
+| 7,07–19,3 s | 02 El menú | Pulpo saliendo de la olla (mariscos), hamburguesa, ceviche, langosta, pescado entero, paella de mariscos | Rótulo de sección |
+| 19,3–25,8 s | 03 El más vendido | Presentadora, chillo saliendo del aceite (cámara lenta), chillo emplatado | «Chillo entero* · El más fresco del área» |
+| 25,8–29,9 s | 04 Cócteles | Vertido de cóctel, espuma, vertido sobre hielo | Rótulo de sección |
+| 29,9–33,4 s | 05 Espacios | Presentadora, escalera de neón, rooftop | Rótulo de sección |
+| 33,4–40,98 s | 06 Fin de semana | Presentadora, terraza al atardecer, letrero de neón «Beach View» | «DJ & música en vivo*» |
+| 40,98–45,13 s | Cierre | Fachada con el letrero real y después la marca | Emblema · BARRACUDA · Aguadilla · «Tu lugar de encuentro*» · TE ESPERAMOS |
 
 ## Edición de la voz
 
 - Se quitaron los silencios largos entre frases y la muletilla «y un factor serían» (corte entre «yo diría» y «el chillo entero»). Las palabras y su orden no se cambiaron.
+- El horario cambió después de la grabación. Por eso se quitó la parte donde ella dice el horario viejo y la tarjeta muestra el nuevo con música (3,2 s).
 - Los saltos de corte dentro de una misma toma se disimulan alternando el encuadre (100 % / 112 %) o tapándolos con B-roll.
 - Cadena de voz: filtro de graves, reducción de ruido, ecualización de presencia, de-esser, compresión y nivel a −16 LUFS.
 
@@ -39,6 +40,6 @@ Entregas en `entregas/`: `Barracuda_PreguntasFrecuentes_Textos_9x16.mp4` y `Barr
 
 ## Para revisar antes de publicar
 
-- **Horario:** ella dice «11 a 10», «11 a 2» y «11 a 12». La tarjeta lo muestra como 11 AM–10 PM, 11 AM–2 AM y 11 AM–12 AM. Confírmalo con el restaurante.
+- **Horario:** Domingo–Jueves 11 AM a 10 PM y Viernes–Sábado 11 AM a 12 AM (medianoche). Llegó escrito como «11am 12pm», que en rigor sería mediodía, así que se interpretó como medianoche.
 - **DJ y música en vivo:** no hay tomas de DJ en el material, así que esa frase va sobre la terraza al atardecer y el neón del área Beach View.
 - **Pork belly y tuna tartar:** no hay tomas identificables de estos platos, así que la presentadora queda en cámara mientras los nombra.

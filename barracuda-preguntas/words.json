@@ -85,698 +85,578 @@
 "end": 3.74
 },
 {
-"text": "Estamos",
-"start": 3.867,
-"end": 4.18
-},
-{
-"text": "de",
-"start": 4.18,
-"end": 4.44
-},
-{
-"text": "lunes",
-"start": 4.44,
-"end": 4.64
-},
-{
-"text": "a",
-"start": 4.64,
-"end": 4.88
-},
-{
-"text": "jueves",
-"start": 4.88,
-"end": 5.24
-},
-{
-"text": "11",
-"start": 5.24,
-"end": 5.74
-},
-{
-"text": "a",
-"start": 5.74,
-"end": 5.96
-},
-{
-"text": "10,",
-"start": 5.96,
-"end": 6.2
-},
-{
-"text": "de",
-"start": 6.46,
-"end": 6.6
-},
-{
-"text": "viernes",
-"start": 6.6,
-"end": 6.84
-},
-{
-"text": "a",
-"start": 6.84,
-"end": 7.06
-},
-{
-"text": "sábados,",
-"start": 7.06,
-"end": 7.56
-},
-{
-"text": "estamos",
-"start": 7.82,
-"end": 8.22
-},
-{
-"text": "de",
-"start": 8.22,
-"end": 8.6
-},
-{
-"text": "11",
-"start": 8.6,
-"end": 9.4
-},
-{
-"text": "a",
-"start": 9.4,
-"end": 9.7
-},
-{
-"text": "2",
-"start": 9.7,
-"end": 9.96
-},
-{
-"text": "y",
-"start": 9.96,
-"end": 10.36
-},
-{
-"text": "el",
-"start": 10.36,
-"end": 10.5
-},
-{
-"text": "domingo",
-"start": 10.5,
-"end": 10.88
-},
-{
-"text": "de",
-"start": 10.88,
-"end": 11.14
-},
-{
-"text": "11",
-"start": 11.14,
-"end": 11.8
-},
-{
-"text": "a",
-"start": 11.8,
-"end": 12.06
-},
-{
-"text": "12.",
-"start": 12.06,
-"end": 12.34
-},
-{
 "text": "¿Qué",
-"start": 12.513,
-"end": 13.033
+"start": 7.146,
+"end": 7.666
 },
 {
 "text": "comida",
-"start": 13.033,
-"end": 13.313
+"start": 7.666,
+"end": 7.946
 },
 {
 "text": "ofrecemos?",
-"start": 13.313,
-"end": 13.933
+"start": 7.946,
+"end": 8.566
 },
 {
 "text": "cualquier",
-"start": 14.113,
-"end": 14.293
+"start": 8.746,
+"end": 8.926
 },
 {
 "text": "tipo",
-"start": 14.293,
-"end": 14.553
+"start": 8.926,
+"end": 9.186
 },
 {
 "text": "de",
-"start": 14.553,
-"end": 14.713
+"start": 9.186,
+"end": 9.346
 },
 {
 "text": "mariscos",
-"start": 14.713,
-"end": 14.973
+"start": 9.346,
+"end": 9.606
 },
 {
 "text": "que",
-"start": 14.973,
-"end": 15.113
+"start": 9.606,
+"end": 9.746
 },
 {
 "text": "ustedes",
-"start": 15.113,
-"end": 15.333
+"start": 9.746,
+"end": 9.966
 },
 {
 "text": "deseen,",
-"start": 15.333,
-"end": 15.933
+"start": 9.966,
+"end": 10.566
 },
 {
 "text": "tipo",
-"start": 16.073,
-"end": 16.233
+"start": 10.706,
+"end": 10.866
 },
 {
 "text": "de",
-"start": 16.233,
-"end": 16.373
+"start": 10.866,
+"end": 11.006
 },
 {
 "text": "carnes",
-"start": 16.373,
-"end": 16.653
+"start": 11.006,
+"end": 11.286
 },
 {
 "text": "también",
-"start": 16.653,
-"end": 17.073
+"start": 11.286,
+"end": 11.706
 },
 {
 "text": "y",
-"start": 17.073,
-"end": 17.493
+"start": 11.706,
+"end": 12.126
 },
 {
 "text": "tenemos",
-"start": 17.493,
-"end": 17.753
+"start": 12.126,
+"end": 12.386
 },
 {
 "text": "todo",
-"start": 17.753,
-"end": 18.113
+"start": 12.386,
+"end": 12.746
 },
 {
 "text": "tipo",
-"start": 18.113,
-"end": 18.413
+"start": 12.746,
+"end": 13.046
 },
 {
 "text": "de",
-"start": 18.413,
-"end": 18.553
+"start": 13.046,
+"end": 13.186
 },
 {
 "text": "aperitivos",
-"start": 18.553,
-"end": 18.913
+"start": 13.186,
+"end": 13.546
 },
 {
 "text": "que",
-"start": 18.913,
-"end": 19.073
+"start": 13.546,
+"end": 13.706
 },
 {
 "text": "ustedes",
-"start": 19.073,
-"end": 19.293
+"start": 13.706,
+"end": 13.926
 },
 {
 "text": "prefieran.",
-"start": 19.293,
-"end": 19.7
+"start": 13.926,
+"end": 14.333
 },
 {
 "text": "Contamos",
-"start": 19.713,
-"end": 20.033
+"start": 14.346,
+"end": 14.666
 },
 {
 "text": "con",
-"start": 20.033,
-"end": 20.213
+"start": 14.666,
+"end": 14.846
 },
 {
 "text": "langosta,",
-"start": 20.213,
-"end": 20.733
+"start": 14.846,
+"end": 15.366
 },
 {
 "text": "con",
-"start": 21.113,
-"end": 21.193
+"start": 15.746,
+"end": 15.826
 },
 {
 "text": "pescado",
-"start": 21.193,
-"end": 21.573
+"start": 15.826,
+"end": 16.206
 },
 {
 "text": "entero",
-"start": 21.573,
-"end": 21.893
+"start": 16.206,
+"end": 16.526
 },
 {
 "text": "fresco",
-"start": 21.893,
-"end": 22.493
+"start": 16.526,
+"end": 17.126
 },
 {
 "text": "y",
-"start": 22.493,
-"end": 22.773
+"start": 17.126,
+"end": 17.406
 },
 {
 "text": "también",
-"start": 22.773,
-"end": 22.973
+"start": 17.406,
+"end": 17.606
 },
 {
 "text": "contamos",
-"start": 22.973,
-"end": 23.413
+"start": 17.606,
+"end": 18.046
 },
 {
 "text": "con",
-"start": 23.413,
-"end": 23.593
+"start": 18.046,
+"end": 18.226
 },
 {
 "text": "una",
-"start": 23.593,
-"end": 23.733
+"start": 18.226,
+"end": 18.366
 },
 {
 "text": "variedad",
-"start": 23.733,
-"end": 24.053
+"start": 18.366,
+"end": 18.686
 },
 {
 "text": "de",
-"start": 24.053,
-"end": 24.173
+"start": 18.686,
+"end": 18.806
 },
 {
 "text": "paellas.",
-"start": 24.173,
-"end": 24.653
+"start": 18.806,
+"end": 19.286
 },
 {
 "text": "Tenemos",
-"start": 24.73,
-"end": 25.08
+"start": 19.363,
+"end": 19.713
 },
 {
 "text": "pork",
-"start": 25.147,
-"end": 25.527
+"start": 19.78,
+"end": 20.16
 },
 {
 "text": "belly,",
-"start": 25.527,
-"end": 25.967
+"start": 20.16,
+"end": 20.6
 },
 {
 "text": "tenemos",
-"start": 26.427,
-"end": 26.547
+"start": 21.06,
+"end": 21.18
 },
 {
 "text": "tuna",
-"start": 26.747,
-"end": 26.997
+"start": 21.38,
+"end": 21.63
 },
 {
 "text": "tartar",
-"start": 26.997,
-"end": 27.397
+"start": 21.63,
+"end": 22.03
 },
 {
 "text": "lo",
-"start": 27.32,
-"end": 27.46
+"start": 21.953,
+"end": 22.093
 },
 {
 "text": "más",
-"start": 27.46,
-"end": 27.7
+"start": 22.093,
+"end": 22.333
 },
 {
 "text": "vendido",
-"start": 27.7,
-"end": 28.24
+"start": 22.333,
+"end": 22.873
 },
 {
 "text": "yo",
-"start": 28.24,
-"end": 28.5
+"start": 22.873,
+"end": 23.133
 },
 {
 "text": "diría",
-"start": 28.5,
-"end": 29.0
+"start": 23.133,
+"end": 23.633
 },
 {
 "text": "el",
-"start": 29.053,
-"end": 29.293
+"start": 23.686,
+"end": 23.926
 },
 {
 "text": "chillo",
-"start": 29.293,
-"end": 29.493
+"start": 23.926,
+"end": 24.126
 },
 {
 "text": "entero",
-"start": 29.493,
-"end": 29.913
+"start": 24.126,
+"end": 24.546
 },
 {
 "text": "que",
-"start": 29.913,
-"end": 30.173
+"start": 24.546,
+"end": 24.806
 },
 {
 "text": "es",
-"start": 30.173,
-"end": 30.313
+"start": 24.806,
+"end": 24.946
 },
 {
 "text": "el",
-"start": 30.313,
-"end": 30.413
+"start": 24.946,
+"end": 25.046
 },
 {
 "text": "más",
-"start": 30.413,
-"end": 30.573
+"start": 25.046,
+"end": 25.206
 },
 {
 "text": "fresco",
-"start": 30.573,
-"end": 30.813
+"start": 25.206,
+"end": 25.446
 },
 {
 "text": "del",
-"start": 30.813,
-"end": 30.953
+"start": 25.446,
+"end": 25.586
 },
 {
 "text": "área.",
-"start": 30.953,
-"end": 31.167
+"start": 25.586,
+"end": 25.8
 },
 {
 "text": "Contamos",
-"start": 31.213,
-"end": 31.373
+"start": 25.846,
+"end": 26.006
 },
 {
 "text": "con",
-"start": 31.373,
-"end": 31.593
+"start": 26.006,
+"end": 26.226
 },
 {
 "text": "variedad",
-"start": 31.593,
-"end": 31.893
+"start": 26.226,
+"end": 26.526
 },
 {
 "text": "de",
-"start": 31.893,
-"end": 32.053
+"start": 26.526,
+"end": 26.686
 },
 {
 "text": "cocktails",
-"start": 32.053,
-"end": 32.313
+"start": 26.686,
+"end": 26.946
 },
 {
 "text": "creativos",
-"start": 33.073,
-"end": 33.673
+"start": 27.706,
+"end": 28.306
 },
 {
 "text": "y",
-"start": 33.673,
-"end": 34.033
+"start": 28.306,
+"end": 28.666
 },
 {
 "text": "bebidas",
-"start": 34.033,
-"end": 34.333
+"start": 28.666,
+"end": 28.966
 },
 {
 "text": "bien",
-"start": 34.333,
-"end": 34.613
+"start": 28.966,
+"end": 29.246
 },
 {
 "text": "frías,",
-"start": 34.613,
-"end": 35.033
+"start": 29.246,
+"end": 29.666
 },
 {
 "text": "variedades",
-"start": 35.333,
-"end": 35.707
+"start": 29.966,
+"end": 30.34
 },
 {
 "text": "de",
-"start": 35.707,
-"end": 35.847
+"start": 30.34,
+"end": 30.48
 },
 {
 "text": "espacios",
-"start": 35.847,
-"end": 36.207
+"start": 30.48,
+"end": 30.84
 },
 {
 "text": "los",
-"start": 36.207,
-"end": 36.387
+"start": 30.84,
+"end": 31.02
 },
 {
 "text": "cuales",
-"start": 36.387,
-"end": 36.567
+"start": 31.02,
+"end": 31.2
 },
 {
 "text": "pueden",
-"start": 36.567,
-"end": 36.867
+"start": 31.2,
+"end": 31.5
 },
 {
 "text": "reservar",
-"start": 36.867,
-"end": 37.287
+"start": 31.5,
+"end": 31.92
 },
 {
 "text": "para",
-"start": 37.287,
-"end": 37.527
+"start": 31.92,
+"end": 32.16
 },
 {
 "text": "cualquier",
-"start": 37.527,
-"end": 37.847
+"start": 32.16,
+"end": 32.48
 },
 {
 "text": "actividad.",
-"start": 37.847,
-"end": 38.427
+"start": 32.48,
+"end": 33.06
 },
 {
 "text": "Y",
-"start": 38.82,
-"end": 38.98
+"start": 33.453,
+"end": 33.613
 },
 {
 "text": "una",
-"start": 38.987,
-"end": 39.127
+"start": 33.62,
+"end": 33.76
 },
 {
 "text": "de",
-"start": 39.127,
-"end": 39.247
+"start": 33.76,
+"end": 33.88
 },
 {
 "text": "las",
-"start": 39.247,
-"end": 39.427
+"start": 33.88,
+"end": 34.06
 },
 {
 "text": "mejores",
-"start": 39.427,
-"end": 39.727
+"start": 34.06,
+"end": 34.36
 },
 {
 "text": "cosas",
-"start": 39.727,
-"end": 39.967
+"start": 34.36,
+"end": 34.6
 },
 {
 "text": "que",
-"start": 39.967,
-"end": 40.087
+"start": 34.6,
+"end": 34.72
 },
 {
 "text": "pueden",
-"start": 40.087,
-"end": 40.307
+"start": 34.72,
+"end": 34.94
 },
 {
 "text": "esperar",
-"start": 40.307,
-"end": 40.627
+"start": 34.94,
+"end": 35.26
 },
 {
 "text": "de",
-"start": 40.627,
-"end": 40.827
+"start": 35.26,
+"end": 35.46
 },
 {
 "text": "Barracuda",
-"start": 40.827,
-"end": 41.127
+"start": 35.46,
+"end": 35.76
 },
 {
 "text": "es",
-"start": 41.127,
-"end": 41.287
+"start": 35.76,
+"end": 35.92
 },
 {
 "text": "que",
-"start": 41.287,
-"end": 41.407
+"start": 35.92,
+"end": 36.04
 },
 {
 "text": "los",
-"start": 41.407,
-"end": 41.627
+"start": 36.04,
+"end": 36.26
 },
 {
 "text": "viernes,",
-"start": 41.627,
-"end": 41.987
+"start": 36.26,
+"end": 36.62
 },
 {
 "text": "sábados",
-"start": 42.027,
-"end": 42.287
+"start": 36.66,
+"end": 36.92
 },
 {
 "text": "y",
-"start": 42.287,
-"end": 42.307
+"start": 36.92,
+"end": 36.94
 },
 {
 "text": "domingo",
-"start": 42.307,
-"end": 42.627
+"start": 36.94,
+"end": 37.26
 },
 {
 "text": "tenemos",
-"start": 42.627,
-"end": 42.987
+"start": 37.26,
+"end": 37.62
 },
 {
 "text": "DJ",
-"start": 42.987,
-"end": 43.367
+"start": 37.62,
+"end": 38.0
 },
 {
 "text": "y",
-"start": 43.367,
-"end": 43.567
+"start": 38.0,
+"end": 38.2
 },
 {
 "text": "música",
-"start": 43.567,
-"end": 43.867
+"start": 38.2,
+"end": 38.5
 },
 {
 "text": "en",
-"start": 43.867,
-"end": 44.047
+"start": 38.5,
+"end": 38.68
 },
 {
 "text": "vivo,",
-"start": 44.047,
-"end": 44.367
+"start": 38.68,
+"end": 39.0
 },
 {
 "text": "así",
-"start": 44.593,
-"end": 44.653
+"start": 39.226,
+"end": 39.286
 },
 {
 "text": "que",
-"start": 44.653,
-"end": 44.813
+"start": 39.286,
+"end": 39.446
 },
 {
 "text": "ya",
-"start": 44.813,
-"end": 44.953
+"start": 39.446,
+"end": 39.586
 },
 {
 "text": "saben",
-"start": 44.953,
-"end": 45.273
+"start": 39.586,
+"end": 39.906
 },
 {
 "text": "cuál",
-"start": 45.273,
-"end": 45.453
+"start": 39.906,
+"end": 40.086
 },
 {
 "text": "es",
-"start": 45.453,
-"end": 45.573
+"start": 40.086,
+"end": 40.206
 },
 {
 "text": "su",
-"start": 45.573,
-"end": 45.633
+"start": 40.206,
+"end": 40.266
 },
 {
 "text": "lugar",
-"start": 45.633,
-"end": 45.893
+"start": 40.266,
+"end": 40.526
 },
 {
 "text": "de",
-"start": 45.893,
-"end": 46.093
+"start": 40.526,
+"end": 40.726
 },
 {
 "text": "encuentro",
-"start": 46.093,
-"end": 46.413
+"start": 40.726,
+"end": 41.046
 },
 {
 "text": "Barracuda",
-"start": 46.413,
-"end": 46.873
+"start": 41.046,
+"end": 41.506
 },
 {
 "text": "Aguadilla.",
-"start": 46.873,
-"end": 47.293
+"start": 41.506,
+"end": 41.926
 }
 ]

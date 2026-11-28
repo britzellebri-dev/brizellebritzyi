@@ -11,14 +11,14 @@ import json, html, os, sys
 LIMPIA = "--limpia" in sys.argv   # versión sin textos ni gráficos (para reutilizar el material)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-TOTAL = 50.5          # duración final del vídeo
-AROLL_END = 47.333    # fin de la voz / A-roll
+TOTAL = 45.133         # duración final del vídeo
+AROLL_END = 41.967   # fin de la voz / A-roll
 
 shots = json.load(open(os.path.join(HERE, "shots.json")))
 words = json.load(open(os.path.join(HERE, "words.json")))
 
 # tomas cuyo sonido original lleva voces de fondo o está vacío: se silencian
-MUTE = {"b08", "b01", "b02", "b15", "b16", "b18"}
+MUTE = {"b03", "b08", "b01", "b02", "b15", "b16", "b18"}
 
 def f(x):
     return f"{x:.3f}".rstrip("0").rstrip(".")
@@ -36,12 +36,12 @@ DUR = {"whoosh-short": 0.57, "whoosh": 0.57, "impact-bass-1": 2.1}
 SFX = [  # (id, archivo, inicio, volumen)  — un efecto por cambio importante, nunca en cada corte
     ("sfx-gancho", "whoosh-short", 1.62, 0.30),
     ("sfx-horario", "whoosh-short", 3.98, 0.26),
-    ("sfx-menu", "whoosh", 12.36, 0.24),
-    ("sfx-chillo", "whoosh", 28.88, 0.30),
-    ("sfx-cocteles", "whoosh-short", 31.08, 0.26),
-    ("sfx-espacios", "whoosh-short", 36.12, 0.24),
-    ("sfx-musica", "whoosh", 42.48, 0.26),
-    ("sfx-logo", "impact-bass-1", 47.30, 0.42),
+    ("sfx-menu", "whoosh", 7.0, 0.24),
+    ("sfx-chillo", "whoosh", 23.51, 0.30),
+    ("sfx-cocteles", "whoosh-short", 25.71, 0.26),
+    ("sfx-espacios", "whoosh-short", 30.75, 0.24),
+    ("sfx-musica", "whoosh", 37.11, 0.26),
+    ("sfx-logo", "impact-bass-1", 41.93, 0.42),
 ]
 sfx = "\n".join(
     f'      <audio id="{i}" class="clip" src="assets/sfx/{a}.mp3" data-start="{f(t)}" data-duration="{DUR[a]}" data-track-index="5" data-volume="{v}"></audio>'
@@ -82,10 +82,10 @@ index = f"""<!doctype html>
 
       <!-- GRÁFICOS -->
       <div id="gancho" class="clip capa" data-composition-id="gancho" data-composition-src="compositions/gancho.html" data-start="0" data-duration="1.75" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
-      <div id="horario" class="clip capa" data-composition-id="horario" data-composition-src="compositions/horario.html" data-start="3.25" data-duration="9.15" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
-      <div id="rotulos" class="clip capa" data-composition-id="rotulos" data-composition-src="compositions/rotulos.html" data-start="12.4" data-duration="33.95" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
-      <div id="cierre" class="clip capa" data-composition-id="cierre" data-composition-src="compositions/cierre.html" data-start="46.35" data-duration="{f(TOTAL - 46.35)}" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
-      <div id="subtitulos" class="clip capa" data-composition-id="subtitulos" data-composition-src="compositions/subtitulos.html" data-start="0" data-duration="46.35" data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
+      <div id="horario" class="clip capa" data-composition-id="horario" data-composition-src="compositions/horario.html" data-start="3.25" data-duration="3.82" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="rotulos" class="clip capa" data-composition-id="rotulos" data-composition-src="compositions/rotulos.html" data-start="7.033" data-duration="33.95" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="cierre" class="clip capa" data-composition-id="cierre" data-composition-src="compositions/cierre.html" data-start="40.983" data-duration="{f(TOTAL - 40.983)}" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="subtitulos" class="clip capa" data-composition-id="subtitulos" data-composition-src="compositions/subtitulos.html" data-start="0" data-duration="40.983" data-track-index="3" data-track-kind="captions" data-width="1080" data-height="1920"></div>
 
       <!-- SONIDO: voz al frente, música con ducking ya aplicado, efectos sutiles -->
       <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="{f(AROLL_END)}" data-track-index="7" data-volume="1"></audio>
@@ -109,8 +109,8 @@ open(os.path.join(HERE, "index.limpia.html" if LIMPIA else "index.html"), "w").w
 KEY = {"horario.", "mariscos", "carnes", "aperitivos", "langosta,", "pescado", "entero", "fresco", "paellas.",
        "pork", "belly,", "tuna", "tartar", "vendido", "chillo", "cocktails", "creativos", "frías,", "espacios",
        "DJ", "música", "vivo,", "Barracuda", "encuentro"}
-SKIP = [(3.80, 12.40)]   # el horario lo cuenta la tarjeta: sin subtítulos encima
-END = 46.35              # el cierre dice «Barracuda Aguadilla»
+SKIP = [(3.80, 7.03)]   # el horario lo cuenta la tarjeta: sin subtítulos encima
+END = 40.983             # el cierre dice «Barracuda Aguadilla»
 
 ws = [w for w in words if w["start"] < END and not any(a <= w["start"] < b for a, b in SKIP)]
 groups, cur = [], []
