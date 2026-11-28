@@ -1,0 +1,45 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    #c-velo { position: absolute; inset: 0;
+      background: rgba(13,13,13,.86); }
+    #c-velo-suave { position: absolute; left: 0; right: 0; bottom: 0; height: 900px;
+      background: linear-gradient(to bottom, rgba(13,13,13,0) 0%, rgba(13,13,13,.55) 100%); }
+    #c-emblema { position: absolute; left: 470px; top: 470px; width: 140px; height: 270px; object-fit: contain; }
+    #c-nombre { position: absolute; left: 0; right: 0; top: 786px; text-align: center; padding-left: .32em;
+      font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 58px; letter-spacing: .32em; color: #f7f5f2; }
+    #c-linea { position: absolute; left: 0; right: 0; top: 880px; display: flex; justify-content: center; align-items: center; gap: 22px;
+      font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 28px; letter-spacing: .28em; color: #d2473a; }
+    #c-linea i { display: block; width: 48px; height: 2px; background: #c73d30; }
+    #c-frase { position: absolute; left: 0; right: 0; top: 990px; text-align: center;
+      font-family: "Playfair Display", serif; font-style: italic; font-weight: 600; font-size: 54px; color: #e6d7c6; }
+    #c-frase b { font-family: "Montserrat", sans-serif; font-style: normal; color: #c73d30; }
+    #c-cta { position: absolute; left: 0; right: 0; top: 1118px; display: flex; justify-content: center; }
+    #c-cta span { display: block; padding: 16px 34px 16px 44px; border: 1px solid rgba(230,215,198,.55);
+      font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 28px; letter-spacing: .3em; color: #f7f5f2; }
+  </style>
+  <div id="root" data-composition-id="cierre" data-width="1080" data-height="1920">
+    <div id="c-velo-suave"></div>
+    <div id="c-velo"></div>
+    <img id="c-emblema" src="assets/brand/emblema_rojo.png" alt="Barracuda" />
+    <div id="c-nombre">BARRACUDA</div>
+    <div id="c-linea"><i></i><span>AGUADILLA</span><i></i></div>
+    <div id="c-frase">Tu lugar de encuentro<b>*</b></div>
+    <div id="c-cta"><span>TE ESPERAMOS</span></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#c-velo-suave", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0);
+      // primero se lee el letrero real de la fachada; luego entra la marca
+      tl.fromTo("#c-velo", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.inOut" }, 0.85);
+      tl.fromTo("#c-emblema", { opacity: 0, y: 18, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 1.0);
+      tl.fromTo("#c-nombre", { opacity: 0, scale: 1.06 }, { opacity: 1, scale: 1, duration: 0.9, ease: "power3.out" }, 1.15);
+      tl.fromTo("#c-linea i", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 1.4);
+      tl.fromTo("#c-linea span", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 1.45);
+      tl.fromTo("#c-frase", { opacity: 0, y: 14, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power3.out" }, 1.85);
+      tl.fromTo("#c-cta span", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 2.4);
+      window.__timelines["cierre"] = tl;
+    })();
+  </script>
+</template>

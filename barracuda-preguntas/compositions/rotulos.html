@@ -1,0 +1,61 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    .r-scrim { position: absolute; left: 0; right: 0; top: 0; height: 720px;
+      background: linear-gradient(to bottom, rgba(13,13,13,.55) 0%, rgba(13,13,13,.32) 50%, rgba(13,13,13,0) 100%); }
+    .chip { position: absolute; left: 120px; top: 300px; width: 760px; height: 70px; }
+    .chip .in { display: flex; align-items: center; gap: 18px; }
+    .chip .n { font-family: "Playfair Display", serif; font-style: italic; font-weight: 600; font-size: 44px; color: #e8b48c; text-shadow: 0 2px 14px rgba(13,13,13,.6); }
+    .chip .ln { display: block; width: 54px; height: 3px; background: #c73d30; }
+    .chip .t { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 30px; letter-spacing: .3em; color: #f7f5f2; text-shadow: 0 2px 14px rgba(13,13,13,.6); }
+    .hero { position: absolute; left: 126px; right: 150px; top: 384px; }
+    .hero .in { font-family: "Playfair Display", serif; font-style: italic; font-weight: 700; font-size: 100px; line-height: 1.0; color: #f7f5f2;
+      text-shadow: 0 4px 28px rgba(13,13,13,.55); }
+    .hero .in b { font-family: "Montserrat", sans-serif; font-style: normal; font-weight: 600; color: #c73d30; }
+    .hero .sub { display: block; margin-top: 14px; font-family: "Montserrat", sans-serif; font-style: normal; font-weight: 600; font-size: 28px; letter-spacing: .3em; color: #e6d7c6; }
+  </style>
+  <div id="root" data-composition-id="rotulos" data-width="1080" data-height="1920">
+    <!-- tiempos locales: global − 12.4 s -->
+    <div id="r-scrim-menu" class="clip r-scrim" data-start="0" data-duration="7.2" data-track-index="0"></div>
+    <div id="r-menu" class="clip chip" data-start="0.05" data-duration="7.15" data-track-index="1"><div class="in"><span class="n">02</span><i class="ln"></i><span class="t">EL MENÚ</span></div></div>
+
+    <div id="r-scrim-fav" class="clip r-scrim" data-start="14.8" data-duration="4" data-track-index="0"></div>
+    <div id="r-fav" class="clip chip" data-start="14.85" data-duration="3.9" data-track-index="1"><div class="in"><span class="n">03</span><i class="ln"></i><span class="t">EL MÁS VENDIDO</span></div></div>
+    <div id="r-chillo" class="clip hero" data-start="16.6" data-duration="2.15" data-track-index="2"><div class="in">Chillo entero<b>*</b><span class="sub">EL MÁS FRESCO DEL ÁREA</span></div></div>
+
+    <div id="r-scrim-coc" class="clip r-scrim" data-start="18.8" data-duration="4.1" data-track-index="0"></div>
+    <div id="r-coc" class="clip chip" data-start="18.8" data-duration="4.1" data-track-index="1"><div class="in"><span class="n">04</span><i class="ln"></i><span class="t">CÓCTELES</span></div></div>
+
+    <div id="r-scrim-esp" class="clip r-scrim" data-start="22.93" data-duration="3.42" data-track-index="0"></div>
+    <div id="r-esp" class="clip chip" data-start="22.93" data-duration="3.42" data-track-index="1"><div class="in"><span class="n">05</span><i class="ln"></i><span class="t">ESPACIOS</span></div></div>
+
+    <div id="r-scrim-fin" class="clip r-scrim" data-start="28.75" data-duration="3.2" data-track-index="0"></div>
+    <div id="r-fin" class="clip chip" data-start="28.75" data-duration="3.2" data-track-index="1"><div class="in"><span class="n">06</span><i class="ln"></i><span class="t">VIE · SÁB · DOM</span></div></div>
+    <div id="r-dj" class="clip hero" data-start="30.25" data-duration="1.7" data-track-index="2"><div class="in">DJ &amp; música<br />en vivo<b>*</b></div></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const chip = (id, a, b) => {
+        tl.fromTo(`#${id} .ln`, { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.4, ease: "expo.out" }, a);
+        tl.fromTo(`#${id} .n`, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out" }, a);
+        tl.fromTo(`#${id} .t`, { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.36, ease: "power3.out" }, a + 0.08);
+        tl.to(`#${id} .in`, { opacity: 0, duration: 0.18, ease: "power2.in" }, b - 0.2);
+      };
+      const scrim = (id, a, b) => {
+        tl.fromTo(`#${id}`, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, a);
+        tl.to(`#${id}`, { opacity: 0, duration: 0.2, ease: "power2.in" }, b - 0.22);
+      };
+      const hero = (id, a, b) => {
+        tl.fromTo(`#${id} .in`, { opacity: 0, y: 22, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.out" }, a);
+        tl.to(`#${id} .in`, { opacity: 0, y: -8, duration: 0.18, ease: "power2.in" }, b - 0.2);
+      };
+      scrim("r-scrim-menu", 0, 7.2); chip("r-menu", 0.05, 7.2);
+      scrim("r-scrim-fav", 14.8, 18.8); chip("r-fav", 14.85, 16.55); hero("r-chillo", 16.6, 18.75);
+      scrim("r-scrim-coc", 18.8, 22.9); chip("r-coc", 18.8, 22.9);
+      scrim("r-scrim-esp", 22.93, 26.35); chip("r-esp", 22.93, 26.35);
+      scrim("r-scrim-fin", 28.75, 31.95); chip("r-fin", 28.75, 30.2); hero("r-dj", 30.25, 31.95);
+      window.__timelines["rotulos"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,118 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    /* franja segura 9:16: el borde inferior del subtítulo en y = 1248 */
+    .cap { position: absolute; left: 150px; width: 720px; top: 1062px; height: 170px; display: flex; align-items: flex-end; justify-content: center; text-align: center; opacity: 0; visibility: hidden; overflow: visible; }
+    .cap .in { font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 54px; line-height: 1.12; color: #f7f5f2; letter-spacing: -0.005em;
+      text-shadow: 0 2px 4px rgba(13,13,13,.55), 0 4px 22px rgba(13,13,13,.55); text-wrap: balance; }
+    .cap .k { font-family: "Playfair Display", serif; font-style: italic; font-weight: 700; font-size: 60px; color: #e6d7c6; letter-spacing: 0; }
+  </style>
+  <div id="root" data-composition-id="subtitulos" data-width="1080" data-height="1920">
+      <div class="cap" id="cap-0"><span class="in">Por aquí les voy</span></div>
+      <div class="cap" id="cap-1"><span class="in">a contestar las</span></div>
+      <div class="cap" id="cap-2"><span class="in">preguntas más</span></div>
+      <div class="cap" id="cap-3"><span class="in">frecuentes que me hacen</span></div>
+      <div class="cap" id="cap-4"><span class="in">los clientes</span></div>
+      <div class="cap" id="cap-5"><span class="in">el <span class="k">horario</span></span></div>
+      <div class="cap" id="cap-6"><span class="in">¿Qué comida ofrecemos?</span></div>
+      <div class="cap" id="cap-7"><span class="in">cualquier tipo de</span></div>
+      <div class="cap" id="cap-8"><span class="in"><span class="k">mariscos</span> que ustedes</span></div>
+      <div class="cap" id="cap-9"><span class="in">deseen</span></div>
+      <div class="cap" id="cap-10"><span class="in">tipo de <span class="k">carnes</span> también</span></div>
+      <div class="cap" id="cap-11"><span class="in">y tenemos todo tipo</span></div>
+      <div class="cap" id="cap-12"><span class="in">de <span class="k">aperitivos</span> que</span></div>
+      <div class="cap" id="cap-13"><span class="in">ustedes prefieran</span></div>
+      <div class="cap" id="cap-14"><span class="in">Contamos con <span class="k">langosta</span></span></div>
+      <div class="cap" id="cap-15"><span class="in">con <span class="k">pescado</span> <span class="k">entero</span></span></div>
+      <div class="cap" id="cap-16"><span class="in"><span class="k">fresco</span> y también</span></div>
+      <div class="cap" id="cap-17"><span class="in">contamos con una</span></div>
+      <div class="cap" id="cap-18"><span class="in">variedad de <span class="k">paellas</span></span></div>
+      <div class="cap" id="cap-19"><span class="in">Tenemos <span class="k">pork</span> <span class="k">belly</span></span></div>
+      <div class="cap" id="cap-20"><span class="in">tenemos</span></div>
+      <div class="cap" id="cap-21"><span class="in"><span class="k">tuna</span> <span class="k">tartar</span> lo más</span></div>
+      <div class="cap" id="cap-22"><span class="in"><span class="k">vendido</span> yo diría el</span></div>
+      <div class="cap" id="cap-23"><span class="in"><span class="k">chillo</span> <span class="k">entero</span> que es</span></div>
+      <div class="cap" id="cap-24"><span class="in">el más <span class="k">fresco</span> del</span></div>
+      <div class="cap" id="cap-25"><span class="in">área</span></div>
+      <div class="cap" id="cap-26"><span class="in">Contamos con variedad</span></div>
+      <div class="cap" id="cap-27"><span class="in">de <span class="k">cocktails</span></span></div>
+      <div class="cap" id="cap-28"><span class="in"><span class="k">creativos</span> y bebidas</span></div>
+      <div class="cap" id="cap-29"><span class="in">bien <span class="k">frías</span></span></div>
+      <div class="cap" id="cap-30"><span class="in">variedades de <span class="k">espacios</span></span></div>
+      <div class="cap" id="cap-31"><span class="in">los cuales pueden</span></div>
+      <div class="cap" id="cap-32"><span class="in">reservar para</span></div>
+      <div class="cap" id="cap-33"><span class="in">cualquier actividad</span></div>
+      <div class="cap" id="cap-34"><span class="in">Y una de las</span></div>
+      <div class="cap" id="cap-35"><span class="in">mejores cosas que</span></div>
+      <div class="cap" id="cap-36"><span class="in">pueden esperar de</span></div>
+      <div class="cap" id="cap-37"><span class="in"><span class="k">Barracuda</span> es que los</span></div>
+      <div class="cap" id="cap-38"><span class="in">viernes</span></div>
+      <div class="cap" id="cap-39"><span class="in">sábados y domingo</span></div>
+      <div class="cap" id="cap-40"><span class="in">tenemos <span class="k">DJ</span> y <span class="k">música</span></span></div>
+      <div class="cap" id="cap-41"><span class="in">en <span class="k">vivo</span></span></div>
+      <div class="cap" id="cap-42"><span class="in">así que ya saben</span></div>
+      <div class="cap" id="cap-43"><span class="in">cuál es su lugar</span></div>
+      <div class="cap" id="cap-44"><span class="in">de <span class="k">encuentro</span></span></div>
+  </div>
+  <script>
+    (function () {
+      const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+      const tl = gsap.timeline({ paused: true });
+      const cap = (i, a, b) => {
+        const el = "#cap-" + i;
+        tl.set(el, { visibility: "visible" }, a);
+        tl.fromTo(el, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power2.out" }, a);
+        tl.to(el, { opacity: 0, duration: 0.1, ease: "power2.in" }, b - 0.1);
+        tl.set(el, { opacity: 0, visibility: "hidden" }, b);
+      };
+      if (vars.textos !== false) {
+      cap(0, 0.120, 0.690);
+      cap(1, 0.690, 1.250);
+      cap(2, 1.250, 1.750);
+      cap(3, 1.750, 2.490);
+      cap(4, 2.490, 3.190);
+      cap(5, 3.190, 3.990);
+      cap(6, 12.463, 14.063);
+      cap(7, 14.063, 14.663);
+      cap(8, 14.663, 15.283);
+      cap(9, 15.283, 16.023);
+      cap(10, 16.023, 17.023);
+      cap(11, 17.023, 18.363);
+      cap(12, 18.363, 19.023);
+      cap(13, 19.023, 19.663);
+      cap(14, 19.663, 20.983);
+      cap(15, 21.063, 21.843);
+      cap(16, 21.843, 22.923);
+      cap(17, 22.923, 23.683);
+      cap(18, 23.683, 24.680);
+      cap(19, 24.680, 26.217);
+      cap(20, 26.377, 26.697);
+      cap(21, 26.697, 27.650);
+      cap(22, 27.650, 29.243);
+      cap(23, 29.243, 30.263);
+      cap(24, 30.263, 30.903);
+      cap(25, 30.903, 31.163);
+      cap(26, 31.163, 31.843);
+      cap(27, 31.843, 32.563);
+      cap(28, 33.023, 34.283);
+      cap(29, 34.283, 35.283);
+      cap(30, 35.283, 36.157);
+      cap(31, 36.157, 36.817);
+      cap(32, 36.817, 37.477);
+      cap(33, 37.477, 38.677);
+      cap(34, 38.770, 39.377);
+      cap(35, 39.377, 40.037);
+      cap(36, 40.037, 40.777);
+      cap(37, 40.777, 41.577);
+      cap(38, 41.577, 41.977);
+      cap(39, 41.977, 42.577);
+      cap(40, 42.577, 43.817);
+      cap(41, 43.817, 44.543);
+      cap(42, 44.543, 45.223);
+      cap(43, 45.223, 45.843);
+      cap(44, 45.843, 46.350);
+      }
+      window.__timelines["subtitulos"] = tl;
+    })();
+  </script>
+</template>

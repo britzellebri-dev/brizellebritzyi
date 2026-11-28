@@ -1,0 +1,21 @@
+[
+ {"id":"b01","clip":"IMG_6122","out":0.00,"dur":1.75,"src":3.55,"speed":0.75,"vol":0.5},
+ {"id":"b02","clip":"IMG_6152","out":7.90,"dur":4.50,"src":1.4,"speed":1.0,"vol":0.3},
+ {"id":"b03","clip":"IMG_6187","out":14.05,"dur":1.95,"src":18.0,"speed":1.0,"vol":0.5},
+ {"id":"b04","clip":"IMG_6222","out":16.00,"dur":1.05,"src":3.0,"speed":1.0,"vol":0.5},
+ {"id":"b05","clip":"IMG_6128","out":17.05,"dur":2.60,"src":1.4,"speed":1.0,"vol":0.5},
+ {"id":"b06","clip":"IMG_6226","out":19.65,"dur":1.40,"src":0.5,"speed":1.0,"vol":0.5},
+ {"id":"b07","clip":"IMG_6180","out":21.05,"dur":1.40,"src":6.0,"speed":1.0,"vol":0.5},
+ {"id":"b08","clip":"IMG_6193","out":22.45,"dur":1.20,"src":5.0,"speed":1.0,"vol":0.5},
+ {"id":"b09","clip":"IMG_6192","out":23.65,"dur":1.10,"src":4.0,"speed":1.0,"vol":0.5},
+ {"id":"b10","clip":"IMG_6205","out":29.00,"dur":1.30,"src":0.85,"speed":0.6,"vol":0.8},
+ {"id":"b11","clip":"IMG_6207","out":30.30,"dur":0.90,"src":4.0,"speed":1.0,"vol":0.5},
+ {"id":"b12","clip":"IMG_6109","out":32.30,"dur":1.25,"src":1.9,"speed":1.0,"vol":0.6},
+ {"id":"b13","clip":"IMG_6161","out":33.55,"dur":0.90,"src":1.5,"speed":1.0,"vol":0.6},
+ {"id":"b14","clip":"IMG_6131","out":34.45,"dur":0.90,"src":4.0,"speed":1.0,"vol":0.8},
+ {"id":"b15","clip":"IMG_6034","out":36.25,"dur":1.05,"src":1.0,"speed":1.0,"vol":0.3},
+ {"id":"b16","clip":"IMG_6053","out":37.30,"dur":1.50,"src":2.0,"speed":1.0,"vol":0.3},
+ {"id":"b17","clip":"IMG_6058","out":41.10,"dur":1.50,"src":8.0,"speed":1.0,"vol":0.3},
+ {"id":"b18","clip":"IMG_6034","out":42.60,"dur":1.77,"src":4.0,"speed":1.0,"vol":0.3},
+ {"id":"b19","clip":"IMG_5999","out":46.35,"dur":4.15,"src":1.0,"speed":1.0,"vol":0.3}
+]
